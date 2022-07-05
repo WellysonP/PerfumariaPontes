@@ -5,19 +5,19 @@ import 'package:perfumaria/components/bottom_bar_custom.dart';
 
 import '../components/app_bar_custom.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ProductPage extends StatelessWidget {
+  const ProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomBarCustom.isHome(),
+      bottomNavigationBar: BottomBarCustom.isExplore(),
       body: SafeArea(
         child: Column(
           children: [
             AppBarCustom(
               icon: Icons.filter_alt_outlined,
-              text: "Destaques",
+              text: "Catálogo",
             ),
           ],
         ),

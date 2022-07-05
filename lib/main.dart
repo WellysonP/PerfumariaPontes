@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:perfumaria/screens/perfil_page.dart';
+import 'package:perfumaria/screens/product_page.dart';
+import 'package:perfumaria/utils/app_routes.dart';
 import 'screens/home_page.dart';
 
 void main(List<String> args) {
@@ -20,7 +23,11 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      routes: {
+        AppRoutes.HOME: (context) => HomePage(),
+        AppRoutes.EXPLORE: (context) => ProductPage(),
+        AppRoutes.PERFIL: (context) => PerfilPage(),
+      },
     );
   }
 }
