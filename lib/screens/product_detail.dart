@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../components/app_bar_custom.dart';
 
@@ -13,7 +11,7 @@ class ProductDetail extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            AppBarCustom(
+            AppBarCustom.isArrowBack(
               icon: Icons.arrow_back,
               text: "Descrição",
             ),

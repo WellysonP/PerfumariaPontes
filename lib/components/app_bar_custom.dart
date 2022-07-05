@@ -1,16 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class AppBarCustom extends StatelessWidget {
   final IconData icon;
   final String text;
-  const AppBarCustom({
-    Key? key,
+  final bool isFilter;
+  final bool isArrowBack;
+
+  const AppBarCustom.isFilter({
     required this.icon,
     required this.text,
-  }) : super(key: key);
+    this.isFilter = true,
+    this.isArrowBack = false,
+  });
+
+  const AppBarCustom.isArrowBack({
+    required this.icon,
+    required this.text,
+    this.isFilter = false,
+    this.isArrowBack = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,11 @@ class AppBarCustom extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (isArrowBack) {
+                    Navigator.of(context).pop();
+                  }
+                },
                 icon: Icon(icon, color: Colors.white),
               ),
               Expanded(
@@ -55,7 +67,7 @@ class AppBarCustom extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 30, left: 17),
+          padding: const EdgeInsets.only(top: 20, left: 17),
           child: Text(
             text,
             style: TextStyle(

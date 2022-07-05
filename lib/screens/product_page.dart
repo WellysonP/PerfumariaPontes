@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:perfumaria/components/bottom_bar_custom.dart';
 
 import '../components/app_bar_custom.dart';
+import '../components/product_grid.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -15,9 +16,12 @@ class ProductPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            AppBarCustom(
+            AppBarCustom.isFilter(
               icon: Icons.filter_alt_outlined,
               text: "Catálogo",
+            ),
+            Expanded(
+              child: ProductGrid(),
             ),
           ],
         ),

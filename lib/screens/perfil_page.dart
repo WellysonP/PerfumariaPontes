@@ -15,7 +15,7 @@ class PerfilPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            AppBarCustom(
+            AppBarCustom.isFilter(
               icon: Icons.filter_alt_outlined,
               text: "Perfil",
             ),

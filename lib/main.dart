@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:perfumaria/provider/company_provider.dart';
 import 'package:perfumaria/screens/perfil_page.dart';
+import 'package:perfumaria/screens/product_detail.dart';
 import 'package:perfumaria/screens/product_page.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.HOME: (context) => HomePage(),
           AppRoutes.EXPLORE: (context) => ProductPage(),
           AppRoutes.PERFIL: (context) => PerfilPage(),
+          AppRoutes.PRODUCT_DESCRIPTION: (context) => ProductDetail(),
         },
       ),
     );

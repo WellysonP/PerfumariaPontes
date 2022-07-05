@@ -27,14 +27,14 @@ class ProductItems extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              "De: ${productItems.oldPrice.toStringAsFixed(2)}",
+              "De: R\$ ${productItems.oldPrice.toStringAsFixed(2)}",
               style: TextStyle(
                   color: Color.fromRGBO(169, 169, 169, 1),
                   fontSize: 15,
                   decoration: TextDecoration.lineThrough),
             ),
             Text(
-              "Por: ${productItems.newPrice.toStringAsFixed(2)}",
+              "Por: R\$ ${productItems.newPrice.toStringAsFixed(2)}",
               style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 20,
