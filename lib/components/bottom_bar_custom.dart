@@ -6,13 +6,6 @@ class BottomBarCustom extends StatelessWidget {
   final bool? isExplore;
   final bool? isPerfil;
 
-  const BottomBarCustom({
-    Key? key,
-    this.isHome,
-    this.isExplore,
-    this.isPerfil,
-  }) : super(key: key);
-
   BottomBarCustom.isHome({
     this.isHome = true,
     this.isExplore,
