@@ -16,7 +16,6 @@ class HomePage extends StatelessWidget {
     final company = Provider.of<CompanyProvider>(context);
     final product = Provider.of<ProductProvider>(context);
     return Scaffold(
-      bottomNavigationBar: BottomBarCustom.isHome(),
       body: SafeArea(
         child: Column(
           children: [
@@ -24,7 +23,7 @@ class HomePage extends StatelessWidget {
               icon: Icons.filter_alt_outlined,
               text: "Destaques",
             ),
-            SizedBox(height: 31),
+            SizedBox(height: 17),
             SizedBox(
               height: 175,
               child: ListView.builder(
@@ -45,6 +44,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomBarCustom.isHome(),
     );
   }
 }

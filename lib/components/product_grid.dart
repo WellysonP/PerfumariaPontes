@@ -12,7 +12,7 @@ class ProductGrid extends StatelessWidget {
     final product = Provider.of<ProductProvider>(context);
     final sizeDevide = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(17),
+      padding: const EdgeInsets.only(right: 17, left: 17),
       child: GridView.builder(
         itemCount: product.itemsCount,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:perfumaria/models/product_model.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 
+import 'favorite_buttom.dart';
+
 class ProductGridItem extends StatelessWidget {
   final ProductModel product;
   const ProductGridItem({Key? key, required this.product}) : super(key: key);
@@ -18,8 +20,10 @@ class ProductGridItem extends StatelessWidget {
                 InkWell(
                   borderRadius: BorderRadius.circular(20),
                   onTap: () {
-                    Navigator.of(context)
-                        .pushNamed(AppRoutes.PRODUCT_DESCRIPTION);
+                    Navigator.of(context).pushNamed(
+                      AppRoutes.PRODUCT_DESCRIPTION,
+                      arguments: product,
+                    );
                   },
                   child: Image.network(
                     product.imageUrl,
@@ -65,7 +69,9 @@ class ProductGridItem extends StatelessWidget {
           bottom: 0,
           child: ClipRRect(
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+              topLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
             child: InkWell(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
@@ -81,21 +87,9 @@ class ProductGridItem extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 8,
-          right: 8,
-          child: InkWell(
-            onTap: () {},
-            borderRadius: BorderRadius.circular(15),
-            child: CircleAvatar(
-              backgroundColor: Color.fromRGBO(217, 217, 217, 1),
-              radius: 15,
-              child: Icon(
-                Icons.favorite_border,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ),
+            top: 8,
+            right: 8,
+            child: FavoriteButtom(radius: 15, sizeFavorite: 20)),
       ],
     );
   }

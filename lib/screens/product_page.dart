@@ -12,7 +12,6 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomBarCustom.isExplore(),
       body: SafeArea(
         child: Column(
           children: [
@@ -20,12 +19,14 @@ class ProductPage extends StatelessWidget {
               icon: Icons.filter_alt_outlined,
               text: "Catálogo",
             ),
+            SizedBox(height: 17),
             Expanded(
               child: ProductGrid(),
             ),
           ],
         ),
       ),
+      bottomNavigationBar: BottomBarCustom.isExplore(),
     );
   }
 }

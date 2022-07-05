@@ -11,7 +11,6 @@ class PerfilPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomBarCustom.isPerfil(),
       body: SafeArea(
         child: Column(
           children: [
@@ -22,6 +21,7 @@ class PerfilPage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomBarCustom.isPerfil(),
     );
   }
 }
