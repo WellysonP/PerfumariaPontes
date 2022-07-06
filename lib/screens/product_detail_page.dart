@@ -37,7 +37,8 @@ class ProductDetail extends StatelessWidget {
                 Positioned(
                   top: 10,
                   right: 10,
-                  child: FavoriteButtom(radius: 20, sizeFavorite: 25),
+                  child: FavoriteButtom(
+                      radius: 20, sizeFavorite: 25, product: product),
                 ),
                 Positioned(
                   bottom: 0,
@@ -87,15 +88,15 @@ class ProductDetail extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                color: Color.fromRGBO(0, 0, 0, 0.2),
+                color: Color.fromRGBO(130, 129, 129, 0.2),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 29, left: 17, right: 11),
                   child: Text(
                     product.description,
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
                         height: 1.5,
                         wordSpacing: 2),
                   ),

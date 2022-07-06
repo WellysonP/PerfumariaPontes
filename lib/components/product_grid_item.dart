@@ -89,7 +89,11 @@ class ProductGridItem extends StatelessWidget {
         Positioned(
             top: 8,
             right: 8,
-            child: FavoriteButtom(radius: 15, sizeFavorite: 20)),
+            child: FavoriteButtom(
+              radius: 15,
+              sizeFavorite: 20,
+              product: product,
+            )),
       ],
     );
   }

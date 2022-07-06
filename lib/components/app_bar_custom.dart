@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:perfumaria/utils/app_routes.dart';
 
 class AppBarCustom extends StatelessWidget {
   final IconData icon;
@@ -39,7 +40,7 @@ class AppBarCustom extends StatelessWidget {
               ),
               Expanded(
                 child: SizedBox(
-                  height: 30,
+                  height: 35,
                   child: TextField(
                     textAlign: TextAlign.center,
                     textAlignVertical: TextAlignVertical.bottom,

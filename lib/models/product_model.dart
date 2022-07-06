@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class ProductModel {
   final String id;
   final String name;
@@ -5,13 +7,15 @@ class ProductModel {
   final double newPrice;
   final String imageUrl;
   final String description;
+  bool isFavorite;
 
-  const ProductModel({
+  ProductModel({
     required this.id,
     required this.name,
     required this.oldPrice,
     required this.newPrice,
     required this.imageUrl,
     required this.description,
+    this.isFavorite = false,
   });
 }
