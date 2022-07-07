@@ -16,130 +16,70 @@ class LoginForm extends StatelessWidget {
           children: [
             if (!product.isLogin)
               SizedBox(
-                height: product.simpleForm ? 50 : 50,
+                height: 50,
                 child: TextFormField(
-                  style: TextStyle(
-                      color: product.simpleForm
-                          ? null
-                          : Theme.of(context).colorScheme.primary,
-                      fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                   decoration: InputDecoration(
-                    enabledBorder: product.simpleForm
-                        ? null
-                        : UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 3,
-                                color: Theme.of(context).colorScheme.primary)),
-                    border: product.simpleForm
-                        ? OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20))
-                        : null,
-                    labelStyle: TextStyle(
-                      color: product.simpleForm
-                          ? null
-                          : Theme.of(context).colorScheme.primary,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelStyle: const TextStyle(
                       fontSize: 15,
                     ),
                     labelText: "Nome completo",
-                    fillColor: product.simpleForm ? Colors.white : null,
-                    filled: product.simpleForm ? true : null,
+                    fillColor: Colors.white,
+                    filled: true,
                   ),
                 ),
               ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
             SizedBox(
-              height: product.simpleForm ? 50 : 50,
+              height: 50,
               child: TextFormField(
-                style: TextStyle(
-                    color: product.simpleForm
-                        ? null
-                        : Theme.of(context).colorScheme.primary,
-                    fontSize: 20),
+                style: const TextStyle(fontSize: 20),
                 decoration: InputDecoration(
-                  enabledBorder: product.simpleForm
-                      ? null
-                      : UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 3,
-                              color: Theme.of(context).colorScheme.primary)),
-                  border: product.simpleForm
-                      ? OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20))
-                      : null,
-                  labelStyle: TextStyle(
-                    color: product.simpleForm
-                        ? null
-                        : Theme.of(context).colorScheme.primary,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  labelStyle: const TextStyle(
                     fontSize: 15,
                   ),
                   labelText: "E-mail",
-                  fillColor: product.simpleForm ? Colors.white : null,
-                  filled: product.simpleForm ? true : null,
+                  fillColor: Colors.white,
+                  filled: true,
                 ),
               ),
             ),
             SizedBox(height: 10),
             SizedBox(
-              height: product.simpleForm ? 50 : 50,
+              height: 50,
               child: TextFormField(
-                style: TextStyle(
-                    color: product.simpleForm
-                        ? null
-                        : Theme.of(context).colorScheme.primary,
-                    fontSize: 20),
+                style: const TextStyle(fontSize: 20),
                 decoration: InputDecoration(
-                  enabledBorder: product.simpleForm
-                      ? null
-                      : UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 3,
-                              color: Theme.of(context).colorScheme.primary)),
-                  border: product.simpleForm
-                      ? OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20))
-                      : null,
-                  labelStyle: TextStyle(
-                    color: product.simpleForm
-                        ? null
-                        : Theme.of(context).colorScheme.primary,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  labelStyle: const TextStyle(
                     fontSize: 15,
                   ),
                   labelText: "Senha",
-                  fillColor: product.simpleForm ? Colors.white : null,
-                  filled: product.simpleForm ? true : null,
+                  fillColor: Colors.white,
+                  filled: true,
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            if (!product.isLogin) SizedBox(height: 10),
             if (!product.isLogin)
               SizedBox(
-                height: product.simpleForm ? 50 : 50,
+                height: 50,
                 child: TextFormField(
-                  style: TextStyle(
-                      color: product.simpleForm
-                          ? null
-                          : Theme.of(context).colorScheme.primary,
-                      fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                   decoration: InputDecoration(
-                    enabledBorder: product.simpleForm
-                        ? null
-                        : UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 3,
-                                color: Theme.of(context).colorScheme.primary)),
-                    border: product.simpleForm
-                        ? OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20))
-                        : null,
-                    labelStyle: TextStyle(
-                      color: product.simpleForm
-                          ? null
-                          : Theme.of(context).colorScheme.primary,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelStyle: const TextStyle(
                       fontSize: 15,
                     ),
                     labelText: "Confirmar senha",
-                    fillColor: product.simpleForm ? Colors.white : null,
-                    filled: product.simpleForm ? true : null,
+                    fillColor: Colors.white,
+                    filled: true,
                   ),
                 ),
               ),
@@ -156,7 +96,7 @@ class LoginForm extends StatelessWidget {
                   child: Center(
                     child: Text(
                       product.isLogin ? "Entrar" : "Cadastrar",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                       ),
                     ),
@@ -164,15 +104,15 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   product.isLogin ? "Não possu conta?" : "Já possui uma conta?",
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
-                SizedBox(width: 3),
+                const SizedBox(width: 3),
                 InkWell(
                   onTap: () {
                     product.toogleLogin();

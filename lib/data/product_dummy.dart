@@ -12,6 +12,106 @@ final ProductDummy = [
         "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
   ),
   ProductModel(
+    id: "01",
+    name: "Homem Dom",
+    oldPrice: 172.99,
+    newPrice: 120.90,
+    imageUrl:
+        "https://static.natura.com/cdn/ff/m_mAyn7kkEoydlf4We8uZPj0SqpuhfbuU5Cc9cFlbys/1625495826/public/2021-07/59847_dicas_de_uso_0.jpg",
+    description:
+        "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
+  ),
+  ProductModel(
+    id: "01",
+    name: "Homem Dom",
+    oldPrice: 172.99,
+    newPrice: 120.90,
+    imageUrl:
+        "https://static.natura.com/cdn/ff/m_mAyn7kkEoydlf4We8uZPj0SqpuhfbuU5Cc9cFlbys/1625495826/public/2021-07/59847_dicas_de_uso_0.jpg",
+    description:
+        "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
+  ),
+  ProductModel(
+    id: "01",
+    name: "Homem Dom",
+    oldPrice: 172.99,
+    newPrice: 120.90,
+    imageUrl:
+        "https://static.natura.com/cdn/ff/m_mAyn7kkEoydlf4We8uZPj0SqpuhfbuU5Cc9cFlbys/1625495826/public/2021-07/59847_dicas_de_uso_0.jpg",
+    description:
+        "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
+  ),
+  ProductModel(
+    id: "01",
+    name: "Homem Dom",
+    oldPrice: 172.99,
+    newPrice: 120.90,
+    imageUrl:
+        "https://static.natura.com/cdn/ff/m_mAyn7kkEoydlf4We8uZPj0SqpuhfbuU5Cc9cFlbys/1625495826/public/2021-07/59847_dicas_de_uso_0.jpg",
+    description:
+        "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
+  ),
+  ProductModel(
+    id: "01",
+    name: "Homem Dom",
+    oldPrice: 172.99,
+    newPrice: 120.90,
+    imageUrl:
+        "https://static.natura.com/cdn/ff/m_mAyn7kkEoydlf4We8uZPj0SqpuhfbuU5Cc9cFlbys/1625495826/public/2021-07/59847_dicas_de_uso_0.jpg",
+    description:
+        "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
+  ),
+  ProductModel(
+    id: "01",
+    name: "Homem Dom",
+    oldPrice: 172.99,
+    newPrice: 120.90,
+    imageUrl:
+        "https://static.natura.com/cdn/ff/m_mAyn7kkEoydlf4We8uZPj0SqpuhfbuU5Cc9cFlbys/1625495826/public/2021-07/59847_dicas_de_uso_0.jpg",
+    description:
+        "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
+  ),
+  ProductModel(
+    id: "01",
+    name: "Homem Dom",
+    oldPrice: 172.99,
+    newPrice: 120.90,
+    imageUrl:
+        "https://static.natura.com/cdn/ff/m_mAyn7kkEoydlf4We8uZPj0SqpuhfbuU5Cc9cFlbys/1625495826/public/2021-07/59847_dicas_de_uso_0.jpg",
+    description:
+        "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
+  ),
+  ProductModel(
+    id: "01",
+    name: "Homem Dom",
+    oldPrice: 172.99,
+    newPrice: 120.90,
+    imageUrl:
+        "https://static.natura.com/cdn/ff/m_mAyn7kkEoydlf4We8uZPj0SqpuhfbuU5Cc9cFlbys/1625495826/public/2021-07/59847_dicas_de_uso_0.jpg",
+    description:
+        "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
+  ),
+  ProductModel(
+    id: "01",
+    name: "Homem Dom",
+    oldPrice: 172.99,
+    newPrice: 120.90,
+    imageUrl:
+        "https://static.natura.com/cdn/ff/m_mAyn7kkEoydlf4We8uZPj0SqpuhfbuU5Cc9cFlbys/1625495826/public/2021-07/59847_dicas_de_uso_0.jpg",
+    description:
+        "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
+  ),
+  ProductModel(
+    id: "01",
+    name: "Homem Dom",
+    oldPrice: 172.99,
+    newPrice: 120.90,
+    imageUrl:
+        "https://static.natura.com/cdn/ff/m_mAyn7kkEoydlf4We8uZPj0SqpuhfbuU5Cc9cFlbys/1625495826/public/2021-07/59847_dicas_de_uso_0.jpg",
+    description:
+        "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
+  ),
+  ProductModel(
       id: "02",
       name: "Ekos Alma",
       oldPrice: 199.99,

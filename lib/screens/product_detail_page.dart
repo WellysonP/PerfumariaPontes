@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:perfumaria/components/favorite_buttom.dart';
+import 'package:perfumaria/components/subtitle_appbar.dart';
 import 'package:perfumaria/models/product_model.dart';
 
 import '../components/app_bar_custom.dart';
@@ -13,13 +15,10 @@ class ProductDetail extends StatelessWidget {
     final ProductModel product =
         ModalRoute.of(context)!.settings.arguments as ProductModel;
     return Scaffold(
+      appBar: AppBarCustom.isArrowBack(),
       body: SafeArea(
         child: Column(
           children: [
-            const AppBarCustom.isArrowBack(
-              icon: Icons.arrow_back,
-              text: "Descrição",
-            ),
             const SizedBox(height: 17),
             Stack(
               children: [
