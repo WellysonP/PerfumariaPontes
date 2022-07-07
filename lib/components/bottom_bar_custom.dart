@@ -38,7 +38,7 @@ class BottomBarCustom extends StatelessWidget {
               color: isHome == true
                   ? Theme.of(context).colorScheme.primary
                   : Color.fromRGBO(33, 33, 33, 1),
-              height: 80,
+              height: 60,
               width: devideSize.width * 0.33,
               child: Icon(
                 Icons.home_outlined,
@@ -56,7 +56,7 @@ class BottomBarCustom extends StatelessWidget {
               color: isExplore == true
                   ? Theme.of(context).colorScheme.primary
                   : Color.fromRGBO(33, 33, 33, 1),
-              height: 80,
+              height: 60,
               width: devideSize.width * 0.34,
               child: Icon(
                 Icons.explore_outlined,
@@ -74,7 +74,7 @@ class BottomBarCustom extends StatelessWidget {
               color: isPerfil == true
                   ? Theme.of(context).colorScheme.primary
                   : Color.fromRGBO(33, 33, 33, 1),
-              height: 80,
+              height: 60,
               width: devideSize.width * 0.33,
               child: Icon(
                 Icons.person_outline,

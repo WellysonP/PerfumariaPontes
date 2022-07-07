@@ -24,28 +24,34 @@ class HomePage extends StatelessWidget {
           children: [
             SubtitleAppBar(text: "Destaques"),
             Expanded(
-              child: Container(
-                width: double.infinity,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 175,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: company.itemsCount,
-                        itemBuilder: (ctx, i) =>
-                            CompanyItems(companyItem: company.items[i]),
+              child: SingleChildScrollView(
+                child: Container(
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      Container(
+                        // color: Colors.blue,
+                        height: 123,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: company.itemsCount,
+                          itemBuilder: (ctx, i) =>
+                              CompanyItems(companyItem: company.items[i]),
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: product.itemsCount,
-                        itemBuilder: (ctx, i) =>
-                            ProductItems(productItems: product.items[i]),
+                      SizedBox(height: 50),
+                      Container(
+                        height: 275,
+                        width: double.infinity,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: product.itemsCount,
+                          itemBuilder: (ctx, i) =>
+                              ProductItems(productItems: product.items[i]),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             )

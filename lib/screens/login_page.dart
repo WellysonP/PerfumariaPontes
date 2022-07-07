@@ -24,15 +24,19 @@ class LoginPage extends StatelessWidget {
               child: Container(
                 child: ListView(
                   children: [
-                    InkWell(
-                      borderRadius: BorderRadius.circular(150),
-                      onTap: () {},
-                      child: Image.asset(
-                        product.isLogin
-                            ? "assets/images/account_circle.png"
-                            : "assets/images/Group_33.png",
-                        height: 150,
-                        width: 150,
+                    CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: 75,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(150),
+                        onTap: () {},
+                        child: Image.asset(
+                          product.isLogin
+                              ? "assets/images/account_circle.png"
+                              : "assets/images/Group_33.png",
+                          height: 150,
+                          width: 150,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 17),
