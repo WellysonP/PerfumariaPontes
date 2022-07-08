@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:perfumaria/components/subtitle_appbar.dart';
+import 'package:perfumaria/widgets/subtitle_appbar.dart';
 
 import 'package:perfumaria/provider/product_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
-import '../components/app_bar_custom.dart';
-import '../components/bottom_bar_custom.dart';
+import '../widgets/app_bar_custom.dart';
+import '../widgets/bottom_bar_custom.dart';
 
 class PerfilPageOut extends StatelessWidget {
   const PerfilPageOut({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class PerfilPageOut extends StatelessWidget {
                     const SizedBox(
                       width: 185,
                       child: Text(
-                        "Você ainda não esta logado",
+                        "Você ainda não está logado",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,

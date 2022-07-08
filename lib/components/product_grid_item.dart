@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:perfumaria/models/product_model.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 
-import 'favorite_buttom.dart';
+import '../widgets/favorite_buttom.dart';
 
 class ProductGridItem extends StatelessWidget {
   final ProductModel product;
