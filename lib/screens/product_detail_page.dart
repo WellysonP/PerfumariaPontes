@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:perfumaria/components/favorite_buttom.dart';
-import 'package:perfumaria/components/subtitle_appbar.dart';
+import 'package:perfumaria/widgets/favorite_buttom.dart';
+import 'package:perfumaria/widgets/subtitle_appbar.dart';
 import 'package:perfumaria/models/product_model.dart';
 
-import '../components/app_bar_custom.dart';
+import '../widgets/app_bar_custom.dart';
 
 class ProductDetail extends StatelessWidget {
   const ProductDetail({Key? key}) : super(key: key);
@@ -110,16 +110,16 @@ class ProductDetail extends StatelessWidget {
         child: InkWell(
           onTap: () {},
           child: SizedBox(
-            height: 80,
+            height: 60,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Adicionar ao carrinho",
+                  "Adicionar à sacola",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 10),
-                Icon(Icons.shopping_cart_outlined, size: 35)
+                SizedBox(width: 5),
+                Icon(Icons.local_mall_outlined, size: 35)
               ],
             ),
           ),

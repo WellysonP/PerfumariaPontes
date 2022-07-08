@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "782342990039",
+    "project_id": "newperfumaria-50abf",
+    "storage_bucket": "newperfumaria-50abf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782342990039:android:8ef1f33f3c9ec4fb7f6892",
+        "android_client_info": {
+          "package_name": "br.com.wellysonpontes.perfumaria"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782342990039-ap0tlr0soq3j7ikr260gmbo8i0hs4gmd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7mtifuKDkLVuhLgOVL2hur8JYBQAMOBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782342990039-ap0tlr0soq3j7ikr260gmbo8i0hs4gmd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:perfumaria/components/app_bar_custom.dart';
-import 'package:perfumaria/components/bottom_bar_custom.dart';
+import 'package:perfumaria/widgets/app_bar_custom.dart';
+import 'package:perfumaria/widgets/bottom_bar_custom.dart';
 import 'package:perfumaria/components/company_items.dart';
 import 'package:perfumaria/provider/company_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../components/product_items.dart';
-import '../components/subtitle_appbar.dart';
+import '../widgets/subtitle_appbar.dart';
 import '../provider/product_provider.dart';
 
 class HomePage extends StatelessWidget {

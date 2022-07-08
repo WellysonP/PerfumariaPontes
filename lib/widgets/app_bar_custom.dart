@@ -29,12 +29,6 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
               icon: Icon(Icons.filter_alt_outlined, size: 24),
             )
           : null,
-      actions: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Icon(Icons.local_mall_outlined),
-        ),
-      ],
       backgroundColor: Color.fromRGBO(33, 33, 33, 1),
       elevation: 0,
       title: SizedBox(
@@ -55,6 +49,19 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3),
+          child: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.local_mall_outlined,
+              color: Colors.white,
+              size: 24,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -108,25 +108,24 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  product.isLogin ? "Não possu conta?" : "Já possui uma conta?",
+                  product.isLogin
+                      ? "Não possui conta?"
+                      : "Já possui uma conta?",
                   style: const TextStyle(color: Colors.white),
                 ),
                 const SizedBox(width: 3),
-                InkWell(
-                  onTap: () {
-                    product.toogleLogin();
-                  },
+                TextButton(
+                  onPressed: product.toogleLogin,
                   child: Text(
                     "Clique aqui",
                     style:
                         TextStyle(color: Theme.of(context).colorScheme.primary),
                   ),
-                )
+                ),
               ],
             )
           ],
