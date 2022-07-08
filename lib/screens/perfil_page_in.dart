@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:perfumaria/widgets/subtitle_appbar.dart';
 
 import 'package:perfumaria/provider/product_provider.dart';
+import 'package:perfumaria/utils/app_routes.dart';
 import 'package:provider/provider.dart';
+
 import '../widgets/app_bar_custom.dart';
 import '../widgets/bottom_bar_custom.dart';
-import '../components/login_form.dart';
+import '../components/list_actions_perfil.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class PerfilPageIn extends StatelessWidget {
+  const PerfilPageIn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,19 @@ class LoginPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SubtitleAppBar(text: "Perfil"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SubtitleAppBar(text: "Perfil"),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.logout,
+                      color: Colors.red,
+                      size: 30,
+                    ))
+              ],
+            ),
             Expanded(
               child: Container(
                 child: ListView(
@@ -28,14 +44,20 @@ class LoginPage extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       radius: 75,
                       child: InkWell(
-                        borderRadius: BorderRadius.circular(150),
                         onTap: () {},
-                        child: Image.asset(
-                          product.isLogin
-                              ? "assets/images/account_circle.png"
-                              : "assets/images/Group_33.png",
-                          height: 150,
-                          width: 150,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Image.asset(
+                                "assets/images/Group_22.png",
+                                width: 40,
+                                height: 40,
+                              ),
+                            ),
+                            Image.asset("assets/images/account_circle.png"),
+                          ],
                         ),
                       ),
                     ),
@@ -43,7 +65,7 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       width: 185,
                       child: Text(
-                        product.isLogin ? "Login" : "Cadastro",
+                        "Usuário",
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Colors.white,
@@ -53,7 +75,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 20),
-                    LoginForm(),
+                    ListActionsPerfil(),
                   ],
                 ),
               ),

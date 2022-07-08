@@ -17,11 +17,6 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void toogleForm() {
-    simpleForm = !simpleForm;
-    notifyListeners();
-  }
-
   void toogleLogin() {
     isLogin = !isLogin;
     notifyListeners();

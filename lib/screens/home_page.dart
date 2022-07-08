@@ -30,7 +30,6 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        // color: Colors.blue,
                         height: 123,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,

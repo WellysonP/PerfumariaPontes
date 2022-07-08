@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:perfumaria/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/product_provider.dart';
@@ -88,7 +89,10 @@ class LoginForm extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               child: InkWell(
                 borderRadius: BorderRadius.circular(20),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(AppRoutes.PERFIL_IN);
+                },
                 child: Container(
                   height: 60,
                   width: 250,

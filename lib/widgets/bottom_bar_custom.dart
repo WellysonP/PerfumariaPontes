@@ -67,8 +67,8 @@ class BottomBarCustom extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil(AppRoutes.PERFIL, (route) => false);
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  AppRoutes.PERFIL_OUT, (route) => false);
             },
             child: Container(
               color: isPerfil == true

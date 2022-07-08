@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:perfumaria/components/subtitle_appbar.dart';
 
 import 'package:perfumaria/provider/product_provider.dart';
@@ -10,8 +8,8 @@ import 'package:provider/provider.dart';
 import '../components/app_bar_custom.dart';
 import '../components/bottom_bar_custom.dart';
 
-class PerfilPage extends StatelessWidget {
-  const PerfilPage({Key? key}) : super(key: key);
+class PerfilPageOut extends StatelessWidget {
+  const PerfilPageOut({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +90,7 @@ class PerfilPage extends StatelessWidget {
                           color: Theme.of(context).colorScheme.primary,
                           child: Center(
                             child: Text(
-                              "Cadastrear-se",
+                              "Cadastrar-se",
                               style: TextStyle(
                                 fontSize: 20,
                               ),
