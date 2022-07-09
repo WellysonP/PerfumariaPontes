@@ -1,23 +1,19 @@
-import 'package:flutter/cupertino.dart';
-
-class ProductModel {
+class BagModel {
   final String id;
+  final String productId;
   final String name;
   final int quantity;
   final double oldPrice;
   final double newPrice;
   final String imageUrl;
-  final String description;
-  bool isFavorite;
 
-  ProductModel({
+  const BagModel({
     required this.id,
+    required this.productId,
     required this.name,
     required this.quantity,
     required this.oldPrice,
     required this.newPrice,
     required this.imageUrl,
-    required this.description,
-    this.isFavorite = false,
   });
 }

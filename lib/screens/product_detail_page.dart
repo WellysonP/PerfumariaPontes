@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:perfumaria/provider/bag_provider.dart';
 
 import 'package:perfumaria/widgets/favorite_buttom.dart';
 import 'package:perfumaria/widgets/subtitle_appbar.dart';
 import 'package:perfumaria/models/product_model.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/app_bar_custom.dart';
 
@@ -14,6 +16,7 @@ class ProductDetail extends StatelessWidget {
     final sizeDevice = MediaQuery.of(context).size;
     final ProductModel product =
         ModalRoute.of(context)!.settings.arguments as ProductModel;
+    final bag = Provider.of<BagProvider>(context);
     return Scaffold(
       appBar: AppBarCustom.isArrowBack(),
       body: SafeArea(
@@ -108,7 +111,9 @@ class ProductDetail extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).colorScheme.primary,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            bag.addItem(product);
+          },
           child: SizedBox(
             height: 60,
             child: Row(

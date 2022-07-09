@@ -2,6 +2,7 @@ import 'package:perfumaria/models/product_model.dart';
 
 final ProductDummy = [
   ProductModel(
+    quantity: 10,
     id: "01",
     name: "Homem Dom",
     oldPrice: 172.99,
@@ -12,6 +13,7 @@ final ProductDummy = [
         "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
   ),
   ProductModel(
+      quantity: 10,
       id: "02",
       name: "Ekos Alma",
       oldPrice: 199.99,
@@ -21,6 +23,7 @@ final ProductDummy = [
       description:
           "Perfume feminino EKOS ALMA DEO PARFUM com 50ml, fragrância amadeirado intenso."),
   ProductModel(
+      quantity: 10,
       id: "03",
       name: "Malbec",
       oldPrice: 169.90,
@@ -30,7 +33,8 @@ final ProductDummy = [
       description:
           "Perfume masculino MALBEC com 100ml, fragrância amadeirado aromatizado."),
   ProductModel(
-      id: "03",
+      quantity: 10,
+      id: "04",
       name: "Elysée",
       oldPrice: 259.90,
       newPrice: 229.90,

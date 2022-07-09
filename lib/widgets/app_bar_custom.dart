@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:perfumaria/utils/app_routes.dart';
 
 class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   final bool isFilter;
@@ -53,7 +54,9 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 3),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.BAG_PAGE);
+            },
             icon: Icon(
               Icons.local_mall_outlined,
               color: Colors.white,

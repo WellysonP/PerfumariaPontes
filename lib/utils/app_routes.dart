@@ -5,4 +5,5 @@ class AppRoutes {
   static final PERFIL_IN = "/perfil-in";
   static final PRODUCT_DESCRIPTION = "/product-description";
   static final LOGIN_PAGE = "/login-page";
+  static final BAG_PAGE = "/bag-page";
 }
