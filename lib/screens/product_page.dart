@@ -14,18 +14,16 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarCustom.isFilter(),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SubtitleAppBar(text: "Catálogo"),
-            Expanded(
-              child: Container(
-                child: ProductGrid(),
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SubtitleAppBar(text: "Catálogo"),
+          Expanded(
+            child: Container(
+              child: ProductGrid(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomBarCustom.isExplore(),
     );

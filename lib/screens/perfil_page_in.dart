@@ -19,69 +19,67 @@ class PerfilPageIn extends StatelessWidget {
     final product = Provider.of<ProductProvider>(context);
     return Scaffold(
       appBar: AppBarCustom.isFilter(),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SubtitleAppBar(text: "Perfil"),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.logout,
-                      color: Colors.red,
-                      size: 30,
-                    ))
-              ],
-            ),
-            Expanded(
-              child: Container(
-                child: ListView(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 75,
-                      child: InkWell(
-                        onTap: () {},
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: Image.asset(
-                                "assets/images/Group_22.png",
-                                width: 40,
-                                height: 40,
-                              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SubtitleAppBar(text: "Perfil"),
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.logout,
+                    color: Colors.red,
+                    size: 30,
+                  ))
+            ],
+          ),
+          Expanded(
+            child: Container(
+              child: ListView(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    radius: 75,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Image.asset(
+                              "assets/images/Group_22.png",
+                              width: 40,
+                              height: 40,
                             ),
-                            Image.asset("assets/images/account_circle.png"),
-                          ],
-                        ),
+                          ),
+                          Image.asset("assets/images/account_circle.png"),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 17),
-                    SizedBox(
-                      width: 185,
-                      child: Text(
-                        "Usuário",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  ),
+                  const SizedBox(height: 17),
+                  SizedBox(
+                    width: 185,
+                    child: Text(
+                      "Usuário",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 20),
-                    ListActionsPerfil(),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 20),
+                  ListActionsPerfil(),
+                ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
       bottomNavigationBar: BottomBarCustom.isPerfil(),
     );

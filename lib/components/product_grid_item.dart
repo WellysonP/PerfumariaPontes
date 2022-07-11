@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:perfumaria/models/product_model.dart';
+import 'package:perfumaria/provider/bag_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/favorite_buttom.dart';
 
@@ -10,6 +12,7 @@ class ProductGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bag = Provider.of<BagProvider>(context);
     return Stack(
       children: [
         ClipRRect(
@@ -33,7 +36,7 @@ class ProductGridItem extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  color: Color.fromRGBO(130, 129, 129, 0.2),
+                  color: const Color.fromRGBO(130, 129, 129, 0.2),
                   height: 50,
                   width: double.infinity,
                   child: Padding(
@@ -43,7 +46,7 @@ class ProductGridItem extends StatelessWidget {
                       children: [
                         Text(
                           "R\$${product.oldPrice.toStringAsFixed(2)}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 12,
                               color: Color.fromRGBO(169, 169, 169, 1),
                               decoration: TextDecoration.lineThrough),
@@ -68,15 +71,17 @@ class ProductGridItem extends StatelessWidget {
           right: 0,
           bottom: 0,
           child: ClipRRect(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),
             ),
             child: InkWell(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20)),
-              onTap: () {},
+              onTap: () {
+                bag.addItem(product);
+              },
               child: Container(
                 height: 50,
                 width: 50,

@@ -19,94 +19,92 @@ class ProductDetail extends StatelessWidget {
     final bag = Provider.of<BagProvider>(context);
     return Scaffold(
       appBar: AppBarCustom.isArrowBack(),
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 17),
-            Stack(
-              children: [
-                ClipRRect(
+      body: Column(
+        children: [
+          const SizedBox(height: 17),
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+                child: Image.network(
+                  product.imageUrl,
+                  height: sizeDevice.height * 0.50,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Positioned(
+                top: 10,
+                right: 10,
+                child: FavoriteButtom(
+                    radius: 20, sizeFavorite: 25, product: product),
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: ClipRRect(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
                   ),
-                  child: Image.network(
-                    product.imageUrl,
-                    height: sizeDevice.height * 0.50,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Positioned(
-                  top: 10,
-                  right: 10,
-                  child: FavoriteButtom(
-                      radius: 20, sizeFavorite: 25, product: product),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: ClipRRect(
+                  child: InkWell(
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                    ),
-                    child: InkWell(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20)),
-                      onTap: () {},
-                      child: Container(
-                        height: 50,
-                        width: 100,
-                        color: Theme.of(context).colorScheme.primary,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10, left: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "R\$${product.oldPrice.toStringAsFixed(2)}",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Color.fromRGBO(55, 55, 55, 1),
-                                    decoration: TextDecoration.lineThrough),
+                        topLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20)),
+                    onTap: () {},
+                    child: Container(
+                      height: 50,
+                      width: 100,
+                      color: Theme.of(context).colorScheme.primary,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10, left: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "R\$${product.oldPrice.toStringAsFixed(2)}",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromRGBO(55, 55, 55, 1),
+                                  decoration: TextDecoration.lineThrough),
+                            ),
+                            Text(
+                              "R\$${product.newPrice.toStringAsFixed(2)}",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
                               ),
-                              Text(
-                                "R\$${product.newPrice.toStringAsFixed(2)}",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-            Expanded(
-              child: Container(
-                color: Color.fromRGBO(130, 129, 129, 0.2),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 29, left: 17, right: 11),
-                  child: Text(
-                    product.description,
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18,
-                        height: 1.5,
-                        wordSpacing: 2),
-                  ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: Container(
+              color: Color.fromRGBO(130, 129, 129, 0.2),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 29, left: 17, right: 11),
+                child: Text(
+                  product.description,
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
+                      height: 1.5,
+                      wordSpacing: 2),
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).colorScheme.primary,

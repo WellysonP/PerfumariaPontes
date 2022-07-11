@@ -18,44 +18,42 @@ class HomePage extends StatelessWidget {
     final product = Provider.of<ProductProvider>(context);
     return Scaffold(
       appBar: AppBarCustom.isFilter(),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SubtitleAppBar(text: "Destaques"),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 123,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: company.itemsCount,
-                          itemBuilder: (ctx, i) =>
-                              CompanyItems(companyItem: company.items[i]),
-                        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SubtitleAppBar(text: "Destaques"),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 123,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: company.itemsCount,
+                        itemBuilder: (ctx, i) =>
+                            CompanyItems(companyItem: company.items[i]),
                       ),
-                      SizedBox(height: 50),
-                      Container(
-                        height: 275,
-                        width: double.infinity,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: product.itemsCount,
-                          itemBuilder: (ctx, i) =>
-                              ProductItems(productItems: product.items[i]),
-                        ),
+                    ),
+                    SizedBox(height: 50),
+                    Container(
+                      height: 275,
+                      width: double.infinity,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: product.itemsCount,
+                        itemBuilder: (ctx, i) =>
+                            ProductItems(productItems: product.items[i]),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
       bottomNavigationBar: BottomBarCustom.isHome(),
     );

@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:perfumaria/models/bag_model.dart';
 import 'package:perfumaria/provider/bag_provider.dart';
 import 'package:perfumaria/widgets/app_bar_custom.dart';
@@ -21,18 +18,19 @@ class BagPage extends StatelessWidget {
     final List<BagModel> items = bag.items.values.toList();
     return Scaffold(
       appBar: AppBarCustom.isArrowBack(),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SubtitleAppBar(text: "Sacola"),
-            Container(
-              alignment: Alignment.topLeft,
-              width: double.infinity,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SubtitleAppBar(text: "Sacola"),
+          Container(
+            alignment: Alignment.topLeft,
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 17),
               child: Card(
                 elevation: 10,
-                shadowColor: Color.fromRGBO(150, 146, 146, 1),
-                color: Color.fromRGBO(251, 235, 196, 1),
+                shadowColor: const Color.fromRGBO(150, 146, 146, 1),
+                color: const Color.fromRGBO(251, 235, 196, 1),
                 child: Container(
                   height: bag.viewMore
                       ? sizeDevide.height * 0.2 + (bag.items.length * 76)
@@ -42,36 +40,41 @@ class BagPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 17),
-                        Bag.Item(text: "Produtos", total: 572.88),
-                        SizedBox(height: 13),
-                        Bag.Item(text: "Descontos", total: 91.34),
-                        SizedBox(height: 13),
-                        DasheLine(),
+                        const SizedBox(height: 17),
+                        Bag.item(
+                          text: "Produtos",
+                          total: bag.totalOldPriceAmount,
+                        ),
+                        const SizedBox(height: 13),
+                        Bag.item(text: "Descontos", total: bag.totalDisccount),
+                        const SizedBox(height: 13),
+                        const DasheLine(),
                         if (bag.viewMore)
                           Expanded(
-                            child: Container(
-                              child: ListView.builder(
-                                // itemCount: bag.items.length,
-                                itemCount: bag.items.length,
-                                itemBuilder: (ctx, i) =>
-                                    BagWidget(bagItem: items[i]),
-                              ),
+                            child: ListView.builder(
+                              itemCount: bag.items.length,
+                              itemBuilder: (ctx, i) =>
+                                  BagWidget(bagItem: items[i]),
                             ),
                           ),
-                        SizedBox(height: 2),
-                        Text(
+                        const SizedBox(height: 2),
+                        const Text(
                           "*Descontos válidos apenas para Pagamentos via PIX.",
                           style: TextStyle(
                             color: Color.fromRGBO(55, 55, 55, 1),
                             fontSize: 12,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Bag.Total(text: "TOTAL", total: 481.54),
+                            Bag.total(
+                              text: "TOTAL",
+                              total: bag.isDiscount
+                                  ? bag.totalNewPriceAmount
+                                  : bag.totalOldPriceAmount,
+                            ),
                             IconButton(
                               onPressed: () => bag.listBag(),
                               icon: Stack(
@@ -82,11 +85,12 @@ class BagPage extends StatelessWidget {
                                     color:
                                         Theme.of(context).colorScheme.primary,
                                   ),
-                                  Icon(
-                                    Icons.expand_circle_down_outlined,
-                                    size: 30,
-                                    color: Color.fromRGBO(55, 55, 55, 1),
-                                  ),
+                                  if (bag.viewMore)
+                                    const RotatedBox(
+                                      quarterTurns: 2,
+                                      child: ExpandIcon(),
+                                    ),
+                                  if (!bag.viewMore) const ExpandIcon(),
                                 ],
                               ),
                             )
@@ -98,14 +102,14 @@ class BagPage extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).colorScheme.primary,
         child: InkWell(
           onTap: () {},
-          child: SizedBox(
+          child: const SizedBox(
             height: 60,
             child: Center(
               child: Text(
@@ -124,17 +128,32 @@ class BagPage extends StatelessWidget {
   }
 }
 
+class ExpandIcon extends StatelessWidget {
+  const ExpandIcon({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Icon(
+      Icons.expand_circle_down_outlined,
+      size: 30,
+      color: Color.fromRGBO(55, 55, 55, 1),
+    );
+  }
+}
+
 class Bag extends StatelessWidget {
   final String text;
   final double total;
   final isTotal;
 
-  const Bag.Item({
+  const Bag.item({
     required this.text,
     required this.total,
     this.isTotal = false,
   });
-  const Bag.Total({
+  const Bag.total({
     required this.text,
     required this.total,
     this.isTotal = true,
@@ -146,12 +165,12 @@ class Bag extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          "${text}:",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+          "$text:",
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
         ),
-        SizedBox(width: 3),
+        const SizedBox(width: 3),
         Text(
-          "R\$ ${total}",
+          "R\$ ${total.toStringAsFixed(2)}",
           style: TextStyle(fontSize: isTotal ? 18 : 16),
         )
       ],

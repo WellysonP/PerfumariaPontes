@@ -103,15 +103,39 @@ class BagProvider with ChangeNotifier {
     return _items.length;
   }
 
-  double get totalAmount {
+  double get totalNewPriceAmount {
     double total = 0.0;
-    _items.forEach((key, cartItem) {
-      if (isDiscount) {
-        total += cartItem.newPrice * cartItem.quantity;
-      } else {
-        total += cartItem.oldPrice * cartItem.quantity;
-      }
+    _items.forEach((key, BagModel) {
+      total += BagModel.newPrice * BagModel.quantity;
     });
     return total;
+  }
+
+  double get totalOldPriceAmount {
+    double total = 0.0;
+    _items.forEach((key, BagModel) {
+      total += BagModel.oldPrice * BagModel.quantity;
+    });
+    return total;
+  }
+
+  double get totalDisccount {
+    double total = 0.0;
+    if (!isDiscount) {
+      total = 0.0;
+    } else {
+      _items.forEach((key, BagModel) {
+        total = totalOldPriceAmount - totalNewPriceAmount;
+      });
+    }
+    return total;
+  }
+
+  void toogleDisccount() {
+    isDiscount = !isDiscount;
+    print("Old: $totalOldPriceAmount");
+    print("New: $totalNewPriceAmount");
+    print("Soma: ${totalOldPriceAmount - totalNewPriceAmount}");
+    notifyListeners();
   }
 }
