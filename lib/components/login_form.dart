@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 import 'package:provider/provider.dart';
-
 import '../provider/product_provider.dart';
 
 class LoginForm extends StatelessWidget {
@@ -32,7 +31,7 @@ class LoginForm extends StatelessWidget {
                   ),
                 ),
               ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             SizedBox(
               height: 50,
               child: TextFormField(
@@ -49,7 +48,7 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             SizedBox(
               height: 50,
               child: TextFormField(
@@ -66,7 +65,7 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
             ),
-            if (!product.isLogin) SizedBox(height: 10),
+            if (!product.isLogin) const SizedBox(height: 10),
             if (!product.isLogin)
               SizedBox(
                 height: 50,
@@ -84,7 +83,7 @@ class LoginForm extends StatelessWidget {
                   ),
                 ),
               ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: InkWell(

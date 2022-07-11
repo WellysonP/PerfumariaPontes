@@ -1,10 +1,11 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:perfumaria/models/bag_model.dart';
 import 'package:perfumaria/provider/bag_provider.dart';
 import 'package:perfumaria/widgets/app_bar_custom.dart';
 import 'package:perfumaria/widgets/subtitle_appbar.dart';
 import 'package:provider/provider.dart';
-
 import '../widgets/bag_widget.dart';
 import '../widgets/dashe_line_widget.dart';
 
@@ -17,7 +18,7 @@ class BagPage extends StatelessWidget {
     final sizeDevide = MediaQuery.of(context).size;
     final List<BagModel> items = bag.items.values.toList();
     return Scaffold(
-      appBar: AppBarCustom.isArrowBack(),
+      appBar: const AppBarCustom.isArrowBack(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,7 +32,7 @@ class BagPage extends StatelessWidget {
                 elevation: 10,
                 shadowColor: const Color.fromRGBO(150, 146, 146, 1),
                 color: const Color.fromRGBO(251, 235, 196, 1),
-                child: Container(
+                child: SizedBox(
                   height: bag.viewMore
                       ? sizeDevide.height * 0.2 + (bag.items.length * 76)
                       : sizeDevide.height * 0.2,
@@ -146,6 +147,7 @@ class ExpandIcon extends StatelessWidget {
 class Bag extends StatelessWidget {
   final String text;
   final double total;
+  // ignore: prefer_typing_uninitialized_variables
   final isTotal;
 
   const Bag.item({
@@ -166,12 +168,19 @@ class Bag extends StatelessWidget {
       children: [
         Text(
           "$text:",
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w900,
+            color: Color.fromRGBO(55, 55, 55, 1),
+          ),
         ),
         const SizedBox(width: 3),
         Text(
           "R\$ ${total.toStringAsFixed(2)}",
-          style: TextStyle(fontSize: isTotal ? 18 : 16),
+          style: TextStyle(
+            fontSize: isTotal ? 18 : 16,
+            color: const Color.fromRGBO(55, 55, 55, 1),
+          ),
         )
       ],
     );

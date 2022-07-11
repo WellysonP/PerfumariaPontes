@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:perfumaria/provider/bag_provider.dart';
 import 'package:perfumaria/widgets/dashe_line_widget.dart';
 import 'package:provider/provider.dart';
@@ -176,7 +173,7 @@ class SubText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color: Color.fromRGBO(55, 55, 55, 1),
+        color: const Color.fromRGBO(55, 55, 55, 1),
         fontSize: size,
         fontWeight: FontWeight.bold,
       ),

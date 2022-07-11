@@ -9,17 +9,17 @@ class CompanyItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Column(
           children: [
             CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage(companyItem.imageUrl),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               companyItem.name,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 15,
               ),

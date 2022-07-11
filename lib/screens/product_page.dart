@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:perfumaria/widgets/bottom_bar_custom.dart';
 import 'package:perfumaria/widgets/subtitle_appbar.dart';
-
 import '../widgets/app_bar_custom.dart';
 import '../components/product_grid.dart';
 
@@ -13,19 +10,20 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarCustom.isFilter(),
+      appBar: const AppBarCustom.isFilter(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        // ignore: prefer_const_literals_to_create_immutables
         children: [
-          SubtitleAppBar(text: "Catálogo"),
+          const SubtitleAppBar(text: "Catálogo"),
+          // ignore: prefer_const_constructors
           Expanded(
-            child: Container(
-              child: ProductGrid(),
-            ),
+            // ignore: prefer_const_constructors
+            child: ProductGrid(),
           ),
         ],
       ),
-      bottomNavigationBar: BottomBarCustom.isExplore(),
+      bottomNavigationBar: const BottomBarCustom.isExplore(),
     );
   }
 }

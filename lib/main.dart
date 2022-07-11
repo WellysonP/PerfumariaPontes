@@ -19,7 +19,7 @@ Future<void> main(List<String> args) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData(
-      scaffoldBackgroundColor: Color.fromRGBO(33, 33, 33, 1),
+      scaffoldBackgroundColor: const Color.fromRGBO(33, 33, 33, 1),
     );
     return MultiProvider(
       providers: [
@@ -39,18 +39,18 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: theme.copyWith(
           colorScheme: theme.colorScheme.copyWith(
-            primary: Color.fromRGBO(242, 134, 12, 1),
+            primary: const Color.fromRGBO(242, 134, 12, 1),
           ),
         ),
         debugShowCheckedModeBanner: false,
         routes: {
-          AppRoutes.HOME: (context) => HomePage(),
-          AppRoutes.EXPLORE: (context) => ProductPage(),
-          AppRoutes.PERFIL_OUT: (context) => PerfilPageOut(),
-          AppRoutes.PERFIL_IN: (context) => PerfilPageIn(),
-          AppRoutes.PRODUCT_DESCRIPTION: (context) => ProductDetail(),
-          AppRoutes.LOGIN_PAGE: (context) => LoginPage(),
-          AppRoutes.BAG_PAGE: (context) => BagPage(),
+          AppRoutes.home: (context) => const HomePage(),
+          AppRoutes.explore: (context) => const ProductPage(),
+          AppRoutes.perfilOut: (context) => const PerfilPageOut(),
+          AppRoutes.perfilIn: (context) => const PerfilPageIn(),
+          AppRoutes.productDescription: (context) => const ProductDetail(),
+          AppRoutes.loginPage: (context) => const LoginPage(),
+          AppRoutes.bagPage: (context) => const BagPage(),
         },
       ),
     );

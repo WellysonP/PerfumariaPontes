@@ -1,5 +1,9 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
+import 'package:perfumaria/provider/bag_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
+import 'package:provider/provider.dart';
 
 class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   final bool isFilter;
@@ -16,10 +20,11 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
-  Size get preferredSize => Size.fromHeight(50);
+  Size get preferredSize => const Size.fromHeight(50);
 
   @override
   Widget build(BuildContext context) {
+    final bag = Provider.of<BagProvider>(context);
     return AppBar(
       leadingWidth: 54,
       centerTitle: true,
@@ -27,10 +32,10 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       leading: isFilter
           ? IconButton(
               onPressed: () {},
-              icon: Icon(Icons.filter_alt_outlined, size: 24),
+              icon: const Icon(Icons.filter_alt_outlined, size: 24),
             )
           : null,
-      backgroundColor: Color.fromRGBO(33, 33, 33, 1),
+      backgroundColor: const Color.fromRGBO(33, 33, 33, 1),
       elevation: 0,
       title: SizedBox(
         height: 35,
@@ -38,11 +43,11 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
           textAlign: TextAlign.center,
           textAlignVertical: TextAlignVertical.bottom,
           decoration: InputDecoration(
-            hintStyle: TextStyle(color: Color.fromRGBO(150, 146, 146, 1)),
+            hintStyle: const TextStyle(color: Color.fromRGBO(150, 146, 146, 1)),
             hintText: "Procurar no aplicativo",
             fillColor: Colors.white,
             filled: true,
-            suffixIcon: Icon(
+            suffixIcon: const Icon(
               Icons.search,
               color: Color.fromRGBO(150, 146, 146, 1),
             ),
@@ -55,9 +60,10 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.symmetric(horizontal: 3),
           child: IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.BAG_PAGE);
+              Navigator.of(context).pushNamed(AppRoutes.bagPage);
+              bag.viewMore = false;
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.local_mall_outlined,
               color: Colors.white,
               size: 24,

@@ -4,7 +4,6 @@ import 'package:perfumaria/widgets/bottom_bar_custom.dart';
 import 'package:perfumaria/components/company_items.dart';
 import 'package:perfumaria/provider/company_provider.dart';
 import 'package:provider/provider.dart';
-
 import '../components/product_items.dart';
 import '../widgets/subtitle_appbar.dart';
 import '../provider/product_provider.dart';
@@ -17,18 +16,18 @@ class HomePage extends StatelessWidget {
     final company = Provider.of<CompanyProvider>(context);
     final product = Provider.of<ProductProvider>(context);
     return Scaffold(
-      appBar: AppBarCustom.isFilter(),
+      appBar: const AppBarCustom.isFilter(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SubtitleAppBar(text: "Destaques"),
+          const SubtitleAppBar(text: "Destaques"),
           Expanded(
             child: SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 child: Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 123,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -37,8 +36,8 @@ class HomePage extends StatelessWidget {
                             CompanyItems(companyItem: company.items[i]),
                       ),
                     ),
-                    SizedBox(height: 50),
-                    Container(
+                    const SizedBox(height: 50),
+                    SizedBox(
                       height: 275,
                       width: double.infinity,
                       child: ListView.builder(
@@ -55,7 +54,7 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: BottomBarCustom.isHome(),
+      bottomNavigationBar: const BottomBarCustom.isHome(),
     );
   }
 }

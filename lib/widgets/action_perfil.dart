@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ActionPerfil extends StatelessWidget {
   final IconData icon;
@@ -23,7 +20,7 @@ class ActionPerfil extends StatelessWidget {
         onPressed: onPress,
         child: Column(
           children: [
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Row(
               children: [
                 Icon(
@@ -42,7 +39,7 @@ class ActionPerfil extends StatelessWidget {
                         fontSize: 18,
                       ),
                     ),
-                    SizedBox(height: 6),
+                    const SizedBox(height: 6),
                     Container(
                       width: sizeDevice.width * 0.75,
                       decoration: BoxDecoration(
@@ -58,7 +55,7 @@ class ActionPerfil extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 15)
+            const SizedBox(height: 15)
           ],
         ),
       ),

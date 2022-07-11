@@ -14,13 +14,13 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<ProductProvider>(context);
     return Scaffold(
-      appBar: AppBarCustom.isFilter(),
+      appBar: const AppBarCustom.isFilter(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SubtitleAppBar(text: "Perfil"),
+          const SubtitleAppBar(text: "Perfil"),
           Expanded(
-            child: Container(
+            child: SizedBox(
               child: ListView(
                 children: [
                   CircleAvatar(
@@ -51,15 +51,15 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
-                  LoginForm(),
+                  const SizedBox(height: 20),
+                  const LoginForm(),
                 ],
               ),
             ),
           )
         ],
       ),
-      bottomNavigationBar: BottomBarCustom.isPerfil(),
+      bottomNavigationBar: const BottomBarCustom.isPerfil(),
     );
   }
 }

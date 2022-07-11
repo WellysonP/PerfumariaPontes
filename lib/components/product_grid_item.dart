@@ -24,7 +24,7 @@ class ProductGridItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   onTap: () {
                     Navigator.of(context).pushNamed(
-                      AppRoutes.PRODUCT_DESCRIPTION,
+                      AppRoutes.productDescription,
                       arguments: product,
                     );
                   },
@@ -86,7 +86,7 @@ class ProductGridItem extends StatelessWidget {
                 height: 50,
                 width: 50,
                 color: Theme.of(context).colorScheme.primary,
-                child: Icon(Icons.add, size: 30),
+                child: const Icon(Icons.add, size: 30),
               ),
             ),
           ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perfumaria/provider/bag_provider.dart';
-
 import 'package:perfumaria/widgets/favorite_buttom.dart';
-import 'package:perfumaria/widgets/subtitle_appbar.dart';
 import 'package:perfumaria/models/product_model.dart';
 import 'package:provider/provider.dart';
 
@@ -18,14 +16,14 @@ class ProductDetail extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as ProductModel;
     final bag = Provider.of<BagProvider>(context);
     return Scaffold(
-      appBar: AppBarCustom.isArrowBack(),
+      appBar: const AppBarCustom.isArrowBack(),
       body: Column(
         children: [
           const SizedBox(height: 17),
           Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
@@ -45,12 +43,12 @@ class ProductDetail extends StatelessWidget {
                 bottom: 0,
                 right: 0,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20),
                   ),
                   child: InkWell(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20)),
                     onTap: () {},
@@ -65,14 +63,14 @@ class ProductDetail extends StatelessWidget {
                           children: [
                             Text(
                               "R\$${product.oldPrice.toStringAsFixed(2)}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 12,
                                   color: Color.fromRGBO(55, 55, 55, 1),
                                   decoration: TextDecoration.lineThrough),
                             ),
                             Text(
                               "R\$${product.newPrice.toStringAsFixed(2)}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -89,7 +87,7 @@ class ProductDetail extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              color: Color.fromRGBO(130, 129, 129, 0.2),
+              color: const Color.fromRGBO(130, 129, 129, 0.2),
               child: Padding(
                 padding: const EdgeInsets.only(top: 29, left: 17, right: 11),
                 child: Text(
@@ -116,7 +114,7 @@ class ProductDetail extends StatelessWidget {
             height: 60,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Text(
                   "Adicionar à sacola",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

@@ -1,9 +1,9 @@
 class AppRoutes {
-  static final HOME = "/";
-  static final EXPLORE = "/explore";
-  static final PERFIL_OUT = "/perfil-out";
-  static final PERFIL_IN = "/perfil-in";
-  static final PRODUCT_DESCRIPTION = "/product-description";
-  static final LOGIN_PAGE = "/login-page";
-  static final BAG_PAGE = "/bag-page";
+  static const home = "/";
+  static const explore = "/explore";
+  static const perfilOut = "/perfil-out";
+  static const perfilIn = "/perfil-in";
+  static const productDescription = "/product-description";
+  static const loginPage = "/login-page";
+  static const bagPage = "/bag-page";
 }

@@ -15,13 +15,13 @@ class PerfilPageOut extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<ProductProvider>(context);
     return Scaffold(
-      appBar: AppBarCustom.isFilter(),
+      appBar: const AppBarCustom.isFilter(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SubtitleAppBar(text: "Perfil"),
+          const SubtitleAppBar(text: "Perfil"),
           Expanded(
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               child: Column(
                 children: [
@@ -43,7 +43,7 @@ class PerfilPageOut extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 38),
+                  const SizedBox(height: 38),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: InkWell(
@@ -51,13 +51,13 @@ class PerfilPageOut extends StatelessWidget {
                       onTap: () {
                         product.isLogin = true;
                         Navigator.of(context)
-                            .pushReplacementNamed(AppRoutes.LOGIN_PAGE);
+                            .pushReplacementNamed(AppRoutes.loginPage);
                       },
                       child: Container(
                         height: 60,
                         width: 185,
                         color: Theme.of(context).colorScheme.primary,
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Fazer login",
                             style: TextStyle(
@@ -68,12 +68,12 @@ class PerfilPageOut extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 25),
-                  Text(
+                  const SizedBox(height: 25),
+                  const Text(
                     "Ou",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: InkWell(
@@ -81,13 +81,13 @@ class PerfilPageOut extends StatelessWidget {
                       onTap: () {
                         product.isLogin = false;
                         Navigator.of(context)
-                            .pushReplacementNamed(AppRoutes.LOGIN_PAGE);
+                            .pushReplacementNamed(AppRoutes.loginPage);
                       },
                       child: Container(
                         height: 60,
                         width: 185,
                         color: Theme.of(context).colorScheme.primary,
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Cadastrar-se",
                             style: TextStyle(
@@ -104,7 +104,7 @@ class PerfilPageOut extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: BottomBarCustom.isPerfil(),
+      bottomNavigationBar: const BottomBarCustom.isPerfil(),
     );
   }
 }

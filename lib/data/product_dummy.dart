@@ -1,6 +1,6 @@
 import 'package:perfumaria/models/product_model.dart';
 
-final ProductDummy = [
+final productDummy = [
   ProductModel(
     quantity: 10,
     id: "01",

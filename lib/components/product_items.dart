@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:perfumaria/models/company_model.dart';
-
 import '../models/product_model.dart';
+import '../utils/app_routes.dart';
 
 class ProductItems extends StatelessWidget {
   final ProductModel productItems;
@@ -14,9 +13,18 @@ class ProductItems extends StatelessWidget {
       children: [
         Column(
           children: [
-            CircleAvatar(
-              radius: 100,
-              backgroundImage: NetworkImage(productItems.imageUrl),
+            InkWell(
+              borderRadius: BorderRadius.circular(100),
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  AppRoutes.productDescription,
+                  arguments: productItems,
+                );
+              },
+              child: CircleAvatar(
+                radius: 100,
+                backgroundImage: NetworkImage(productItems.imageUrl),
+              ),
             ),
             const SizedBox(height: 5),
             Text(
@@ -28,7 +36,7 @@ class ProductItems extends StatelessWidget {
             ),
             Text(
               "De: R\$ ${productItems.oldPrice.toStringAsFixed(2)}",
-              style: TextStyle(
+              style: const TextStyle(
                   color: Color.fromRGBO(169, 169, 169, 1),
                   fontSize: 15,
                   decoration: TextDecoration.lineThrough),

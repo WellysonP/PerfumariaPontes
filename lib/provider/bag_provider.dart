@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:perfumaria/models/bag_model.dart';
 import 'package:perfumaria/models/product_model.dart';
@@ -105,16 +104,16 @@ class BagProvider with ChangeNotifier {
 
   double get totalNewPriceAmount {
     double total = 0.0;
-    _items.forEach((key, BagModel) {
-      total += BagModel.newPrice * BagModel.quantity;
+    _items.forEach((key, BagModel bag) {
+      total += bag.newPrice * bag.quantity;
     });
     return total;
   }
 
   double get totalOldPriceAmount {
     double total = 0.0;
-    _items.forEach((key, BagModel) {
-      total += BagModel.oldPrice * BagModel.quantity;
+    _items.forEach((key, BagModel bag) {
+      total += bag.oldPrice * bag.quantity;
     });
     return total;
   }
@@ -124,18 +123,13 @@ class BagProvider with ChangeNotifier {
     if (!isDiscount) {
       total = 0.0;
     } else {
-      _items.forEach((key, BagModel) {
-        total = totalOldPriceAmount - totalNewPriceAmount;
-      });
+      total = totalOldPriceAmount - totalNewPriceAmount;
     }
     return total;
   }
 
   void toogleDisccount() {
     isDiscount = !isDiscount;
-    print("Old: $totalOldPriceAmount");
-    print("New: $totalNewPriceAmount");
-    print("Soma: ${totalOldPriceAmount - totalNewPriceAmount}");
     notifyListeners();
   }
 }

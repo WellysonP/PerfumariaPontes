@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 
@@ -6,17 +8,19 @@ class BottomBarCustom extends StatelessWidget {
   final bool? isExplore;
   final bool? isPerfil;
 
-  BottomBarCustom.isHome({
+  const BottomBarCustom.isHome({
     this.isHome = true,
     this.isExplore,
     this.isPerfil,
   });
-  BottomBarCustom.isExplore({
+
+  const BottomBarCustom.isExplore({
     this.isHome,
     this.isExplore = true,
     this.isPerfil,
   });
-  BottomBarCustom.isPerfil({
+
+  const BottomBarCustom.isPerfil({
     this.isHome,
     this.isExplore,
     this.isPerfil = true,
@@ -26,18 +30,18 @@ class BottomBarCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     final devideSize = MediaQuery.of(context).size;
     return BottomAppBar(
-      color: Color.fromRGBO(33, 33, 33, 1),
+      color: const Color.fromRGBO(33, 33, 33, 1),
       child: Row(
         children: [
           InkWell(
             onTap: () {
               Navigator.of(context)
-                  .pushNamedAndRemoveUntil(AppRoutes.HOME, (route) => false);
+                  .pushNamedAndRemoveUntil(AppRoutes.home, (route) => false);
             },
             child: Container(
               color: isHome == true
                   ? Theme.of(context).colorScheme.primary
-                  : Color.fromRGBO(33, 33, 33, 1),
+                  : const Color.fromRGBO(33, 33, 33, 1),
               height: 60,
               width: devideSize.width * 0.33,
               child: Icon(
@@ -50,12 +54,12 @@ class BottomBarCustom extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.of(context)
-                  .pushNamedAndRemoveUntil(AppRoutes.EXPLORE, (route) => false);
+                  .pushNamedAndRemoveUntil(AppRoutes.explore, (route) => false);
             },
             child: Container(
               color: isExplore == true
                   ? Theme.of(context).colorScheme.primary
-                  : Color.fromRGBO(33, 33, 33, 1),
+                  : const Color.fromRGBO(33, 33, 33, 1),
               height: 60,
               width: devideSize.width * 0.34,
               child: Icon(
@@ -68,12 +72,12 @@ class BottomBarCustom extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
-                  AppRoutes.PERFIL_OUT, (route) => false);
+                  AppRoutes.perfilOut, (route) => false);
             },
             child: Container(
               color: isPerfil == true
                   ? Theme.of(context).colorScheme.primary
-                  : Color.fromRGBO(33, 33, 33, 1),
+                  : const Color.fromRGBO(33, 33, 33, 1),
               height: 60,
               width: devideSize.width * 0.33,
               child: Icon(

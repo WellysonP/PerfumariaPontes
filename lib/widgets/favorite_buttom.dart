@@ -25,7 +25,7 @@ class FavoriteButtom extends StatelessWidget {
       child: Stack(
         children: [
           CircleAvatar(
-            backgroundColor: Color.fromRGBO(217, 217, 217, 1),
+            backgroundColor: const Color.fromRGBO(217, 217, 217, 1),
             radius: radius,
             child: Icon(
               product.isFavorite ? Icons.favorite : Icons.favorite_border,
@@ -35,16 +35,6 @@ class FavoriteButtom extends StatelessWidget {
               size: sizeFavorite,
             ),
           ),
-          // if (widget.product.isFavorite)
-          //   CircleAvatar(
-          //     backgroundColor: Colors.transparent,
-          //     radius: widget.radius,
-          //     child: Icon(
-          //       Icons.favorite_border,
-          //       color: Colors.black,
-          //       size: widget.sizeFavorite,
-          //     ),
-          //   ),
         ],
       ),
     );
