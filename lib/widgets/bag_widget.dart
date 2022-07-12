@@ -93,17 +93,12 @@ class BagWidget extends StatelessWidget {
                         height: 30,
                         color: const Color.fromRGBO(55, 55, 55, 1),
                         child: Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              bag.toogleDisccount();
-                            },
-                            child: Text(
-                              bagItem.quantity.toString(),
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w900,
-                              ),
+                          child: Text(
+                            bagItem.quantity.toString(),
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w900,
                             ),
                           ),
                         ),

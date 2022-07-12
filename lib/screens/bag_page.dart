@@ -15,7 +15,7 @@ class BagPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bag = Provider.of<BagProvider>(context);
-    final sizeDevide = MediaQuery.of(context).size;
+    final sizeDevice = MediaQuery.of(context).size;
     final List<BagModel> items = bag.items.values.toList();
     return Scaffold(
       appBar: const AppBarCustom.isArrowBack(),
@@ -34,20 +34,47 @@ class BagPage extends StatelessWidget {
                 color: const Color.fromRGBO(251, 235, 196, 1),
                 child: SizedBox(
                   height: bag.viewMore
-                      ? sizeDevide.height * 0.2 + (bag.items.length * 76)
-                      : sizeDevide.height * 0.2,
+                      ? sizeDevice.height * 0.215 + (bag.items.length * 76)
+                      : sizeDevice.height * 0.215,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 17),
-                        Bag.item(
-                          text: "Produtos",
-                          total: bag.totalOldPriceAmount,
+                        const SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Bag.item(
+                                  text: "Produtos",
+                                  total: bag.totalOldPriceAmount,
+                                ),
+                                const SizedBox(height: 13),
+                                Bag.item(
+                                    text: "Descontos",
+                                    total: bag.totalDisccount),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                PayType.pix(
+                                  bag: bag,
+                                  imageUrl: "assets/images/pix.png",
+                                  sizeDevice: sizeDevice,
+                                ),
+                                // const SizedBox(height: 5),
+                                PayType.card(
+                                  bag: bag,
+                                  imageUrl: "assets/images/cartao.png",
+                                  sizeDevice: sizeDevice,
+                                ),
+                              ],
+                            )
+                          ],
                         ),
-                        const SizedBox(height: 13),
-                        Bag.item(text: "Descontos", total: bag.totalDisccount),
                         const SizedBox(height: 13),
                         const DasheLine(),
                         if (bag.viewMore)
@@ -123,6 +150,62 @@ class BagPage extends StatelessWidget {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class PayType extends StatelessWidget {
+  final String imageUrl;
+  final BagProvider bag;
+  final Size sizeDevice;
+  final bool isPix;
+
+  const PayType.pix({
+    required this.bag,
+    required this.imageUrl,
+    required this.sizeDevice,
+    this.isPix = true,
+  });
+  const PayType.card({
+    required this.bag,
+    required this.imageUrl,
+    required this.sizeDevice,
+    this.isPix = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      splashColor: Theme.of(context).colorScheme.primary,
+      borderRadius: BorderRadius.circular(10),
+      onTap: () {
+        if (isPix) {
+          bag.isPix();
+        } else {
+          bag.isCard();
+        }
+      },
+      child: SizedBox(
+        width: sizeDevice.width * 0.25,
+        height: sizeDevice.height * 0.045,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              bag.isDiscount && isPix || !bag.isDiscount && !isPix
+                  ? Icons.radio_button_checked
+                  : Icons.radio_button_unchecked,
+              size: 20,
+            ),
+            const SizedBox(width: 15),
+            Image.asset(
+              imageUrl,
+              width: 30,
+              height: 30,
+            )
+          ],
         ),
       ),
     );

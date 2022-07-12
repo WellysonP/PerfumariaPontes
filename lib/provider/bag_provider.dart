@@ -8,6 +8,7 @@ class BagProvider with ChangeNotifier {
   Map<String, BagModel> get items => {..._items};
   bool isDiscount = true;
   bool viewMore = false;
+  bool isBag = false;
 
   void listBag() {
     viewMore = !viewMore;
@@ -128,8 +129,13 @@ class BagProvider with ChangeNotifier {
     return total;
   }
 
-  void toogleDisccount() {
-    isDiscount = !isDiscount;
+  void isPix() {
+    isDiscount = true;
+    notifyListeners();
+  }
+
+  void isCard() {
+    isDiscount = false;
     notifyListeners();
   }
 }

@@ -42,9 +42,9 @@ class HomePage extends StatelessWidget {
                       width: double.infinity,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: product.itemsCount,
-                        itemBuilder: (ctx, i) =>
-                            ProductItems(productItems: product.items[i]),
+                        itemCount: product.itemsEmphasis.length,
+                        itemBuilder: (ctx, i) => ProductItems(
+                            productItems: product.itemsEmphasis[i]),
                       ),
                     ),
                   ],

@@ -34,6 +34,7 @@ final productDummy = [
       description:
           "Perfume masculino MALBEC com 100ml, fragrância amadeirado aromatizado."),
   ProductModel(
+      isEmphasis: true,
       quantity: 10,
       id: "04",
       name: "Elysée",

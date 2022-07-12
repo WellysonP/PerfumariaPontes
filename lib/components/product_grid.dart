@@ -12,13 +12,18 @@ class ProductGrid extends StatelessWidget {
     final product = Provider.of<ProductProvider>(context);
     return GridView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 17),
-      itemCount: product.itemsCount,
+      itemCount: product.showFavorite
+          ? product.itemsFavorite.length
+          : product.itemsCount,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 15,
           mainAxisSpacing: 15,
           childAspectRatio: 0.859),
-      itemBuilder: (ctx, i) => ProductGridItem(product: product.items[i]),
+      itemBuilder: (ctx, i) => ProductGridItem(
+          product: product.showFavorite
+              ? product.itemsFavorite[i]
+              : product.items[i]),
     );
   }
 }

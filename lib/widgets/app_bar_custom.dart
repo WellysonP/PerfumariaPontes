@@ -5,6 +5,8 @@ import 'package:perfumaria/provider/bag_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
+import '../provider/product_provider.dart';
+
 class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   final bool isFilter;
   final bool isArrowBack;
@@ -25,16 +27,27 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final bag = Provider.of<BagProvider>(context);
+    final product = Provider.of<ProductProvider>(context);
     return AppBar(
       leadingWidth: 54,
       centerTitle: true,
       titleSpacing: 0,
-      leading: isFilter
-          ? IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.filter_alt_outlined, size: 24),
-            )
-          : null,
+      leading: IconButton(
+        onPressed: () {
+          if (isArrowBack) {
+            Navigator.of(context).pop();
+            if (bag.isBag) {
+              bag.isBag = false;
+            } else {
+              return;
+            }
+          } else {}
+        },
+        icon: Icon(
+          isFilter ? Icons.filter_alt_outlined : Icons.arrow_back,
+          size: 24,
+        ),
+      ),
       backgroundColor: const Color.fromRGBO(33, 33, 33, 1),
       elevation: 0,
       title: SizedBox(
@@ -60,8 +73,13 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.symmetric(horizontal: 3),
           child: IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.bagPage);
-              bag.viewMore = false;
+              if (bag.isBag) {
+                return;
+              } else {
+                bag.viewMore = false;
+                Navigator.of(context).pushNamed(AppRoutes.bagPage);
+                bag.isBag = true;
+              }
             },
             icon: const Icon(
               Icons.local_mall_outlined,
