@@ -27,10 +27,13 @@ class ProductDetail extends StatelessWidget {
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
-                child: Image.network(
-                  product.imageUrl,
-                  height: sizeDevice.height * 0.50,
-                  fit: BoxFit.cover,
+                child: Hero(
+                  tag: product.id,
+                  child: Image.network(
+                    product.imageUrl,
+                    height: sizeDevice.height * 0.50,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Positioned(

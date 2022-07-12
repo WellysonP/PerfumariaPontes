@@ -28,11 +28,14 @@ class ProductGridItem extends StatelessWidget {
                       arguments: product,
                     );
                   },
-                  child: Image.network(
-                    product.imageUrl,
-                    height: 150,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+                  child: Hero(
+                    tag: product.id,
+                    child: Image.network(
+                      product.imageUrl,
+                      height: 150,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 Container(

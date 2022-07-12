@@ -7,6 +7,7 @@ class ProductModel {
   final String imageUrl;
   final String description;
   bool isFavorite;
+  bool isEmphasis;
 
   ProductModel({
     required this.id,
@@ -17,5 +18,6 @@ class ProductModel {
     required this.imageUrl,
     required this.description,
     this.isFavorite = false,
+    this.isEmphasis = false,
   });
 }

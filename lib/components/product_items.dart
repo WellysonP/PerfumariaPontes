@@ -21,9 +21,12 @@ class ProductItems extends StatelessWidget {
                   arguments: productItems,
                 );
               },
-              child: CircleAvatar(
-                radius: 100,
-                backgroundImage: NetworkImage(productItems.imageUrl),
+              child: Hero(
+                tag: productItems.id,
+                child: CircleAvatar(
+                  radius: 100,
+                  backgroundImage: NetworkImage(productItems.imageUrl),
+                ),
               ),
             ),
             const SizedBox(height: 5),

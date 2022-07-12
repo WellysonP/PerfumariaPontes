@@ -13,6 +13,7 @@ final productDummy = [
         "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
   ),
   ProductModel(
+      isEmphasis: true,
       quantity: 10,
       id: "02",
       name: "Ekos Alma",

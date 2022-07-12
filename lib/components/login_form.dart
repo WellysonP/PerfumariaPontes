@@ -90,7 +90,7 @@ class LoginForm extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {
                   Navigator.of(context)
-                      .pushReplacementNamed(AppRoutes.PERFIL_IN);
+                      .pushReplacementNamed(AppRoutes.perfilIn);
                 },
                 child: Container(
                   height: 60,
