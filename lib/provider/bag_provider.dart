@@ -8,7 +8,6 @@ class BagProvider with ChangeNotifier {
   Map<String, BagModel> get items => {..._items};
   bool isDiscount = true;
   bool viewMore = false;
-  bool isBag = false;
 
   void listBag() {
     viewMore = !viewMore;

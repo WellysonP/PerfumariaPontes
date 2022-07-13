@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:perfumaria/models/bag_model.dart';
 import 'package:perfumaria/provider/bag_provider.dart';
 import 'package:perfumaria/widgets/app_bar_custom.dart';
-import 'package:perfumaria/widgets/subtitle_appbar.dart';
 import 'package:provider/provider.dart';
 import '../widgets/bag_widget.dart';
 import '../widgets/dashe_line_widget.dart';
@@ -18,11 +17,15 @@ class BagPage extends StatelessWidget {
     final sizeDevice = MediaQuery.of(context).size;
     final List<BagModel> items = bag.items.values.toList();
     return Scaffold(
-      appBar: const AppBarCustom.isArrowBack(),
+      appBar: AppBarCustom.isArrowBack(
+        text: "Sacola",
+        icon: Icons.account_balance_wallet_outlined,
+        onTap: () {},
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SubtitleAppBar(text: "Sacola"),
+          const SizedBox(height: 17),
           Container(
             alignment: Alignment.topLeft,
             width: double.infinity,
@@ -137,17 +140,22 @@ class BagPage extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
         child: InkWell(
           onTap: () {},
-          child: const SizedBox(
+          child: SizedBox(
             height: 60,
-            child: Center(
-              child: Text(
-                "Finalizar Pedido",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(55, 55, 55, 1),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  "Prosseguir para Pagamento",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
+                SizedBox(width: 5),
+                Icon(Icons.account_balance_wallet_outlined, size: 35)
+              ],
             ),
           ),
         ),

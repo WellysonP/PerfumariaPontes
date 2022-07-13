@@ -15,7 +15,7 @@ class PerfilPageOut extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<ProductProvider>(context);
     return Scaffold(
-      appBar: const AppBarCustom.isFilter(),
+      appBar: AppBarCustom.isFilter(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

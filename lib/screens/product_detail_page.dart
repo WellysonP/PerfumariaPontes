@@ -16,7 +16,7 @@ class ProductDetail extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as ProductModel;
     final bag = Provider.of<BagProvider>(context);
     return Scaffold(
-      appBar: const AppBarCustom.isArrowBack(),
+      appBar: AppBarCustom.isArrowBack(text: "Descrição"),
       body: Column(
         children: [
           const SizedBox(height: 17),

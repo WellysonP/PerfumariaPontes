@@ -6,4 +6,6 @@ class AppRoutes {
   static const productDescription = "/product-description";
   static const loginPage = "/login-page";
   static const bagPage = "/bag-page";
+  static const productConfigPage = "/config-page";
+  static const producRegistrationPage = "/registration-page";
 }

@@ -10,7 +10,7 @@ class PerfilPageIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarCustom.isFilter(),
+      appBar: AppBarCustom.isFilter(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

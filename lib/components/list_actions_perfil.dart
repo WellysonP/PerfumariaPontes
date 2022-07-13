@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/widgets/action_perfil.dart';
 
 class ListActionsPerfil extends StatelessWidget {
@@ -31,7 +32,9 @@ class ListActionsPerfil extends StatelessWidget {
         ActionPerfil(
           icon: Icons.settings,
           text: "Configurar Produtos",
-          onPress: () {},
+          onPress: () {
+            Navigator.of(context).pushNamed(AppRoutes.productConfigPage);
+          },
         ),
       ],
     );

@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     final company = Provider.of<CompanyProvider>(context);
     final product = Provider.of<ProductProvider>(context);
     return Scaffold(
-      appBar: const AppBarCustom.isFilter(),
+      appBar: AppBarCustom.isFilter(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

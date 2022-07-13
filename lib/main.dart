@@ -5,8 +5,10 @@ import 'package:perfumaria/screens/bag_page.dart';
 import 'package:perfumaria/screens/login_page.dart';
 import 'package:perfumaria/screens/perfil_page_in.dart';
 import 'package:perfumaria/screens/perfil_page_out.dart';
+import 'package:perfumaria/screens/product_config_page.dart';
 import 'package:perfumaria/screens/product_detail_page.dart';
 import 'package:perfumaria/screens/product_page.dart';
+import 'package:perfumaria/screens/product_registration_page.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
@@ -51,6 +53,9 @@ class MyApp extends StatelessWidget {
           AppRoutes.productDescription: (context) => const ProductDetail(),
           AppRoutes.loginPage: (context) => const LoginPage(),
           AppRoutes.bagPage: (context) => const BagPage(),
+          AppRoutes.productConfigPage: (context) => const ProductConfigPage(),
+          AppRoutes.producRegistrationPage: (context) =>
+              const ProductregistrationPage(),
         },
       ),
     );
