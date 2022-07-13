@@ -1,6 +1,7 @@
 class ProductModel {
   final String id;
   final String name;
+  final String company;
   final int quantity;
   final double oldPrice;
   final double newPrice;
@@ -12,6 +13,7 @@ class ProductModel {
   ProductModel({
     required this.id,
     required this.name,
+    required this.company,
     required this.quantity,
     required this.oldPrice,
     required this.newPrice,

@@ -2,6 +2,7 @@ import 'package:perfumaria/models/product_model.dart';
 
 final productDummy = [
   ProductModel(
+    company: "Natura",
     quantity: 10,
     id: "01",
     name: "Homem Dom",
@@ -13,6 +14,7 @@ final productDummy = [
         "Perfume masculino HOMEM DOM com 100ml, fragrância amadeirado intenso.",
   ),
   ProductModel(
+      company: "Natura",
       isEmphasis: true,
       quantity: 10,
       id: "02",
@@ -24,6 +26,7 @@ final productDummy = [
       description:
           "Perfume feminino EKOS ALMA DEO PARFUM com 50ml, fragrância amadeirado intenso."),
   ProductModel(
+      company: "Boticário",
       quantity: 10,
       id: "03",
       name: "Malbec",
@@ -34,6 +37,7 @@ final productDummy = [
       description:
           "Perfume masculino MALBEC com 100ml, fragrância amadeirado aromatizado."),
   ProductModel(
+      company: "Boticário",
       isEmphasis: true,
       quantity: 10,
       id: "04",

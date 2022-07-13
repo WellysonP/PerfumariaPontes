@@ -34,8 +34,8 @@ class BagPage extends StatelessWidget {
                 color: const Color.fromRGBO(251, 235, 196, 1),
                 child: SizedBox(
                   height: bag.viewMore
-                      ? sizeDevice.height * 0.215 + (bag.items.length * 76)
-                      : sizeDevice.height * 0.215,
+                      ? sizeDevice.height * 0.22 + (bag.items.length * 80)
+                      : sizeDevice.height * 0.22,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(

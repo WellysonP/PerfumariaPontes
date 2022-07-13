@@ -15,17 +15,18 @@ class BagWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bag = Provider.of<BagProvider>(context);
+    final sizeDevice = MediaQuery.of(context).size;
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12.5),
+          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 12.5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
                   CircleAvatar(
-                    radius: 25,
+                    radius: sizeDevice.width * 0.07,
                     backgroundImage: NetworkImage(bagItem.imageUrl),
                   ),
                   const SizedBox(width: 7),
@@ -65,16 +66,16 @@ class BagWidget extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        height: 30,
-                        width: 30,
+                        height: 20,
+                        width: 25,
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: const Color.fromRGBO(244, 213, 131, 1),
                             width: 1,
                           ),
                           borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            topLeft: Radius.circular(10),
+                            bottomLeft: Radius.circular(5),
+                            topLeft: Radius.circular(5),
                           ),
                           color: const Color.fromRGBO(55, 55, 55, 1),
                         ),
@@ -85,35 +86,36 @@ class BagWidget extends StatelessWidget {
                           child: const Icon(
                             Icons.remove,
                             color: Colors.white,
+                            size: 18,
                           ),
                         ),
                       ),
                       Container(
-                        width: 30,
-                        height: 30,
+                        height: 20,
+                        width: 25,
                         color: const Color.fromRGBO(55, 55, 55, 1),
                         child: Center(
                           child: Text(
                             bagItem.quantity.toString(),
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w900,
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        height: 30,
-                        width: 30,
+                        height: 20,
+                        width: 25,
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: const Color.fromRGBO(244, 213, 131, 1),
                             width: 1,
                           ),
                           borderRadius: const BorderRadius.only(
-                            bottomRight: Radius.circular(10),
-                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(5),
+                            topRight: Radius.circular(5),
                           ),
                           color: const Color.fromRGBO(55, 55, 55, 1),
                         ),
@@ -124,6 +126,7 @@ class BagWidget extends StatelessWidget {
                           child: const Icon(
                             Icons.add,
                             color: Colors.white,
+                            size: 18,
                           ),
                         ),
                       )

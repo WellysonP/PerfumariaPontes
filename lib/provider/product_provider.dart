@@ -24,7 +24,6 @@ class ProductProvider with ChangeNotifier {
 
   void tooglefavorite(ProductModel product) {
     product.isFavorite = !product.isFavorite;
-    print(itemsEmphasis.length);
     notifyListeners();
   }
 
