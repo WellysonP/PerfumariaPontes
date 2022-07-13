@@ -20,161 +20,144 @@ class BagWidget extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 12.5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: sizeDevice.width * 0.07,
-                    backgroundImage: NetworkImage(bagItem.imageUrl),
-                  ),
-                  const SizedBox(width: 7),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        bagItem.name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: Color.fromRGBO(55, 55, 55, 1),
-                        ),
-                      ),
-                      Text(
-                        "De R\$ ${bagItem.oldPrice.toStringAsFixed(2)}",
-                        style: const TextStyle(
-                          fontSize: 12,
-                          decoration: TextDecoration.lineThrough,
-                          color: Color.fromRGBO(55, 55, 55, 1),
-                        ),
-                      ),
-                      Text(
-                        "Por R\$ ${bagItem.newPrice.toStringAsFixed(2)}",
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Color.fromRGBO(55, 55, 55, 1),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: 20,
-                        width: 25,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color.fromRGBO(244, 213, 131, 1),
-                            width: 1,
-                          ),
-                          borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(5),
-                            topLeft: Radius.circular(5),
-                          ),
-                          color: const Color.fromRGBO(55, 55, 55, 1),
-                        ),
-                        child: InkWell(
-                          onTap: () {
-                            bag.removeSingleitem(bagItem.productId);
-                          },
-                          child: const Icon(
-                            Icons.remove,
-                            color: Colors.white,
-                            size: 18,
+          child: SizedBox(
+            height: 70,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: sizeDevice.width * 0.07,
+                      backgroundImage: NetworkImage(bagItem.imageUrl),
+                    ),
+                    const SizedBox(width: 7),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          bagItem.name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Color.fromRGBO(55, 55, 55, 1),
                           ),
                         ),
-                      ),
-                      Container(
-                        height: 20,
-                        width: 25,
-                        color: const Color.fromRGBO(55, 55, 55, 1),
-                        child: Center(
-                          child: Text(
-                            bagItem.quantity.toString(),
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w900,
+                        Text(
+                          "De R\$ ${bagItem.oldPrice.toStringAsFixed(2)}",
+                          style: const TextStyle(
+                            fontSize: 12,
+                            decoration: TextDecoration.lineThrough,
+                            color: Color.fromRGBO(55, 55, 55, 1),
+                          ),
+                        ),
+                        Text(
+                          "Por R\$ ${bagItem.newPrice.toStringAsFixed(2)}",
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromRGBO(55, 55, 55, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color.fromRGBO(55, 55, 55, 1),
+                              width: 1,
+                            ),
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                            ),
+                            color: const Color.fromRGBO(251, 235, 196, 1),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              bag.removeSingleitem(bagItem.productId);
+                            },
+                            child: const Icon(
+                              Icons.remove,
+                              color: Color.fromRGBO(55, 55, 55, 1),
+                              size: 20,
                             ),
                           ),
                         ),
-                      ),
-                      Container(
-                        height: 20,
-                        width: 25,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color.fromRGBO(244, 213, 131, 1),
-                            width: 1,
+                        Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color.fromRGBO(55, 55, 55, 1),
+                              width: 1,
+                            ),
+                            color: const Color.fromRGBO(251, 235, 196, 1),
                           ),
-                          borderRadius: const BorderRadius.only(
-                            bottomRight: Radius.circular(5),
-                            topRight: Radius.circular(5),
-                          ),
-                          color: const Color.fromRGBO(55, 55, 55, 1),
-                        ),
-                        child: InkWell(
-                          onTap: () {
-                            bag.addSingleitem(bagItem.productId);
-                          },
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: 18,
+                          child: Center(
+                            child: Text(
+                              bagItem.quantity.toString(),
+                              style: const TextStyle(
+                                color: Color.fromRGBO(55, 55, 55, 1),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SubText(bagItem: bagItem, text: "Sub: ", size: 14),
-                      SubText(
-                        bagItem: bagItem,
-                        text:
-                            "R\$ ${(bagItem.oldPrice * bagItem.quantity).toStringAsFixed(2)}",
-                        size: 16,
+                        Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color.fromRGBO(55, 55, 55, 1),
+                              width: 1,
+                            ),
+                            borderRadius: const BorderRadius.only(
+                              bottomRight: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                            color: const Color.fromRGBO(251, 235, 196, 1),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              bag.addSingleitem(bagItem.productId);
+                            },
+                            child: const Icon(
+                              Icons.add,
+                              color: Color.fromRGBO(55, 55, 55, 1),
+                              size: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                      "Sub: R\$ ${(bagItem.oldPrice * bagItem.quantity).toStringAsFixed(2)}",
+                      style: const TextStyle(
+                        color: Color.fromRGBO(55, 55, 55, 1),
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  )
-                ],
-              )
-            ],
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
         const DasheLine(),
       ],
-    );
-  }
-}
-
-class SubText extends StatelessWidget {
-  final String text;
-  final double size;
-  const SubText({
-    Key? key,
-    required this.bagItem,
-    required this.text,
-    required this.size,
-  }) : super(key: key);
-
-  final BagModel bagItem;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(
-        color: const Color.fromRGBO(55, 55, 55, 1),
-        fontSize: size,
-        fontWeight: FontWeight.bold,
-      ),
     );
   }
 }

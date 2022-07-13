@@ -22,8 +22,7 @@ class BagPage extends StatelessWidget {
         icon: Icons.account_balance_wallet_outlined,
         onTap: () {},
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
           const SizedBox(height: 17),
           Container(
@@ -37,8 +36,8 @@ class BagPage extends StatelessWidget {
                 color: const Color.fromRGBO(251, 235, 196, 1),
                 child: SizedBox(
                   height: bag.viewMore
-                      ? sizeDevice.height * 0.22 + (bag.items.length * 80)
-                      : sizeDevice.height * 0.22,
+                      ? sizeDevice.height * 0.215 + (bag.items.length * 97)
+                      : sizeDevice.height * 0.215,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
@@ -68,7 +67,6 @@ class BagPage extends StatelessWidget {
                                   imageUrl: "assets/images/pix.png",
                                   sizeDevice: sizeDevice,
                                 ),
-                                // const SizedBox(height: 5),
                                 PayType.card(
                                   bag: bag,
                                   imageUrl: "assets/images/cartao.png",
@@ -81,8 +79,10 @@ class BagPage extends StatelessWidget {
                         const SizedBox(height: 13),
                         const DasheLine(),
                         if (bag.viewMore)
-                          Expanded(
+                          SizedBox(
+                            height: (bag.items.length * 97),
                             child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: bag.items.length,
                               itemBuilder: (ctx, i) =>
                                   BagWidget(bagItem: items[i]),

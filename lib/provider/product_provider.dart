@@ -12,9 +12,29 @@ class ProductProvider with ChangeNotifier {
   bool isLogin = true;
   bool simpleForm = true;
   bool showFavorite = false;
+  int currentStep = 0;
 
   int get itemsCount {
     return _items.length;
+  }
+
+  void currentContinue(BuildContext context) {
+    if (currentStep == 2) {
+      Navigator.of(context).pop();
+      currentStep = 0;
+    } else {
+      currentStep += 1;
+    }
+    notifyListeners();
+  }
+
+  void currentCancel() {
+    if (currentStep == 0) {
+      return;
+    } else {
+      currentStep -= 1;
+    }
+    notifyListeners();
   }
 
   void showFavorites() {

@@ -2,6 +2,7 @@ import 'package:perfumaria/models/product_model.dart';
 
 final productDummy = [
   ProductModel(
+    isEmphasis: true,
     company: "Natura",
     quantity: 10,
     id: "01",
@@ -26,6 +27,7 @@ final productDummy = [
       description:
           "Perfume feminino EKOS ALMA DEO PARFUM com 50ml, fragrância amadeirado intenso."),
   ProductModel(
+      isEmphasis: false,
       company: "Boticário",
       quantity: 10,
       id: "03",
