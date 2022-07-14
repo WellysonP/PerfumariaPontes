@@ -95,12 +95,14 @@ class LoginForm extends StatelessWidget {
                 child: Container(
                   height: 60,
                   width: 250,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: const Color.fromRGBO(254, 174, 55, 1),
                   child: Center(
                     child: Text(
                       product.isLogin ? "Entrar" : "Cadastrar",
                       style: const TextStyle(
                         fontSize: 20,
+                        color: Color.fromRGBO(103, 43, 0, 1),
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -119,10 +121,9 @@ class LoginForm extends StatelessWidget {
                 const SizedBox(width: 3),
                 TextButton(
                   onPressed: product.toogleLogin,
-                  child: Text(
+                  child: const Text(
                     "Clique aqui",
-                    style:
-                        TextStyle(color: Theme.of(context).colorScheme.primary),
+                    style: TextStyle(color: Color.fromRGBO(254, 174, 55, 1)),
                   ),
                 ),
               ],

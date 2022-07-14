@@ -13,9 +13,15 @@ class ProductProvider with ChangeNotifier {
   bool simpleForm = true;
   bool showFavorite = false;
   int currentStep = 0;
+  bool isEmphasis = false;
 
   int get itemsCount {
     return _items.length;
+  }
+
+  void toogleEmphasis() {
+    isEmphasis = !isEmphasis;
+    notifyListeners();
   }
 
   void currentContinue(BuildContext context) {

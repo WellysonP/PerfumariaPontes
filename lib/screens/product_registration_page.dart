@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:perfumaria/models/company_model.dart';
+import 'package:perfumaria/provider/company_provider.dart';
 import 'package:perfumaria/provider/product_provider.dart';
 import 'package:perfumaria/widgets/app_bar_custom.dart';
 import 'package:provider/provider.dart';
-
 import '../widgets/buttom_custom.dart';
 
 class ProductregistrationPage extends StatelessWidget {
@@ -11,8 +12,13 @@ class ProductregistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<ProductProvider>(context);
+    final company = Provider.of<CompanyProvider>(context);
     return Scaffold(
       appBar: AppBarCustom.isArrowBack(
+        isArrowBackFunction: () {
+          product.currentStep = 0;
+          product.isEmphasis = false;
+        },
         icon: Icons.arrow_forward,
         onTap: () {},
         text: "Cadastrar Produto",
@@ -27,7 +33,7 @@ class ProductregistrationPage extends StatelessWidget {
         child: Stepper(
           elevation: 0,
           type: StepperType.horizontal,
-          steps: getSteps(context, product),
+          steps: getSteps(context, product, company),
           currentStep: product.currentStep,
           onStepContinue: () {
             product.currentContinue(context);
@@ -39,15 +45,6 @@ class ProductregistrationPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ButtomCustom(
-                    product: product,
-                    text: product.currentStep == 2 ? "Finalizar" : "Próximo",
-                    height: 50,
-                    width: product.currentStep == 0 ? 300 : 150,
-                    onTap: () {
-                      product.currentContinue(context);
-                    },
-                  ),
                   if (product.currentStep != 0)
                     ButtomCustom(
                       product: product,
@@ -57,7 +54,16 @@ class ProductregistrationPage extends StatelessWidget {
                       onTap: () {
                         product.currentCancel();
                       },
-                    )
+                    ),
+                  ButtomCustom(
+                    product: product,
+                    text: product.currentStep == 2 ? "Finalizar" : "Próximo",
+                    height: 50,
+                    width: product.currentStep == 0 ? 300 : 150,
+                    onTap: () {
+                      product.currentContinue(context);
+                    },
+                  ),
                 ],
               ),
             );
@@ -67,7 +73,9 @@ class ProductregistrationPage extends StatelessWidget {
     );
   }
 
-  List<Step> getSteps(BuildContext context, ProductProvider product) => [
+  List<Step> getSteps(BuildContext context, ProductProvider product,
+          CompanyProvider company) =>
+      [
         Step(
           isActive: product.currentStep >= 0,
           title: Text(
@@ -130,10 +138,9 @@ class ProductregistrationPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                height: 50,
-                child: TextFormField(
-                  style: const TextStyle(fontSize: 20),
+              Theme(
+                data: Theme.of(context).copyWith(canvasColor: Colors.white),
+                child: DropdownButtonFormField<String>(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20)),
@@ -144,6 +151,17 @@ class ProductregistrationPage extends StatelessWidget {
                     fillColor: Colors.white,
                     filled: true,
                   ),
+                  items: company.items
+                      .map(
+                        (item) => DropdownMenuItem<String>(
+                          value: item.name,
+                          child: Text(item.name),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    company.value = value;
+                  },
                 ),
               ),
             ],
@@ -152,26 +170,178 @@ class ProductregistrationPage extends StatelessWidget {
         Step(
           isActive: product.currentStep >= 1,
           title: Text(
-            "Produto",
+            "Controle",
             style: TextStyle(
               color: product.currentStep >= 1
                   ? Theme.of(context).colorScheme.primary
                   : const Color.fromRGBO(255, 255, 255, 1),
             ),
           ),
-          content: Container(),
+          content: Column(
+            children: [
+              CircleAvatar(
+                backgroundColor: Colors.transparent,
+                radius: 75,
+                child: InkWell(
+                  onTap: () {},
+                  child: Image.asset("assets/images/Group79.png"),
+                ),
+              ),
+              const SizedBox(height: 17),
+              const SizedBox(
+                width: double.infinity,
+                child: Text(
+                  "Nome do Produto",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 40),
+              SizedBox(
+                height: 50,
+                child: TextFormField(
+                  style: const TextStyle(fontSize: 20),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelStyle: const TextStyle(
+                      fontSize: 15,
+                    ),
+                    labelText: "Quantidade em Estoque",
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                height: 50,
+                child: TextFormField(
+                  style: const TextStyle(fontSize: 20),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelStyle: const TextStyle(
+                      fontSize: 15,
+                    ),
+                    labelText: "Valor Cartão",
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                height: 50,
+                child: TextFormField(
+                  style: const TextStyle(fontSize: 20),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelStyle: const TextStyle(
+                      fontSize: 15,
+                    ),
+                    labelText: "Valor Dinheiro",
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         Step(
           isActive: product.currentStep >= 2,
           title: Text(
-            "Produto",
+            "Descrição",
             style: TextStyle(
               color: product.currentStep >= 2
                   ? Theme.of(context).colorScheme.primary
                   : const Color.fromRGBO(255, 255, 255, 1),
             ),
           ),
-          content: Container(),
+          content: Column(
+            children: [
+              CircleAvatar(
+                backgroundColor: Colors.transparent,
+                radius: 75,
+                child: InkWell(
+                  onTap: () {},
+                  child: Image.asset("assets/images/Group79.png"),
+                ),
+              ),
+              const SizedBox(height: 17),
+              const SizedBox(
+                width: double.infinity,
+                child: Text(
+                  "Nome do Produto",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 40),
+              Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Adicionar aos Destaques",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Color.fromRGBO(102, 102, 102, 1)),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          product.toogleEmphasis();
+                        },
+                        icon: Icon(
+                          product.isEmphasis
+                              ? Icons.radio_button_checked
+                              : Icons.radio_button_unchecked,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                height: 150,
+                child: TextFormField(
+                  maxLines: 5,
+                  minLines: 5,
+                  style: const TextStyle(fontSize: 20),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      labelStyle: const TextStyle(
+                        fontSize: 15,
+                      ),
+                      labelText: "Descrição do produto",
+                      fillColor: Colors.white,
+                      filled: true,
+                      alignLabelWithHint: true),
+                ),
+              ),
+            ],
+          ),
         ),
       ];
 }

@@ -11,6 +11,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   Color colorIcon;
   double sizeIcon;
   void Function()? onTap;
+  void Function()? isArrowBackFunction;
 
   AppBarCustom.isFilter({
     this.isFilter = true,
@@ -29,6 +30,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
     this.colorIcon = Colors.white,
     this.sizeIcon = 24,
     this.onTap,
+    required this.isArrowBackFunction,
   });
 
   @override
@@ -44,6 +46,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           if (isArrowBack) {
             Navigator.of(context).pop();
+            isArrowBackFunction!();
           } else {}
         },
         icon: Icon(

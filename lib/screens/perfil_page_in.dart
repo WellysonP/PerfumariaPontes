@@ -20,9 +20,9 @@ class PerfilPageIn extends StatelessWidget {
               const SubtitleAppBar(text: "Perfil"),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.logout,
-                  color: Colors.red,
+                  color: Theme.of(context).errorColor,
                   size: 30,
                 ),
               ),

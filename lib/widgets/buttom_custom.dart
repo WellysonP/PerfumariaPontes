@@ -30,12 +30,14 @@ class ButtomCustom extends StatelessWidget {
         child: Container(
           height: height,
           width: width,
-          color: Theme.of(context).colorScheme.primary,
+          color: const Color.fromRGBO(254, 174, 55, 1),
           child: Center(
             child: Text(
               text,
               style: const TextStyle(
                 fontSize: 20,
+                color: Color.fromRGBO(103, 43, 0, 1),
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),

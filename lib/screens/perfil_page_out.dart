@@ -56,12 +56,14 @@ class PerfilPageOut extends StatelessWidget {
                       child: Container(
                         height: 60,
                         width: 185,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: const Color.fromRGBO(254, 174, 55, 1),
                         child: const Center(
                           child: Text(
                             "Fazer login",
                             style: TextStyle(
                               fontSize: 20,
+                              color: Color.fromRGBO(103, 43, 0, 1),
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
@@ -86,12 +88,14 @@ class PerfilPageOut extends StatelessWidget {
                       child: Container(
                         height: 60,
                         width: 185,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: const Color.fromRGBO(254, 174, 55, 1),
                         child: const Center(
                           child: Text(
                             "Cadastrar-se",
                             style: TextStyle(
                               fontSize: 20,
+                              color: Color.fromRGBO(103, 43, 0, 1),
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),

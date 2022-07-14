@@ -141,7 +141,7 @@ class BagWidget extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(height: 2),
+                    const SizedBox(height: 2),
                     Text(
                       "Sub: R\$ ${(bagItem.oldPrice * bagItem.quantity).toStringAsFixed(2)}",
                       style: const TextStyle(

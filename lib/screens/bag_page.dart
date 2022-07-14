@@ -21,6 +21,9 @@ class BagPage extends StatelessWidget {
         text: "Sacola",
         icon: Icons.account_balance_wallet_outlined,
         onTap: () {},
+        isArrowBackFunction: () {
+          bag.viewMore = false;
+        },
       ),
       body: ListView(
         children: [
