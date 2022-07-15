@@ -3,8 +3,6 @@ import 'package:perfumaria/models/product_model.dart';
 import 'package:perfumaria/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/company_provider.dart';
-
 class FavoriteButtom extends StatelessWidget {
   final double radius;
   final double sizeFavorite;

@@ -1,4 +1,7 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import '../data/product_dummy.dart';
 import '../models/product_model.dart';
 
@@ -10,13 +13,44 @@ class ProductProvider with ChangeNotifier {
   List<ProductModel> get itemsEmphasis =>
       _items.where((element) => element.isEmphasis).toList();
   bool isLogin = true;
-  bool simpleForm = true;
   bool showFavorite = false;
   int currentStep = 0;
   bool isEmphasis = false;
+  File? image;
+  List<XFile>? imageList = [];
+  final formKeyStep1 = GlobalKey<FormState>();
+  final formKeyStep2 = GlobalKey<FormState>();
+  final formKeyStep3 = GlobalKey<FormState>();
+
+  Future<void> submitForm(
+      GlobalKey<FormState> formKey, BuildContext context) async {
+    final isValidate = formKey.currentState?.validate() ?? false;
+
+    if (!isValidate) {
+      return;
+    } else {
+      formKey.currentState?.save();
+      currentContinue(context);
+    }
+    ;
+  }
 
   int get itemsCount {
     return _items.length;
+  }
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickMultiImage();
+      if (image == null) {
+        return;
+      } else {
+        imageList!.addAll(image);
+      }
+      final imageTemporary = File(image.first.path);
+      this.image = imageTemporary;
+    } on PlatformException catch (_) {}
+    notifyListeners();
   }
 
   void toogleEmphasis() {
