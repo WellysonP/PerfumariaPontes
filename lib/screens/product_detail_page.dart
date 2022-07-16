@@ -19,7 +19,9 @@ class ProductDetail extends StatelessWidget {
       appBar: AppBarCustom.isArrowBack(
         text: "Descrição",
         onTap: () {},
-        isArrowBackFunction: () {},
+        isArrowBackFunction: () {
+          Navigator.of(context).pop();
+        },
       ),
       body: Column(
         children: [
@@ -36,6 +38,7 @@ class ProductDetail extends StatelessWidget {
                   child: Image.network(
                     product.imageUrl,
                     height: sizeDevice.height * 0.50,
+                    width: sizeDevice.width * 1,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -94,6 +97,7 @@ class ProductDetail extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              width: sizeDevice.width * 1,
               color: const Color.fromRGBO(130, 129, 129, 0.2),
               child: Padding(
                 padding: const EdgeInsets.only(top: 29, left: 17, right: 11),

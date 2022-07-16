@@ -12,16 +12,34 @@ class ProductregistrationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<ProductProvider>(context);
     final company = Provider.of<CompanyProvider>(context);
+
+    void _submitForm() {
+      if (product.currentStep == 0) {
+        product.submitForm(product.formKeyStep1, context);
+      } else if (product.currentStep == 1) {
+        product.submitForm(product.formKeyStep2, context);
+      } else if (product.currentStep == 2) {
+        product.submitForm(product.formKeyStep3, context);
+      }
+    }
+
     return Scaffold(
       appBar: AppBarCustom.isArrowBack(
         isArrowBackFunction: () {
-          product.currentStep = 0;
-          product.isEmphasis = false;
-          product.image = null;
-          product.imageList = [];
+          if (product.currentStep == 0) {
+            Navigator.of(context).pop();
+            product.isEmphasis = false;
+            product.image = null;
+            product.imageList = [];
+            product.nameController.text = "";
+          } else {
+            product.currentCancel();
+          }
         },
         icon: Icons.arrow_forward,
-        onTap: () {},
+        onTap: () {
+          _submitForm();
+        },
         text: "Cadastrar Produto",
       ),
       body: Theme(
@@ -62,8 +80,7 @@ class ProductregistrationPage extends StatelessWidget {
                     height: 50,
                     width: product.currentStep == 0 ? 300 : 150,
                     onTap: () {
-                      product.submitForm(product.formKeyStep1, context);
-                      // product.currentContinue(context);
+                      _submitForm();
                     },
                   ),
                 ],
@@ -94,21 +111,12 @@ class ProductregistrationPage extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   radius: 75,
                   child: InkWell(
+                    borderRadius: BorderRadius.circular(150),
                     onTap: () {
                       product.pickImage();
                     },
                     child: Stack(
                       children: [
-                        if (product.imageList == null)
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: Image.asset(
-                              "assets/images/Group_22.png",
-                              width: 40,
-                              height: 40,
-                            ),
-                          ),
                         product.image == null
                             ? Image.asset("assets/images/Group79.png")
                             : ClipOval(
@@ -119,6 +127,15 @@ class ProductregistrationPage extends StatelessWidget {
                                   fit: BoxFit.cover,
                                 ),
                               ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Image.asset(
+                            "assets/images/Group_22.png",
+                            width: 40,
+                            height: 40,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -138,8 +155,9 @@ class ProductregistrationPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 SizedBox(
-                  height: 90,
+                  height: 50,
                   child: TextFormField(
+                    controller: product.nameController,
                     style: const TextStyle(fontSize: 20),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -151,6 +169,7 @@ class ProductregistrationPage extends StatelessWidget {
                       fillColor: Colors.white,
                       filled: true,
                     ),
+                    onSaved: (name) => product.formData["name"] = name ?? "",
                     validator: (_name) {
                       final name = _name ?? "";
                       if (name.trim().isEmpty) {
@@ -164,7 +183,7 @@ class ProductregistrationPage extends StatelessWidget {
                     },
                   ),
                 ),
-                // const SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Theme(
                   data: Theme.of(context).copyWith(canvasColor: Colors.white),
                   child: DropdownButtonFormField<String>(
@@ -189,6 +208,8 @@ class ProductregistrationPage extends StatelessWidget {
                     onChanged: (value) {
                       company.value = value;
                     },
+                    onSaved: (company) =>
+                        product.formData["company"] = company ?? "",
                     validator: (_company) {
                       final company = _company ?? "";
                       if (company.isEmpty) {
@@ -216,21 +237,23 @@ class ProductregistrationPage extends StatelessWidget {
             key: product.formKeyStep2,
             child: Column(
               children: [
-                CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  radius: 75,
-                  child: InkWell(
-                    onTap: () {},
-                    child: Image.asset("assets/images/Group79.png"),
-                  ),
-                ),
+                product.image == null
+                    ? Image.asset("assets/images/Group79.png")
+                    : ClipOval(
+                        child: Image.file(
+                          product.image!,
+                          width: 150,
+                          height: 150,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                 const SizedBox(height: 17),
-                const SizedBox(
+                SizedBox(
                   width: double.infinity,
                   child: Text(
-                    "Nome do Produto",
+                    product.nameController.text,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -241,6 +264,8 @@ class ProductregistrationPage extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   child: TextFormField(
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
                     style: const TextStyle(fontSize: 20),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -252,12 +277,27 @@ class ProductregistrationPage extends StatelessWidget {
                       fillColor: Colors.white,
                       filled: true,
                     ),
+                    onSaved: (quantity) => product.formData["quantity"] =
+                        int.parse(quantity ?? "0"),
+                    validator: (_quantity) {
+                      final quantity = _quantity ?? "";
+                      final finalQuantity = double.tryParse(quantity) ?? 0;
+                      if (finalQuantity == 0) {
+                        return "Campo obrigatório";
+                      }
+                      if (finalQuantity < 0) {
+                        return "Quantidade inválida";
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
                   height: 50,
                   child: TextFormField(
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
                     style: const TextStyle(fontSize: 20),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -269,12 +309,27 @@ class ProductregistrationPage extends StatelessWidget {
                       fillColor: Colors.white,
                       filled: true,
                     ),
+                    onSaved: (oldPrice) => product.formData["oldPrice"] =
+                        double.parse(oldPrice ?? "0"),
+                    validator: (_oldPrice) {
+                      final oldPrice = _oldPrice ?? "";
+                      final price = double.tryParse(oldPrice) ?? 0;
+                      if (price == 0) {
+                        return "Campo obrigatório";
+                      }
+                      if (price < 0) {
+                        return "Preço inválido";
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
                   height: 50,
                   child: TextFormField(
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
                     style: const TextStyle(fontSize: 20),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -286,6 +341,19 @@ class ProductregistrationPage extends StatelessWidget {
                       fillColor: Colors.white,
                       filled: true,
                     ),
+                    onSaved: (newPrice) => product.formData["newPrice"] =
+                        double.parse(newPrice ?? "0"),
+                    validator: (_newPrice) {
+                      final newPrice = _newPrice ?? "";
+                      final price = double.tryParse(newPrice) ?? 0;
+                      if (price == 0) {
+                        return "Campo obrigatório";
+                      }
+                      if (price < 0) {
+                        return "Preço inválido";
+                      }
+                      return null;
+                    },
                   ),
                 ),
               ],
@@ -306,21 +374,23 @@ class ProductregistrationPage extends StatelessWidget {
             key: product.formKeyStep3,
             child: Column(
               children: [
-                CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  radius: 75,
-                  child: InkWell(
-                    onTap: () {},
-                    child: Image.asset("assets/images/Group79.png"),
-                  ),
-                ),
+                product.image == null
+                    ? Image.asset("assets/images/Group79.png")
+                    : ClipOval(
+                        child: Image.file(
+                          product.image!,
+                          width: 150,
+                          height: 150,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                 const SizedBox(height: 17),
-                const SizedBox(
+                SizedBox(
                   width: double.infinity,
                   child: Text(
-                    "Nome do Produto",
+                    product.nameController.text,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -369,15 +439,28 @@ class ProductregistrationPage extends StatelessWidget {
                     minLines: 5,
                     style: const TextStyle(fontSize: 20),
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        labelStyle: const TextStyle(
-                          fontSize: 15,
-                        ),
-                        labelText: "Descrição do produto",
-                        fillColor: Colors.white,
-                        filled: true,
-                        alignLabelWithHint: true),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      labelStyle: const TextStyle(
+                        fontSize: 15,
+                      ),
+                      labelText: "Descrição do produto",
+                      fillColor: Colors.white,
+                      filled: true,
+                      alignLabelWithHint: true,
+                    ),
+                    onSaved: (description) =>
+                        product.formData["description"] = description ?? "",
+                    validator: (_description) {
+                      final description = _description ?? "";
+                      if (description.trim().isEmpty) {
+                        return "Campo Obrigatório";
+                      }
+                      if (description.trim().length < 10) {
+                        return "Necessário descrição com no mínimo 10 letras";
+                      }
+                      return null;
+                    },
                   ),
                 ),
               ],

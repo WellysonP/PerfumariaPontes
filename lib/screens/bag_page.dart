@@ -22,6 +22,7 @@ class BagPage extends StatelessWidget {
         icon: Icons.account_balance_wallet_outlined,
         onTap: () {},
         isArrowBackFunction: () {
+          Navigator.of(context).pop();
           bag.viewMore = false;
         },
       ),

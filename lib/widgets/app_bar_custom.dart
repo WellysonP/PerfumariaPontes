@@ -45,7 +45,6 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         onPressed: () {
           if (isArrowBack) {
-            Navigator.of(context).pop();
             isArrowBackFunction!();
           } else {}
         },

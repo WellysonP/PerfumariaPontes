@@ -19,7 +19,9 @@ class ProductConfigPage extends StatelessWidget {
         icon: Icons.add,
         onTap: () =>
             Navigator.of(context).pushNamed(AppRoutes.producRegistrationPage),
-        isArrowBackFunction: () {},
+        isArrowBackFunction: () {
+          Navigator.of(context).pop();
+        },
       ),
       body: Column(
         children: [
