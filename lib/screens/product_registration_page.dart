@@ -154,40 +154,41 @@ class ProductregistrationPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-                SizedBox(
-                  height: 50,
-                  child: TextFormField(
-                    controller: product.nameController,
-                    style: const TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      labelStyle: const TextStyle(
-                        fontSize: 15,
-                      ),
-                      labelText: "Nome do Produto",
-                      fillColor: Colors.white,
-                      filled: true,
+                TextFormField(
+                  controller: product.nameController,
+                  style: const TextStyle(fontSize: 20),
+                  decoration: InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelStyle: const TextStyle(
+                      fontSize: 15,
                     ),
-                    onSaved: (name) => product.formData["name"] = name ?? "",
-                    validator: (_name) {
-                      final name = _name ?? "";
-                      if (name.trim().isEmpty) {
-                        return "Campo Obrigatório";
-                      }
-                      if (name.trim().length < 5) {
-                        return "Nome inválido";
-                      }
-
-                      return null;
-                    },
+                    labelText: "Nome do Produto",
+                    fillColor: Colors.white,
+                    filled: true,
                   ),
+                  onSaved: (name) => product.formData["name"] = name ?? "",
+                  validator: (_name) {
+                    final name = _name ?? "";
+                    if (name.trim().isEmpty) {
+                      return "Campo Obrigatório";
+                    }
+                    if (name.trim().length < 5) {
+                      return "Nome inválido";
+                    }
+
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 20),
                 Theme(
                   data: Theme.of(context).copyWith(canvasColor: Colors.white),
                   child: DropdownButtonFormField<String>(
                     decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)),
                       labelStyle: const TextStyle(
@@ -261,100 +262,97 @@ class ProductregistrationPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-                SizedBox(
-                  height: 50,
-                  child: TextFormField(
-                    keyboardType:
-                        const TextInputType.numberWithOptions(decimal: true),
-                    style: const TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      labelStyle: const TextStyle(
-                        fontSize: 15,
-                      ),
-                      labelText: "Quantidade em Estoque",
-                      fillColor: Colors.white,
-                      filled: true,
+                TextFormField(
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style: const TextStyle(fontSize: 20),
+                  decoration: InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelStyle: const TextStyle(
+                      fontSize: 15,
                     ),
-                    onSaved: (quantity) => product.formData["quantity"] =
-                        int.parse(quantity ?? "0"),
-                    validator: (_quantity) {
-                      final quantity = _quantity ?? "";
-                      final finalQuantity = double.tryParse(quantity) ?? 0;
-                      if (finalQuantity == 0) {
-                        return "Campo obrigatório";
-                      }
-                      if (finalQuantity < 0) {
-                        return "Quantidade inválida";
-                      }
-                      return null;
-                    },
+                    labelText: "Quantidade em Estoque",
+                    fillColor: Colors.white,
+                    filled: true,
                   ),
+                  onSaved: (quantity) =>
+                      product.formData["quantity"] = int.parse(quantity ?? "0"),
+                  validator: (_quantity) {
+                    final quantity = _quantity ?? "";
+                    final finalQuantity = double.tryParse(quantity) ?? 0;
+                    if (finalQuantity == 0) {
+                      return "Campo obrigatório";
+                    }
+                    if (finalQuantity < 0) {
+                      return "Quantidade inválida";
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 20),
-                SizedBox(
-                  height: 50,
-                  child: TextFormField(
-                    keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
-                    style: const TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      labelStyle: const TextStyle(
-                        fontSize: 15,
-                      ),
-                      labelText: "Valor Cartão",
-                      fillColor: Colors.white,
-                      filled: true,
+                TextFormField(
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style: const TextStyle(fontSize: 20),
+                  decoration: InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelStyle: const TextStyle(
+                      fontSize: 15,
                     ),
-                    onSaved: (oldPrice) => product.formData["oldPrice"] =
-                        double.parse(oldPrice ?? "0"),
-                    validator: (_oldPrice) {
-                      final oldPrice = _oldPrice ?? "";
-                      final price = double.tryParse(oldPrice) ?? 0;
-                      if (price == 0) {
-                        return "Campo obrigatório";
-                      }
-                      if (price < 0) {
-                        return "Preço inválido";
-                      }
-                      return null;
-                    },
+                    labelText: "Valor Cartão",
+                    fillColor: Colors.white,
+                    filled: true,
                   ),
+                  onSaved: (oldPrice) => product.formData["oldPrice"] =
+                      double.parse(oldPrice ?? "0"),
+                  validator: (_oldPrice) {
+                    final oldPrice = _oldPrice ?? "";
+                    final price = double.tryParse(oldPrice) ?? 0;
+                    if (price == 0) {
+                      return "Campo obrigatório";
+                    }
+                    if (price < 0) {
+                      return "Preço inválido";
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 20),
-                SizedBox(
-                  height: 50,
-                  child: TextFormField(
-                    keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
-                    style: const TextStyle(fontSize: 20),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      labelStyle: const TextStyle(
-                        fontSize: 15,
-                      ),
-                      labelText: "Valor Dinheiro",
-                      fillColor: Colors.white,
-                      filled: true,
+                TextFormField(
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style: const TextStyle(fontSize: 20),
+                  decoration: InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelStyle: const TextStyle(
+                      fontSize: 15,
                     ),
-                    onSaved: (newPrice) => product.formData["newPrice"] =
-                        double.parse(newPrice ?? "0"),
-                    validator: (_newPrice) {
-                      final newPrice = _newPrice ?? "";
-                      final price = double.tryParse(newPrice) ?? 0;
-                      if (price == 0) {
-                        return "Campo obrigatório";
-                      }
-                      if (price < 0) {
-                        return "Preço inválido";
-                      }
-                      return null;
-                    },
+                    labelText: "Valor Dinheiro",
+                    fillColor: Colors.white,
+                    filled: true,
                   ),
+                  onSaved: (newPrice) => product.formData["newPrice"] =
+                      double.parse(newPrice ?? "0"),
+                  validator: (_newPrice) {
+                    final newPrice = _newPrice ?? "";
+                    final price = double.tryParse(newPrice) ?? 0;
+                    if (price == 0) {
+                      return "Campo obrigatório";
+                    }
+                    if (price < 0) {
+                      return "Preço inválido";
+                    }
+                    return null;
+                  },
                 ),
               ],
             ),

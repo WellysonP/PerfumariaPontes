@@ -1,6 +1,6 @@
 import 'package:perfumaria/models/product_model.dart';
 
-final productDummy = [
+final productDummy = {
   ProductModel(
     isEmphasis: true,
     company: "Natura",
@@ -50,4 +50,4 @@ final productDummy = [
           "https://infinitabeleza.com.br/wp-content/uploads/2022/01/4.-Perfume-Elysee-Blanc-Eau-de-Parfum-O-Boticario.jpg",
       description:
           "Perfume feminino ELYSÉE com 50ml, fragrância floral enriquecido por fundo amadeirado."),
-];
+};

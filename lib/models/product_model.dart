@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 class ProductModel {
   final String id;
   final String name;
@@ -22,4 +25,39 @@ class ProductModel {
     this.isFavorite = false,
     this.isEmphasis = false,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'company': company,
+      'quantity': quantity,
+      'oldPrice': oldPrice,
+      'newPrice': newPrice,
+      'imageUrl': imageUrl,
+      'description': description,
+      'isFavorite': isFavorite,
+      'isEmphasis': isEmphasis,
+    };
+  }
+
+  factory ProductModel.fromMap(dynamic map) {
+    return ProductModel(
+      id: map['id'] as String,
+      name: map['name'] as String,
+      company: map['company'] as String,
+      quantity: map['quantity'] as int,
+      oldPrice: (map['oldPrice'] as int).toDouble(),
+      newPrice: (map['newPrice'] as int).toDouble(),
+      imageUrl: map['imageUrl'] as String,
+      description: map['description'] as String,
+      isFavorite: map['isFavorite'] == null ? false : map['isFavorite'],
+      isEmphasis: map['isEmphasis'] == null ? false : map['isEmphasis'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory ProductModel.fromJson(String source) =>
+      ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

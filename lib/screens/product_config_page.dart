@@ -45,7 +45,9 @@ class ProductConfigPage extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).colorScheme.primary,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            product.getItems();
+          },
           child: const SizedBox(
             height: 60,
             child: Center(
