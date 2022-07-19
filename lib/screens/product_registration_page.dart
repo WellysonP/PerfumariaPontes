@@ -282,7 +282,7 @@ class ProductregistrationPage extends StatelessWidget {
                       product.formData["quantity"] = int.parse(quantity ?? "0"),
                   validator: (_quantity) {
                     final quantity = _quantity ?? "";
-                    final finalQuantity = double.tryParse(quantity) ?? 0;
+                    final finalQuantity = int.tryParse(quantity) ?? 0;
                     if (finalQuantity == 0) {
                       return "Campo obrigatório";
                     }
@@ -310,10 +310,10 @@ class ProductregistrationPage extends StatelessWidget {
                     filled: true,
                   ),
                   onSaved: (oldPrice) => product.formData["oldPrice"] =
-                      double.parse(oldPrice ?? "0"),
+                      double.parse(oldPrice ?? "0.00"),
                   validator: (_oldPrice) {
                     final oldPrice = _oldPrice ?? "";
-                    final price = double.tryParse(oldPrice) ?? 0;
+                    final price = double.tryParse(oldPrice) ?? 0.00;
                     if (price == 0) {
                       return "Campo obrigatório";
                     }
@@ -341,10 +341,10 @@ class ProductregistrationPage extends StatelessWidget {
                     filled: true,
                   ),
                   onSaved: (newPrice) => product.formData["newPrice"] =
-                      double.parse(newPrice ?? "0"),
+                      double.parse(newPrice ?? "0.00"),
                   validator: (_newPrice) {
                     final newPrice = _newPrice ?? "";
-                    final price = double.tryParse(newPrice) ?? 0;
+                    final price = double.tryParse(newPrice) ?? 0.00;
                     if (price == 0) {
                       return "Campo obrigatório";
                     }

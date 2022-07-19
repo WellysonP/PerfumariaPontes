@@ -1,17 +1,25 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:perfumaria/utils/constantes.dart';
 import '../models/product_model.dart';
+import 'package:http/http.dart' as http;
 
 class ProductProvider with ChangeNotifier {
+  // String _token;
+  // String _userId;
   final List<ProductModel> _items = [];
+
+  // ProductProvider([
+  //   this._token = "",
+  //   this._userId = "",
+  //   this._items = const [],
+  // ]);
   List<ProductModel> get items => [..._items];
   List<ProductModel> get itemsFavorite =>
       _items.where((element) => element.isFavorite).toList();
@@ -39,44 +47,38 @@ class ProductProvider with ChangeNotifier {
   Future<void> getItems() async {
     _items.clear();
 
-    final snapshot = await databaseRef.child("878986290").get();
-    // final Map<String, dynamic> datas = snapshot.value as Map<String, dynamic>;
-    final data = ProductModel.fromMap(snapshot.value);
-    // final data = snapshot.value as Map;
-    // print(snapshot.value);
+    final response = await http.get(
+      Uri.parse("${Constant.productBase}.json"),
+    );
+    if (response.body == "null") return;
 
-    // const String jsonString = '''
-//   {
-//     "text": "foo", "value": 1 ,
-//              "text": "bar", "value": 2
-
-//   }
-// ''';
-
-    const String newJson = """
-        {
-          "quantity": 1,
-          "oldPrice": 1000000000.00,
-          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/newperfumaria-50abf.appspot.com/o/product%2F648609429?alt=media&token=2f9c3484-afc5-4776-bbde-215fe2c6a1d3",
-          "name": "Wellyson",
-          "description": "O homem mais valioso do mundo",
-          "company": "Jequiti",
-          "id": "648609429",
-          "newPrice": 1000000000.00
-          }
-        """;
-
-    // final Map<String,dynamic> data = snapshot as Map<String, dynamic>;
-
-    // Map<String, dynamic> data = jsonDecode(snapshotString);
-    // data.forEach(
-    //   (key, value) {
-    _items.add(data);
-    //   },
-    // );
-
-    // print(data["id"]);
+    Map<String, dynamic> data = jsonDecode(response.body);
+    data.forEach(
+      (productId, productData) {
+        _items.add(
+          ProductModel(
+            id: productId,
+            name: productData["name"],
+            company: productData["company"],
+            quantity: productData["quantity"],
+            oldPrice: productData["oldPrice"],
+            newPrice: productData["newPrice"],
+            imageUrl: productData["imageUrl"],
+            description: productData["description"],
+          ),
+        );
+      },
+    );
     notifyListeners();
+
+    // final snapshot = await databaseRef.get();
+    // final dataEncode = jsonEncode(snapshot.value);
+    // final dataDecode = jsonDecode(dataEncode);
+    // // Map snapshotValue = snapshot.value as Map<String, dynamic>;
+
+    // final data = ProductModel.fromMap(dataDecode);
+    // _items.add(data);
+    // notifyListeners();
   }
 
   Future<void> submitForm(
@@ -106,6 +108,7 @@ class ProductProvider with ChangeNotifier {
       }
     } on PlatformException catch (_) {}
     notifyListeners();
+    return null;
   }
 
   void toogleEmphasis() {
@@ -154,56 +157,54 @@ class ProductProvider with ChangeNotifier {
   }
 
   Future<void> addProduct(ProductModel product) async {
-    // final response = await http.post(
-    //   Uri.parse(
-    //       "https://newperfumaria-50abf-default-rtdb.firebaseio.com/products"),
-    //   body: jsonEncode(
-    //     {
-    //       "id": product.id,
-    //       "name": product.name,
-    //       "company": product.company,
-    //       "quantity": product.quantity,
-    //       "oldPrice": product.oldPrice,
-    //       "newPrice": product.newPrice,
-    //       "imageUrl": product.imageUrl,
-    //       "description": product.description,
-    //     },
-    //   ),
-    // );
-
-    await databaseRef.child(product.id).set(
-      {
-        "id": product.id,
-        "name": product.name,
-        "company": product.company,
-        "quantity": product.quantity,
-        "oldPrice": product.oldPrice,
-        "newPrice": product.newPrice,
-        "imageUrl": product.imageUrl,
-        "description": product.description,
-      },
+    final response = await http.post(
+      Uri.parse("${Constant.productBase}.json"),
+      body: jsonEncode(
+        {
+          "name": product.name,
+          "company": product.company,
+          "quantity": product.quantity,
+          "oldPrice": product.oldPrice,
+          "newPrice": product.newPrice,
+          "imageUrl": product.imageUrl,
+          "description": product.description,
+        },
+      ),
     );
-    // final id = jsonDecode(response.body)["quantity"];
 
-    // _items.add(
-    //   ProductModel(
-    //     id: product.id,
-    //     name: product.name,
-    //     company: product.company,
-    //     quantity: product.quantity,
-    //     oldPrice: product.oldPrice,
-    //     newPrice: product.newPrice,
-    //     imageUrl: product.imageUrl,
-    //     description: product.description,
-    //   ),
+    // await databaseRef.child(product.id).set(
+    //   {
+    //     "id": product.id,
+    //     "name": product.name,
+    //     "company": product.company,
+    //     "quantity": product.quantity,
+    //     "oldPrice": product.oldPrice,
+    //     "newPrice": product.newPrice,
+    //     "imageUrl": product.imageUrl,
+    //     "description": product.description,
+    //   },
     // );
+
+    final id = jsonDecode(response.body)["name"];
+    _items.add(
+      ProductModel(
+        id: id,
+        name: product.name,
+        company: product.company,
+        quantity: product.quantity,
+        oldPrice: product.oldPrice,
+        newPrice: product.newPrice,
+        imageUrl: product.imageUrl,
+        description: product.description,
+      ),
+    );
   }
 
   Future<void> saveProduct(Map<String, Object> data) async {
     bool hasId = data["id"] != null;
-    final String chooseId =
+    final chooseId =
         hasId ? data["id"] as String : Random().nextInt(1000000000).toString();
-    await uploadUserImage(chooseId);
+    await uploadImage(chooseId);
 
     final product = ProductModel(
       id: chooseId,
@@ -222,9 +223,9 @@ class ProductProvider with ChangeNotifier {
     }
   }
 
-  Future<String?> uploadUserImage(String chooseId) async {
+  Future<String?> uploadImage(String chosseId) async {
     final storageRef = FirebaseStorage.instance.ref();
-    Reference? imagesRef = storageRef.child("product/$chooseId");
+    Reference? imagesRef = storageRef.child("product/$chosseId");
 
     await imagesRef.putFile(image!);
 
