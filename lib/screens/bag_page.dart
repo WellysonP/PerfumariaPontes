@@ -40,11 +40,12 @@ class BagPage extends StatelessWidget {
                 color: const Color.fromRGBO(251, 235, 196, 1),
                 child: SizedBox(
                   height: bag.viewMore
-                      ? sizeDevice.height * 0.215 + (bag.items.length * 97)
+                      ? sizeDevice.height * 0.215 + (bag.items.length * 85)
                       : sizeDevice.height * 0.215,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 12),
@@ -84,7 +85,7 @@ class BagPage extends StatelessWidget {
                         const DasheLine(),
                         if (bag.viewMore)
                           SizedBox(
-                            height: (bag.items.length * 97),
+                            height: (bag.items.length * 85),
                             child: ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: bag.items.length,

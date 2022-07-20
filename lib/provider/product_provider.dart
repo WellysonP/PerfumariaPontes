@@ -65,6 +65,9 @@ class ProductProvider with ChangeNotifier {
             newPrice: productData["newPrice"],
             imageUrl: productData["imageUrl"],
             description: productData["description"],
+            isEmphasis: productData["isEmphasis"] == null
+                ? false
+                : productData["isEmphasis"],
           ),
         );
       },
@@ -168,6 +171,7 @@ class ProductProvider with ChangeNotifier {
           "newPrice": product.newPrice,
           "imageUrl": product.imageUrl,
           "description": product.description,
+          "isEmphasis": isEmphasis,
         },
       ),
     );
@@ -196,6 +200,7 @@ class ProductProvider with ChangeNotifier {
         newPrice: product.newPrice,
         imageUrl: product.imageUrl,
         description: product.description,
+        isEmphasis: product.isEmphasis,
       ),
     );
   }

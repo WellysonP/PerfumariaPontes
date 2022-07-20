@@ -39,15 +39,15 @@ class BottomBarCustom extends StatelessWidget {
                   .pushNamedAndRemoveUntil(AppRoutes.home, (route) => false);
             },
             child: Container(
-              color: isHome == true
-                  ? Theme.of(context).colorScheme.primary
-                  : const Color.fromRGBO(33, 33, 33, 1),
+              color: const Color.fromRGBO(33, 33, 33, 1),
               height: 60,
               width: devideSize.width * 0.33,
               child: Icon(
                 Icons.home_outlined,
                 size: 40,
-                color: isHome == true ? Colors.black : Colors.white,
+                color: isHome == true
+                    ? Color.fromRGBO(242, 134, 12, 1)
+                    : Colors.white,
               ),
             ),
           ),
@@ -57,15 +57,15 @@ class BottomBarCustom extends StatelessWidget {
                   .pushNamedAndRemoveUntil(AppRoutes.explore, (route) => false);
             },
             child: Container(
-              color: isExplore == true
-                  ? Theme.of(context).colorScheme.primary
-                  : const Color.fromRGBO(33, 33, 33, 1),
+              color: const Color.fromRGBO(33, 33, 33, 1),
               height: 60,
               width: devideSize.width * 0.34,
               child: Icon(
                 Icons.explore_outlined,
                 size: 40,
-                color: isExplore == true ? Colors.black : Colors.white,
+                color: isExplore == true
+                    ? Color.fromRGBO(242, 134, 12, 1)
+                    : Colors.white,
               ),
             ),
           ),
@@ -75,15 +75,15 @@ class BottomBarCustom extends StatelessWidget {
                   AppRoutes.perfilOut, (route) => false);
             },
             child: Container(
-              color: isPerfil == true
-                  ? Theme.of(context).colorScheme.primary
-                  : const Color.fromRGBO(33, 33, 33, 1),
+              color: const Color.fromRGBO(33, 33, 33, 1),
               height: 60,
               width: devideSize.width * 0.33,
               child: Icon(
                 Icons.person_outline,
                 size: 40,
-                color: isPerfil == true ? Colors.black : Colors.white,
+                color: isPerfil == true
+                    ? Color.fromRGBO(242, 134, 12, 1)
+                    : Colors.white,
               ),
             ),
           ),

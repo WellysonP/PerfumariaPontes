@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:perfumaria/utils/constantes.dart';
 
 import '../models/product_model.dart';
 
@@ -82,10 +86,14 @@ class _IconButtonListState extends State<IconButtonList> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {
+      onPressed: () async {
         setState(() {
           widget.product.isEmphasis = !widget.product.isEmphasis;
         });
+        final response = await http.patch(
+          Uri.parse("${Constant.productBase}/${widget.product.id}.json"),
+          body: jsonEncode({"isEmphasis": widget.product.isEmphasis}),
+        );
       },
       icon: Icon(
         widget.product.isEmphasis

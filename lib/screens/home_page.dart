@@ -8,8 +8,20 @@ import '../components/product_items.dart';
 import '../widgets/subtitle_appbar.dart';
 import '../provider/product_provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<ProductProvider>(context, listen: false).getItems();
+  }
 
   @override
   Widget build(BuildContext context) {

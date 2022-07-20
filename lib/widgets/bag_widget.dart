@@ -19,13 +19,14 @@ class BagWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 12.5),
+          padding: const EdgeInsets.all(7),
           child: SizedBox(
             height: 70,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircleAvatar(
                       radius: sizeDevice.width * 0.07,
@@ -34,6 +35,7 @@ class BagWidget extends StatelessWidget {
                     const SizedBox(width: 7),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           bagItem.name,
@@ -64,6 +66,7 @@ class BagWidget extends StatelessWidget {
                   ],
                 ),
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Row(
