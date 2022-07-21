@@ -268,7 +268,7 @@ class ProductregistrationPage extends StatelessWidget {
                   style: const TextStyle(fontSize: 20),
                   decoration: InputDecoration(
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20)),
                     labelStyle: const TextStyle(
@@ -299,7 +299,38 @@ class ProductregistrationPage extends StatelessWidget {
                   style: const TextStyle(fontSize: 20),
                   decoration: InputDecoration(
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelStyle: const TextStyle(
+                      fontSize: 15,
+                    ),
+                    labelText: "Custo unitário",
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                  onSaved: (cost) =>
+                      product.formData["cost"] = double.parse(cost ?? "0.00"),
+                  validator: (_cost) {
+                    final cost = _cost ?? "";
+                    final price = double.tryParse(cost) ?? 0.00;
+                    if (price == 0) {
+                      return "Campo obrigatório";
+                    }
+                    if (price < 0) {
+                      return "Preço inválido";
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style: const TextStyle(fontSize: 20),
+                  decoration: InputDecoration(
+                    contentPadding:
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20)),
                     labelStyle: const TextStyle(
@@ -330,7 +361,7 @@ class ProductregistrationPage extends StatelessWidget {
                   style: const TextStyle(fontSize: 20),
                   decoration: InputDecoration(
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20)),
                     labelStyle: const TextStyle(

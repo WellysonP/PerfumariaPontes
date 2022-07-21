@@ -34,7 +34,7 @@ class ProductConfigPage extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               child: ListView.builder(
-                itemCount: product.itemsCount,
+                itemCount: product.items.length,
                 itemBuilder: (context, i) =>
                     ProductList(product: product.items[i]),
               ),

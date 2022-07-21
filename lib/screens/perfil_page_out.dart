@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:perfumaria/widgets/subtitle_appbar.dart';
-
-import 'package:perfumaria/provider/product_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 import 'package:provider/provider.dart';
-
+import '../provider/login_provider.dart';
 import '../widgets/app_bar_custom.dart';
 import '../widgets/bottom_bar_custom.dart';
 
@@ -13,7 +11,7 @@ class PerfilPageOut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<ProductProvider>(context);
+    final login = Provider.of<LoginProvider>(context);
     return Scaffold(
       appBar: AppBarCustom.isFilter(),
       body: Column(
@@ -49,9 +47,13 @@ class PerfilPageOut extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(20),
                       onTap: () {
-                        product.isLogin = true;
                         Navigator.of(context)
                             .pushReplacementNamed(AppRoutes.loginPage);
+                        if (login.isLogin == true) {
+                          return;
+                        } else {
+                          login.toogleLogin();
+                        }
                       },
                       child: Container(
                         height: 60,
@@ -81,9 +83,13 @@ class PerfilPageOut extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(20),
                       onTap: () {
-                        product.isLogin = false;
                         Navigator.of(context)
                             .pushReplacementNamed(AppRoutes.loginPage);
+                        if (login.isLogin == true) {
+                          login.toogleLogin();
+                        } else {
+                          return;
+                        }
                       },
                       child: Container(
                         height: 60,

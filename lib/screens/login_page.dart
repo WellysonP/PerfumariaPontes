@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:perfumaria/widgets/subtitle_appbar.dart';
-
-import 'package:perfumaria/provider/product_provider.dart';
 import 'package:provider/provider.dart';
+import '../provider/login_provider.dart';
 import '../widgets/app_bar_custom.dart';
 import '../widgets/bottom_bar_custom.dart';
 import '../components/login_form.dart';
@@ -12,7 +11,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<ProductProvider>(context);
+    final login = Provider.of<LoginProvider>(context);
     return Scaffold(
       appBar: AppBarCustom.isFilter(),
       body: Column(
@@ -30,7 +29,7 @@ class LoginPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(150),
                       onTap: () {},
                       child: Image.asset(
-                        product.isLogin
+                        login.isLogin
                             ? "assets/images/account_circle.png"
                             : "assets/images/Group_33.png",
                         height: 150,
@@ -42,7 +41,7 @@ class LoginPage extends StatelessWidget {
                   SizedBox(
                     width: 185,
                     child: Text(
-                      product.isLogin ? "Login" : "Cadastro",
+                      login.isLogin ? "Login" : "Cadastro",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.white,

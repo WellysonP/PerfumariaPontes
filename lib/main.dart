@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:perfumaria/provider/company_provider.dart';
+import 'package:perfumaria/provider/login_provider.dart';
 import 'package:perfumaria/screens/bag_page.dart';
 import 'package:perfumaria/screens/login_page.dart';
 import 'package:perfumaria/screens/perfil_page_in.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CompanyProvider()),
         ChangeNotifierProvider(create: (context) => ProductProvider()),
         ChangeNotifierProvider(create: (context) => BagProvider()),
+        ChangeNotifierProvider(create: (context) => LoginProvider()),
       ],
       child: MaterialApp(
         theme: theme.copyWith(

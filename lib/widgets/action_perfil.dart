@@ -26,7 +26,7 @@ class ActionPerfil extends StatelessWidget {
                 Icon(
                   icon,
                   size: 30,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: const Color.fromRGBO(254, 174, 55, 1),
                 ),
                 const SizedBox(width: 20),
                 Column(
@@ -34,19 +34,19 @@ class ActionPerfil extends StatelessWidget {
                   children: [
                     Text(
                       text,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
+                      style: const TextStyle(
+                        color: Color.fromRGBO(254, 174, 55, 1),
                         fontSize: 18,
                       ),
                     ),
                     const SizedBox(height: 6),
                     Container(
                       width: sizeDevice.width * 0.75,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
                             width: 1,
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Color.fromRGBO(254, 174, 55, 1),
                           ),
                         ),
                       ),

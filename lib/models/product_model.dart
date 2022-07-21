@@ -6,6 +6,7 @@ class ProductModel {
   final String name;
   final String company;
   final int quantity;
+  final double cost;
   final double oldPrice;
   final double newPrice;
   final String imageUrl;
@@ -18,6 +19,7 @@ class ProductModel {
     required this.name,
     required this.company,
     required this.quantity,
+    required this.cost,
     required this.oldPrice,
     required this.newPrice,
     required this.imageUrl,
@@ -32,6 +34,7 @@ class ProductModel {
       'name': name,
       'company': company,
       'quantity': quantity,
+      'cost': cost,
       'oldPrice': oldPrice,
       'newPrice': newPrice,
       'imageUrl': imageUrl,
@@ -47,6 +50,7 @@ class ProductModel {
       name: map['name'] as String,
       company: map['company'] as String,
       quantity: map['quantity'] as int,
+      cost: map['cost'] as double,
       oldPrice: map['oldPrice'] as double,
       newPrice: map['newPrice'] as double,
       imageUrl: map['imageUrl'] as String,

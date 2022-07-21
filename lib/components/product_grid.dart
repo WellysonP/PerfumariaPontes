@@ -14,7 +14,7 @@ class ProductGrid extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 17),
       itemCount: product.showFavorite
           ? product.itemsFavorite.length
-          : product.itemsCount,
+          : product.items.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 15,

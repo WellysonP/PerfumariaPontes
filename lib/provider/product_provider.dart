@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -11,21 +10,15 @@ import '../models/product_model.dart';
 import 'package:http/http.dart' as http;
 
 class ProductProvider with ChangeNotifier {
-  // String _token;
-  // String _userId;
   final List<ProductModel> _items = [];
-
-  // ProductProvider([
-  //   this._token = "",
-  //   this._userId = "",
-  //   this._items = const [],
-  // ]);
   List<ProductModel> get items => [..._items];
+
   List<ProductModel> get itemsFavorite =>
       _items.where((element) => element.isFavorite).toList();
+
   List<ProductModel> get itemsEmphasis =>
       _items.where((element) => element.isEmphasis).toList();
-  bool isLogin = true;
+
   bool showFavorite = false;
   int currentStep = 0;
   bool isEmphasis = false;
@@ -37,51 +30,21 @@ class ProductProvider with ChangeNotifier {
   final formKeyStep1 = GlobalKey<FormState>();
   final formKeyStep2 = GlobalKey<FormState>();
   final formKeyStep3 = GlobalKey<FormState>();
-
   final nameController = TextEditingController();
 
-  final database = FirebaseDatabase.instance.ref();
-  final DatabaseReference databaseRef =
-      FirebaseDatabase.instance.ref().child("products");
-
-  Future<void> getItems() async {
-    _items.clear();
-
-    final response = await http.get(
-      Uri.parse("${Constant.productBase}.json"),
-    );
-    if (response.body == "null") return;
-
-    Map<String, dynamic> data = jsonDecode(response.body);
-    data.forEach(
-      (productId, productData) {
-        _items.add(
-          ProductModel(
-            id: productId,
-            name: productData["name"],
-            company: productData["company"],
-            quantity: productData["quantity"],
-            oldPrice: productData["oldPrice"],
-            newPrice: productData["newPrice"],
-            imageUrl: productData["imageUrl"],
-            description: productData["description"],
-            isEmphasis: productData["isEmphasis"] == null
-                ? false
-                : productData["isEmphasis"],
-          ),
-        );
-      },
-    );
+  void toogleEmphasis() {
+    isEmphasis = !isEmphasis;
     notifyListeners();
+  }
 
-    // final snapshot = await databaseRef.get();
-    // final dataEncode = jsonEncode(snapshot.value);
-    // final dataDecode = jsonDecode(dataEncode);
-    // // Map snapshotValue = snapshot.value as Map<String, dynamic>;
+  void tooglefavorite(ProductModel product) {
+    product.isFavorite = !product.isFavorite;
+    notifyListeners();
+  }
 
-    // final data = ProductModel.fromMap(dataDecode);
-    // _items.add(data);
-    // notifyListeners();
+  void showFavorites() {
+    showFavorite = !showFavorite;
+    notifyListeners();
   }
 
   Future<void> submitForm(
@@ -94,29 +57,6 @@ class ProductProvider with ChangeNotifier {
       formKey.currentState?.save();
       currentContinue(context);
     }
-  }
-
-  int get itemsCount {
-    return _items.length;
-  }
-
-  Future<XFile?> pickImage() async {
-    try {
-      final image = await ImagePicker().pickMultiImage();
-      if (image == null) {
-      } else {
-        imageList!.addAll(image);
-        final imageTemporary = File(image.first.path);
-        this.image = imageTemporary;
-      }
-    } on PlatformException catch (_) {}
-    notifyListeners();
-    return null;
-  }
-
-  void toogleEmphasis() {
-    isEmphasis = !isEmphasis;
-    notifyListeners();
   }
 
   Future<void> currentContinue(BuildContext context) async {
@@ -144,18 +84,35 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void showFavorites() {
-    showFavorite = !showFavorite;
-    notifyListeners();
-  }
+  Future<void> getItems() async {
+    _items.clear();
 
-  void tooglefavorite(ProductModel product) {
-    product.isFavorite = !product.isFavorite;
-    notifyListeners();
-  }
+    final response = await http.get(
+      Uri.parse("${Constant.productBase}.json"),
+    );
+    if (response.body == "null") return;
 
-  void toogleLogin() {
-    isLogin = !isLogin;
+    Map<String, dynamic> data = jsonDecode(response.body);
+    data.forEach(
+      (productId, productData) {
+        _items.add(
+          ProductModel(
+            id: productId,
+            name: productData["name"],
+            company: productData["company"],
+            quantity: productData["quantity"],
+            cost: productData["cost"],
+            oldPrice: productData["oldPrice"],
+            newPrice: productData["newPrice"],
+            imageUrl: productData["imageUrl"],
+            description: productData["description"],
+            isEmphasis: productData["isEmphasis"] == null
+                ? false
+                : productData["isEmphasis"],
+          ),
+        );
+      },
+    );
     notifyListeners();
   }
 
@@ -167,6 +124,7 @@ class ProductProvider with ChangeNotifier {
           "name": product.name,
           "company": product.company,
           "quantity": product.quantity,
+          "cost": product.cost,
           "oldPrice": product.oldPrice,
           "newPrice": product.newPrice,
           "imageUrl": product.imageUrl,
@@ -176,19 +134,6 @@ class ProductProvider with ChangeNotifier {
       ),
     );
 
-    // await databaseRef.child(product.id).set(
-    //   {
-    //     "id": product.id,
-    //     "name": product.name,
-    //     "company": product.company,
-    //     "quantity": product.quantity,
-    //     "oldPrice": product.oldPrice,
-    //     "newPrice": product.newPrice,
-    //     "imageUrl": product.imageUrl,
-    //     "description": product.description,
-    //   },
-    // );
-
     final id = jsonDecode(response.body)["name"];
     _items.add(
       ProductModel(
@@ -196,6 +141,7 @@ class ProductProvider with ChangeNotifier {
         name: product.name,
         company: product.company,
         quantity: product.quantity,
+        cost: product.cost,
         oldPrice: product.oldPrice,
         newPrice: product.newPrice,
         imageUrl: product.imageUrl,
@@ -216,6 +162,7 @@ class ProductProvider with ChangeNotifier {
       name: data["name"] as String,
       company: data["company"] as String,
       quantity: data["quantity"] as int,
+      cost: data["cost"] as double,
       oldPrice: data["oldPrice"] as double,
       newPrice: data["newPrice"] as double,
       imageUrl: updatUrlImage!,
@@ -226,6 +173,20 @@ class ProductProvider with ChangeNotifier {
     } else {
       await addProduct(product);
     }
+  }
+
+  Future<XFile?> pickImage() async {
+    try {
+      final image = await ImagePicker().pickMultiImage();
+      if (image == null) {
+      } else {
+        imageList!.addAll(image);
+        final imageTemporary = File(image.first.path);
+        this.image = imageTemporary;
+      }
+    } on PlatformException catch (_) {}
+    notifyListeners();
+    return null;
   }
 
   Future<String?> uploadImage(String chosseId) async {
