@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:perfumaria/provider/login_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/widgets/action_perfil.dart';
+import 'package:provider/provider.dart';
 
 class ListActionsPerfil extends StatelessWidget {
   const ListActionsPerfil({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final login = Provider.of<LoginProvider>(context);
     return Column(
       children: [
         ActionPerfil(
@@ -29,13 +32,14 @@ class ListActionsPerfil extends StatelessWidget {
           text: "Editar Perfil",
           onPress: () {},
         ),
-        ActionPerfil(
-          icon: Icons.settings,
-          text: "Configurar Produtos",
-          onPress: () {
-            Navigator.of(context).pushNamed(AppRoutes.productConfigPage);
-          },
-        ),
+        if (login.isAdm)
+          ActionPerfil(
+            icon: Icons.settings,
+            text: "Configurar Produtos",
+            onPress: () {
+              Navigator.of(context).pushNamed(AppRoutes.productConfigPage);
+            },
+          ),
       ],
     );
   }

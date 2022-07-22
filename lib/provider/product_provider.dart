@@ -61,7 +61,6 @@ class ProductProvider with ChangeNotifier {
 
   Future<void> currentContinue(BuildContext context) async {
     if (currentStep == 2) {
-      // uploadUserImage(image);
       await saveProduct(formData);
       Navigator.of(context).pop();
       isEmphasis = false;

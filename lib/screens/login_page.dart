@@ -27,14 +27,25 @@ class LoginPage extends StatelessWidget {
                     radius: 75,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(150),
-                      onTap: () {},
-                      child: Image.asset(
-                        login.isLogin
-                            ? "assets/images/account_circle.png"
-                            : "assets/images/Group_33.png",
-                        height: 150,
-                        width: 150,
-                      ),
+                      onTap: () {
+                        login.isLogin ? null : login.pickImage();
+                      },
+                      child: login.image == null || login.isLogin
+                          ? Image.asset(
+                              login.isLogin
+                                  ? "assets/images/account_circle.png"
+                                  : "assets/images/Group_33.png",
+                              height: 150,
+                              width: 150,
+                            )
+                          : ClipOval(
+                              child: Image.file(
+                                login.image!,
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                     ),
                   ),
                   const SizedBox(height: 17),

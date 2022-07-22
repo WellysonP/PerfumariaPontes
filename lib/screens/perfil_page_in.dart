@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:perfumaria/provider/login_provider.dart';
+import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/widgets/subtitle_appbar.dart';
+import 'package:provider/provider.dart';
 import '../widgets/app_bar_custom.dart';
 import '../widgets/bottom_bar_custom.dart';
 import '../components/list_actions_perfil.dart';
@@ -9,6 +13,7 @@ class PerfilPageIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final login = Provider.of<LoginProvider>(context);
     return Scaffold(
       appBar: AppBarCustom.isFilter(),
       body: Column(
@@ -19,7 +24,15 @@ class PerfilPageIn extends StatelessWidget {
             children: [
               const SubtitleAppBar(text: "Perfil"),
               IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  login.updatUrlImage = "";
+                  login.image = null;
+                  login.imageList = [];
+                  login.isAdm = false;
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.of(context)
+                      .pushReplacementNamed(AppRoutes.perfilOut);
+                },
                 icon: Icon(
                   Icons.logout,
                   color: Theme.of(context).errorColor,
@@ -39,6 +52,14 @@ class PerfilPageIn extends StatelessWidget {
                       onTap: () {},
                       child: Stack(
                         children: [
+                          ClipOval(
+                            child: Image.network(
+                              login.perfilPhotoUrl.toString(),
+                              width: 150,
+                              height: 150,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                           Positioned(
                             bottom: 0,
                             right: 0,
@@ -48,18 +69,17 @@ class PerfilPageIn extends StatelessWidget {
                               height: 40,
                             ),
                           ),
-                          Image.asset("assets/images/account_circle.png"),
                         ],
                       ),
                     ),
                   ),
                   const SizedBox(height: 17),
-                  const SizedBox(
+                  SizedBox(
                     width: 185,
                     child: Text(
-                      "Usuário",
+                      login.perfilName.toString(),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

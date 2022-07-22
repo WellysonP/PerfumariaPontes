@@ -1,7 +1,11 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:perfumaria/provider/login_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
+import 'package:provider/provider.dart';
 
 class BottomBarCustom extends StatelessWidget {
   final bool? isHome;
@@ -28,6 +32,7 @@ class BottomBarCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final login = Provider.of<LoginProvider>(context);
     final devideSize = MediaQuery.of(context).size;
     return BottomAppBar(
       color: const Color.fromRGBO(33, 33, 33, 1),
@@ -70,9 +75,17 @@ class BottomBarCustom extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  AppRoutes.perfilOut, (route) => false);
+            onTap: () async {
+              if (FirebaseAuth.instance.currentUser == null) {
+                Navigator.of(context).pushReplacementNamed(AppRoutes.perfilOut);
+              } else {
+                login.perfilName =
+                    FirebaseAuth.instance.currentUser!.displayName;
+                login.perfilPhotoUrl =
+                    FirebaseAuth.instance.currentUser!.photoURL;
+                Navigator.of(context).pushReplacementNamed(AppRoutes.perfilIn);
+              }
+              print(FirebaseAuth.instance.currentUser);
             },
             child: Container(
               color: const Color.fromRGBO(33, 33, 33, 1),

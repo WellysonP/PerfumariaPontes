@@ -134,7 +134,12 @@ class LoginForm extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {
-                  login.registerOrLogin(context);
+                  login.registerOrLogin(
+                    name: login.nameController.text,
+                    email: login.emailController.text,
+                    password: login.emailController.text,
+                    context: context,
+                  );
                 },
                 child: Container(
                   height: 60,
