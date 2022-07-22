@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:perfumaria/models/bag_model.dart';
 import 'package:perfumaria/provider/bag_provider.dart';
+import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/widgets/app_bar_custom.dart';
 import 'package:provider/provider.dart';
 import '../widgets/bag_widget.dart';
@@ -144,7 +145,10 @@ class BagPage extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).colorScheme.primary,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context)
+                .pushReplacementNamed(AppRoutes.progressIndicator);
+          },
           child: SizedBox(
             height: 60,
             child: Row(

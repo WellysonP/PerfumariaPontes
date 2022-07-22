@@ -4,10 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:perfumaria/models/user_model.dart';
 import 'package:perfumaria/utils/constantes.dart';
+import 'package:perfumaria/widgets/progress_dialog.dart';
 import '../utils/app_routes.dart';
 import 'package:http/http.dart' as http;
 
@@ -51,6 +53,13 @@ class LoginProvider with ChangeNotifier {
       } else {
         formKeyLogin.currentState?.save();
 
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: ((context) =>
+              const ProgressDialog(status: "Criando sua conta.")),
+        );
+
         user = await _auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
@@ -75,6 +84,12 @@ class LoginProvider with ChangeNotifier {
         formKeyLogin.currentState?.reset();
       }
     } else {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: ((context) =>
+            const ProgressDialog(status: "Acessando sua conta.")),
+      );
       user = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,

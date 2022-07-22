@@ -11,6 +11,7 @@ import 'package:perfumaria/screens/product_detail_page.dart';
 import 'package:perfumaria/screens/product_page.dart';
 import 'package:perfumaria/screens/product_registration_page.dart';
 import 'package:perfumaria/utils/app_routes.dart';
+import 'package:perfumaria/widgets/progress_dialog.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'provider/bag_provider.dart';
@@ -58,6 +59,8 @@ class MyApp extends StatelessWidget {
           AppRoutes.productConfigPage: (context) => const ProductConfigPage(),
           AppRoutes.producRegistrationPage: (context) =>
               const ProductregistrationPage(),
+          AppRoutes.progressIndicator: (context) =>
+              const ProgressDialog(status: "Testando..."),
         },
       ),
     );

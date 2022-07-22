@@ -8,4 +8,5 @@ class AppRoutes {
   static const bagPage = "/bag-page";
   static const productConfigPage = "/config-page";
   static const producRegistrationPage = "/registration-page";
+  static const progressIndicator = "/progress-indicator";
 }

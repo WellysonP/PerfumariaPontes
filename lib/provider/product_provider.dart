@@ -3,11 +3,14 @@ import 'dart:io';
 import 'dart:math';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:perfumaria/utils/constantes.dart';
 import '../models/product_model.dart';
 import 'package:http/http.dart' as http;
+
+import '../widgets/progress_dialog.dart';
 
 class ProductProvider with ChangeNotifier {
   final List<ProductModel> _items = [];
@@ -61,7 +64,14 @@ class ProductProvider with ChangeNotifier {
 
   Future<void> currentContinue(BuildContext context) async {
     if (currentStep == 2) {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: ((context) =>
+            const ProgressDialog(status: "Criando produto.")),
+      );
       await saveProduct(formData);
+      Navigator.of(context).pop();
       Navigator.of(context).pop();
       isEmphasis = false;
       image = null;
