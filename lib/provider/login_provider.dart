@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -82,18 +81,8 @@ class LoginProvider with ChangeNotifier {
       );
       perfilName = FirebaseAuth.instance.currentUser!.displayName;
       perfilPhotoUrl = FirebaseAuth.instance.currentUser!.photoURL;
-      final response = await http.get(
-        Uri.parse("${Constant.userBase}/${user.user!.uid}.json"),
-      );
-      if (response.body == "null") return;
-      Map<String, dynamic> data = await jsonDecode(response.body);
-      final update = UserModel(
-        name: data["name"],
-        email: data["email"],
-        isAdm: data["isAdm"],
-      );
+      await getAdm();
 
-      isAdm = update.isAdm;
       Navigator.of(context).pushReplacementNamed(AppRoutes.perfilIn);
       formKeyLogin.currentState?.reset();
     }
@@ -122,5 +111,20 @@ class LoginProvider with ChangeNotifier {
     final String imageRefUrl = await imagesRef.getDownloadURL();
     updatUrlImage = imageRefUrl;
     return imageRefUrl;
+  }
+
+  Future<void> getAdm() async {
+    final response = await http.get(
+      Uri.parse("${Constant.userBase}/${_auth.currentUser!.uid}.json"),
+    );
+    if (response.body == "null") return;
+    Map<String, dynamic> data = await jsonDecode(response.body);
+    final update = UserModel(
+      name: data["name"],
+      email: data["email"],
+      isAdm: data["isAdm"],
+    );
+
+    isAdm = update.isAdm;
   }
 }

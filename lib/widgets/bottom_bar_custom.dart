@@ -79,6 +79,7 @@ class BottomBarCustom extends StatelessWidget {
               if (FirebaseAuth.instance.currentUser == null) {
                 Navigator.of(context).pushReplacementNamed(AppRoutes.perfilOut);
               } else {
+                await login.getAdm();
                 login.perfilName =
                     FirebaseAuth.instance.currentUser!.displayName;
                 login.perfilPhotoUrl =
