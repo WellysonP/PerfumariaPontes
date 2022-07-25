@@ -10,10 +10,19 @@ class ProductregistrationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final msg = ScaffoldMessenger.of(context);
     final product = Provider.of<ProductProvider>(context);
     final company = Provider.of<CompanyProvider>(context);
 
     void _submitForm() {
+      if (product.image == null) {
+        msg.hideCurrentSnackBar();
+        msg.showSnackBar(
+          const SnackBar(
+            content: Text("Imagem Obrigatória para Realizar Cadastro."),
+          ),
+        );
+      }
       if (product.currentStep == 0) {
         product.submitForm(product.formKeyStep1, context);
       } else if (product.currentStep == 1) {

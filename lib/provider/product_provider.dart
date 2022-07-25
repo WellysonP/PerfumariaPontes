@@ -54,7 +54,7 @@ class ProductProvider with ChangeNotifier {
       GlobalKey<FormState> formKey, BuildContext context) async {
     final isValidate = formKey.currentState?.validate() ?? false;
 
-    if (!isValidate) {
+    if (!isValidate || image == null) {
       return;
     } else {
       formKey.currentState?.save();

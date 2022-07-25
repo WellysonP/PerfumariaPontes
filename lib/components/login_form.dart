@@ -9,6 +9,7 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final msg = ScaffoldMessenger.of(context);
     final login = Provider.of<LoginProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 45),
@@ -134,6 +135,14 @@ class LoginForm extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {
+                  if (login.image == null && !login.isLogin) {
+                    msg.hideCurrentSnackBar();
+                    msg.showSnackBar(const SnackBar(
+                      duration: Duration(seconds: 2),
+                      content:
+                          Text("Imagem Obrigatória para Realizar Cadastro"),
+                    ));
+                  }
                   login.registerOrLogin(
                     name: login.nameController.text,
                     email: login.emailController.text,

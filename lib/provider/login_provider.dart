@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -45,14 +44,13 @@ class LoginProvider with ChangeNotifier {
     required String password,
     context,
   }) async {
-    if (!isLogin) {
-      final isValidate = formKeyLogin.currentState?.validate() ?? false;
+    final isValidate = formKeyLogin.currentState?.validate() ?? false;
+    if (!isValidate || image == null) {
+      return;
+    } else {
+      formKeyLogin.currentState?.save();
 
-      if (!isValidate) {
-        return;
-      } else {
-        formKeyLogin.currentState?.save();
-
+      if (!isLogin) {
         showDialog(
           barrierDismissible: false,
           context: context,
@@ -82,24 +80,24 @@ class LoginProvider with ChangeNotifier {
 
         Navigator.of(context).pushReplacementNamed(AppRoutes.perfilIn);
         formKeyLogin.currentState?.reset();
-      }
-    } else {
-      showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: ((context) =>
-            const ProgressDialog(status: "Acessando sua conta.")),
-      );
-      user = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      perfilName = FirebaseAuth.instance.currentUser!.displayName;
-      perfilPhotoUrl = FirebaseAuth.instance.currentUser!.photoURL;
-      await getAdm();
+      } else {
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: ((context) =>
+              const ProgressDialog(status: "Acessando sua conta.")),
+        );
+        user = await _auth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        perfilName = FirebaseAuth.instance.currentUser!.displayName;
+        perfilPhotoUrl = FirebaseAuth.instance.currentUser!.photoURL;
+        await getAdm();
 
-      Navigator.of(context).pushReplacementNamed(AppRoutes.perfilIn);
-      formKeyLogin.currentState?.reset();
+        Navigator.of(context).pushReplacementNamed(AppRoutes.perfilIn);
+        formKeyLogin.currentState?.reset();
+      }
     }
   }
 
