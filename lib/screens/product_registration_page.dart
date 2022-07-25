@@ -18,8 +18,15 @@ class ProductregistrationPage extends StatelessWidget {
       if (product.image == null) {
         msg.hideCurrentSnackBar();
         msg.showSnackBar(
-          const SnackBar(
-            content: Text("Imagem Obrigatória para Realizar Cadastro."),
+          SnackBar(
+            backgroundColor: const Color.fromRGBO(63, 58, 58, 1),
+            duration: const Duration(seconds: 2),
+            content: const Text("Imagem Obrigatória"),
+            action: SnackBarAction(
+              textColor: Theme.of(context).colorScheme.primary,
+              label: "Inserir Imagem",
+              onPressed: () => product.pickImage(),
+            ),
           ),
         );
       }

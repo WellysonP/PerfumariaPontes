@@ -45,7 +45,7 @@ class LoginProvider with ChangeNotifier {
     context,
   }) async {
     final isValidate = formKeyLogin.currentState?.validate() ?? false;
-    if (!isValidate || image == null) {
+    if (!isValidate || (image == null && !isLogin)) {
       return;
     } else {
       formKeyLogin.currentState?.save();

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -71,13 +70,14 @@ class ProductProvider with ChangeNotifier {
             const ProgressDialog(status: "Criando produto.")),
       );
       await saveProduct(formData);
-      Navigator.of(context).pop();
-      Navigator.of(context).pop();
       isEmphasis = false;
       image = null;
       imageList = [];
       nameController.text = "";
       currentStep = 0;
+      getItems();
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
     } else {
       currentStep += 1;
     }

@@ -90,7 +90,7 @@ class _IconButtonListState extends State<IconButtonList> {
         setState(() {
           widget.product.isEmphasis = !widget.product.isEmphasis;
         });
-        final response = await http.patch(
+        await http.patch(
           Uri.parse("${Constant.productBase}/${widget.product.id}.json"),
           body: jsonEncode({"isEmphasis": widget.product.isEmphasis}),
         );

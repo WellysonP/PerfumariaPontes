@@ -46,7 +46,7 @@ class ProductConfigPage extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
         child: InkWell(
           onTap: () {
-            product.getItems();
+            Navigator.of(context).pushNamed(AppRoutes.producRegistrationPage);
           },
           child: const SizedBox(
             height: 60,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/utils/email_validator.dart';
 import 'package:provider/provider.dart';
 import '../provider/login_provider.dart';
@@ -34,8 +33,8 @@ class LoginForm extends StatelessWidget {
                   fillColor: Colors.white,
                   filled: true,
                 ),
-                validator: (_name) {
-                  final name = _name ?? "";
+                validator: (nameControl) {
+                  final name = nameControl ?? "";
                   if (name.trim().isEmpty) {
                     return "Campo Obrigatório";
                   }
@@ -62,8 +61,8 @@ class LoginForm extends StatelessWidget {
                 fillColor: Colors.white,
                 filled: true,
               ),
-              validator: (_email) {
-                final email = _email ?? "";
+              validator: (emailControl) {
+                final email = emailControl ?? "";
                 if (email.trim().isEmpty) {
                   return "Campo Obrigatório";
                 }
@@ -90,8 +89,8 @@ class LoginForm extends StatelessWidget {
                 fillColor: Colors.white,
                 filled: true,
               ),
-              validator: (_password) {
-                final password = _password ?? "";
+              validator: (passwordControl) {
+                final password = passwordControl ?? "";
                 if (password.isEmpty) {
                   return "Campo Obrigatório";
                 }
@@ -118,8 +117,8 @@ class LoginForm extends StatelessWidget {
                   fillColor: Colors.white,
                   filled: true,
                 ),
-                validator: (_confirmPassword) {
-                  final confirmPassword = _confirmPassword ?? "";
+                validator: (confirmPasswordControl) {
+                  final confirmPassword = confirmPasswordControl ?? "";
                   if (confirmPassword.isEmpty) {
                     return "Campo Obrigatório";
                   }
@@ -137,11 +136,18 @@ class LoginForm extends StatelessWidget {
                 onTap: () {
                   if (login.image == null && !login.isLogin) {
                     msg.hideCurrentSnackBar();
-                    msg.showSnackBar(const SnackBar(
-                      duration: Duration(seconds: 2),
-                      content:
-                          Text("Imagem Obrigatória para Realizar Cadastro"),
-                    ));
+                    msg.showSnackBar(
+                      SnackBar(
+                        backgroundColor: const Color.fromRGBO(63, 58, 58, 1),
+                        duration: const Duration(seconds: 2),
+                        content: const Text("Imagem Obrigatória"),
+                        action: SnackBarAction(
+                          textColor: Theme.of(context).colorScheme.primary,
+                          label: "Inserir Imagem",
+                          onPressed: () => login.pickImage(),
+                        ),
+                      ),
+                    );
                   }
                   login.registerOrLogin(
                     name: login.nameController.text,
