@@ -12,6 +12,7 @@ class ProductGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final msg = ScaffoldMessenger.of(context);
     final bag = Provider.of<BagProvider>(context);
     return Stack(
       children: [
@@ -83,6 +84,19 @@ class ProductGridItem extends StatelessWidget {
                   topLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20)),
               onTap: () {
+                msg.hideCurrentSnackBar();
+                msg.showSnackBar(
+                  SnackBar(
+                    backgroundColor: const Color.fromRGBO(63, 58, 58, 1),
+                    duration: const Duration(seconds: 2),
+                    content: const Text("Produto Adicionado à Sacola"),
+                    action: SnackBarAction(
+                      textColor: Theme.of(context).colorScheme.primary,
+                      label: "DESFAZER",
+                      onPressed: () => bag.removeSingleitem(product.id),
+                    ),
+                  ),
+                );
                 bag.addItem(product);
               },
               child: Container(
