@@ -125,7 +125,7 @@ class ProductDetail extends StatelessWidget {
               SnackBar(
                 backgroundColor: const Color.fromRGBO(63, 58, 58, 1),
                 duration: const Duration(seconds: 2),
-                content: const Text("Produto Adicionado à Sacola"),
+                content: Text("${product.name} Adicionado à Sacola"),
                 action: SnackBarAction(
                   textColor: Theme.of(context).colorScheme.primary,
                   label: "DESFAZER",

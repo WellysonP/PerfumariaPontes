@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:perfumaria/exceptions/http_exceptions.dart';
 import 'package:perfumaria/utils/constantes.dart';
 import '../models/product_model.dart';
 import 'package:http/http.dart' as http;
@@ -75,6 +76,7 @@ class ProductProvider with ChangeNotifier {
       image = null;
       imageList = [];
       currentStep = 0;
+      formData.clear();
       getItems();
       Navigator.of(context).pop();
       Navigator.of(context).pop();
@@ -118,9 +120,7 @@ class ProductProvider with ChangeNotifier {
             newPrice: productData["newPrice"],
             imageUrl: productData["imageUrl"],
             description: productData["description"],
-            isEmphasis: productData["isEmphasis"] == null
-                ? false
-                : productData["isEmphasis"],
+            isEmphasis: productData["isEmphasis"] ?? false,
           ),
         );
       },
@@ -184,6 +184,29 @@ class ProductProvider with ChangeNotifier {
       return;
     } else {
       await addProduct(product);
+    }
+  }
+
+  Future<void> removeProduct(ProductModel product) async {
+    int index = _items.indexWhere((p) => p.id == product.id);
+
+    if (index >= 0) {
+      final product = _items[index];
+      _items.remove(product);
+      notifyListeners();
+      final response = await http.delete(
+        Uri.parse("${Constant.productBase}/${product.id}.json"),
+      );
+
+      if (response.statusCode >= 400) {
+        _items.insert(index, product);
+        notifyListeners();
+
+        throw HttpException(
+          msg: "Não foi possível excluir o produto.",
+          statusCode: response.statusCode,
+        );
+      }
     }
   }
 

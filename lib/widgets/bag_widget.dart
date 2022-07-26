@@ -51,16 +51,16 @@ class BagWidget extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Não"),
+              ),
+              TextButton(
+                onPressed: () {
                   bag.removeItem(bagItem.productId);
                   Navigator.of(context).pop();
                 },
                 child: const Text("Sim"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text("Não"),
               ),
             ],
           ),

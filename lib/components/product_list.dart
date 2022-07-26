@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:perfumaria/provider/product_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/utils/constantes.dart';
+import 'package:provider/provider.dart';
 
 import '../models/product_model.dart';
 
@@ -13,6 +15,7 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productProvider = Provider.of<ProductProvider>(context);
     return InkWell(
       onTap: () {
         Navigator.of(context).pushNamed(
@@ -70,7 +73,9 @@ class ProductList extends StatelessWidget {
                   ],
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    productProvider.removeProduct(product);
+                  },
                   icon: Icon(
                     Icons.delete,
                     color: Theme.of(context).errorColor,
