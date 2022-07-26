@@ -32,10 +32,11 @@ class ProductProvider with ChangeNotifier {
   final formKeyStep1 = GlobalKey<FormState>();
   final formKeyStep2 = GlobalKey<FormState>();
   final formKeyStep3 = GlobalKey<FormState>();
-  final nameController = TextEditingController();
 
   void toogleEmphasis() {
-    isEmphasis = !isEmphasis;
+    if (formData.isNotEmpty) {
+      isEmphasis = !isEmphasis;
+    }
     notifyListeners();
   }
 
@@ -53,7 +54,7 @@ class ProductProvider with ChangeNotifier {
       GlobalKey<FormState> formKey, BuildContext context) async {
     final isValidate = formKey.currentState?.validate() ?? false;
 
-    if (!isValidate || image == null) {
+    if (!isValidate || (formData.isEmpty && image == null)) {
       return;
     } else {
       formKey.currentState?.save();
@@ -73,12 +74,14 @@ class ProductProvider with ChangeNotifier {
       isEmphasis = false;
       image = null;
       imageList = [];
-      nameController.text = "";
       currentStep = 0;
       getItems();
       Navigator.of(context).pop();
       Navigator.of(context).pop();
     } else {
+      if (currentStep == 1 && formData["isEmphasis"] != null) {
+        isEmphasis = formData["isEmphasis"] as bool;
+      }
       currentStep += 1;
     }
     notifyListeners();

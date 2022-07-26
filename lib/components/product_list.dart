@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/utils/constantes.dart';
 
 import '../models/product_model.dart';
@@ -12,61 +13,71 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 7),
-      child: SizedBox(
-        height: 70,
-        child: Card(
-          color: const Color.fromRGBO(55, 55, 55, 1),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButtonList(product: product),
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundImage: NetworkImage(product.imageUrl),
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${product.name} - ${product.company}",
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Text(
-                        "De: R\$ ${product.oldPrice.toStringAsFixed(2)}",
-                        style: const TextStyle(
-                          color: Color.fromRGBO(169, 169, 169, 1),
-                          fontSize: 12,
-                          decoration: TextDecoration.lineThrough,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          AppRoutes.producRegistrationPage,
+          arguments: product,
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 7),
+        child: SizedBox(
+          height: 70,
+          child: Card(
+            color: const Color.fromRGBO(55, 55, 55, 1),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButtonList(product: product),
+                    CircleAvatar(
+                      radius: 25,
+                      backgroundImage: NetworkImage(product.imageUrl),
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${product.name} - ${product.company}",
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
                         ),
-                      ),
-                      Text(
-                        "Por: R\$ ${product.newPrice.toStringAsFixed(2)}",
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                        Text(
+                          "De: R\$ ${product.oldPrice.toStringAsFixed(2)}",
+                          style: const TextStyle(
+                            color: Color.fromRGBO(169, 169, 169, 1),
+                            fontSize: 12,
+                            decoration: TextDecoration.lineThrough,
+                          ),
                         ),
-                      ),
-                    ],
+                        Text(
+                          "Por: R\$ ${product.newPrice.toStringAsFixed(2)}",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.delete,
+                    color: Theme.of(context).errorColor,
                   ),
-                ],
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.edit_outlined,
-                    color: Theme.of(context).errorColor),
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
