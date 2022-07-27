@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:perfumaria/exceptions/http_exceptions.dart';
+import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/utils/constantes.dart';
 import '../models/product_model.dart';
 import 'package:http/http.dart' as http;
@@ -60,6 +61,7 @@ class ProductProvider with ChangeNotifier {
     } else {
       formKey.currentState?.save();
       currentContinue(context);
+      formKey.currentState?.reset();
     }
   }
 
@@ -72,11 +74,11 @@ class ProductProvider with ChangeNotifier {
             const ProgressDialog(status: "Criando produto.")),
       );
       await saveProduct(formData);
+      currentStep = 0;
+      formData.clear();
       isEmphasis = false;
       image = null;
       imageList = [];
-      currentStep = 0;
-      formData.clear();
       getItems();
       Navigator.of(context).pop();
       Navigator.of(context).pop();
@@ -163,11 +165,37 @@ class ProductProvider with ChangeNotifier {
     );
   }
 
+  Future<void> updateProduct(ProductModel product) async {
+    int index = _items.indexWhere((p) => p.id == product.id);
+
+    if (index >= 0) {
+      await http.patch(
+        Uri.parse("${Constant.productBase}/${product.id}.json"),
+        body: jsonEncode(
+          {
+            "name": product.name,
+            "company": product.company,
+            "quantity": product.quantity,
+            "cost": product.cost,
+            "oldPrice": product.oldPrice,
+            "newPrice": product.newPrice,
+            "isEmphasis": product.isEmphasis,
+            "description": product.description,
+            "imageUrl": product.imageUrl,
+          },
+        ),
+      );
+    }
+  }
+
   Future<void> saveProduct(Map<String, Object> data) async {
     bool hasId = data["id"] != null;
     final chooseId =
         hasId ? data["id"] as String : Random().nextInt(1000000000).toString();
-    await uploadImage(chooseId);
+
+    if (!hasId) {
+      await uploadImage(chooseId);
+    }
 
     final product = ProductModel(
       id: chooseId,
@@ -177,11 +205,11 @@ class ProductProvider with ChangeNotifier {
       cost: data["cost"] as double,
       oldPrice: data["oldPrice"] as double,
       newPrice: data["newPrice"] as double,
-      imageUrl: updatUrlImage!,
+      imageUrl: updatUrlImage ?? data["imageUrl"] as String,
       description: data["description"] as String,
     );
     if (hasId) {
-      return;
+      await updateProduct(product);
     } else {
       await addProduct(product);
     }
