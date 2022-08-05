@@ -74,7 +74,42 @@ class ProductList extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    productProvider.removeProduct(product);
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        backgroundColor: const Color.fromRGBO(63, 58, 58, 1),
+                        title: Text(
+                          "EXCLUIR",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                        content: const Text(
+                          "deseja excluir o produto?",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text("Não"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              productProvider.removeProduct(product);
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text("Sim"),
+                          ),
+                        ],
+                      ),
+                    );
+                    // productProvider.removeProduct(product);
                   },
                   icon: Icon(
                     Icons.delete,
