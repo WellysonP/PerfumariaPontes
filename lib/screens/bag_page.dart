@@ -146,8 +146,7 @@ class BagPage extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
         child: InkWell(
           onTap: () {
-            Navigator.of(context)
-                .pushReplacementNamed(AppRoutes.progressIndicator);
+            print(bag.items.values);
           },
           child: SizedBox(
             height: 60,

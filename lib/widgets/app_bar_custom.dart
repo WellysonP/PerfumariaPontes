@@ -1,7 +1,9 @@
 // ignore_for_file: must_be_immutable, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:perfumaria/provider/bag_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
+import 'package:provider/provider.dart';
 
 class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   final bool isFilter;
@@ -38,6 +40,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bag = Provider.of<BagProvider>(context);
     return AppBar(
       leadingWidth: 54,
       centerTitle: true,
@@ -95,10 +98,32 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
                 onTap!();
               }
             },
-            icon: Icon(
-              icon,
-              color: colorIcon,
-              size: sizeIcon,
+            icon: Stack(
+              children: [
+                Icon(
+                  icon,
+                  color: colorIcon,
+                  size: sizeIcon,
+                ),
+                Positioned(
+                  left: 0,
+                  bottom: 0,
+                  child: ClipOval(
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Text(
+                          bag.countItems.toString(),
+                          style: TextStyle(
+                            fontSize: 8,
+                          ),
+                        ),
+                      ),
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

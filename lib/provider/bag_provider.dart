@@ -6,6 +6,7 @@ import 'package:perfumaria/models/product_model.dart';
 class BagProvider with ChangeNotifier {
   Map<String, BagModel> _items = {};
   Map<String, BagModel> get items => {..._items};
+
   bool isDiscount = true;
   bool viewMore = false;
 

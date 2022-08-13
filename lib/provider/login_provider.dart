@@ -87,10 +87,55 @@ class LoginProvider with ChangeNotifier {
           builder: ((context) =>
               const ProgressDialog(status: "Acessando sua conta.")),
         );
-        user = await _auth.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
+        try {
+          user = await _auth.signInWithEmailAndPassword(
+            email: email,
+            password: password,
+          );
+        } on FirebaseAuthException catch (erro) {
+          final sizeDevice = MediaQuery.of(context).size;
+          void _showErrorDialog(String msg) {
+            showDialog(
+              context: context,
+              builder: (ctx) => Padding(
+                padding: const EdgeInsets.all(16),
+                child: AlertDialog(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  backgroundColor: const Color.fromRGBO(63, 58, 58, 1),
+                  title: Text(
+                    "Ocorreu um erro",
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
+                  ),
+                  content: Text(
+                    msg,
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text("Fechar")),
+                  ],
+                ),
+              ),
+            );
+          }
+
+          if (erro.code == 'user-not-found') {
+            Navigator.of(context).pop();
+            _showErrorDialog("E-mail não cadastrado.");
+          } else if (erro.code == 'invalid-email') {
+            Navigator.of(context).pop();
+            _showErrorDialog("E-mail inválido.");
+          } else if (erro.code == 'wrong-password') {
+            Navigator.of(context).pop();
+            _showErrorDialog("Senha incorreta.");
+          }
+        }
         perfilName = FirebaseAuth.instance.currentUser!.displayName;
         perfilPhotoUrl = FirebaseAuth.instance.currentUser!.photoURL;
         await getAdm();

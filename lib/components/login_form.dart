@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:perfumaria/utils/email_validator.dart';
 import 'package:provider/provider.dart';
 import '../provider/login_provider.dart';
+import 'excepitons/auth_exception.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -149,10 +150,11 @@ class LoginForm extends StatelessWidget {
                       ),
                     );
                   }
+
                   login.registerOrLogin(
                     name: login.nameController.text,
                     email: login.emailController.text,
-                    password: login.emailController.text,
+                    password: login.passwordController.text,
                     context: context,
                   );
                 },

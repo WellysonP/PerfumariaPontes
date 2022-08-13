@@ -45,7 +45,7 @@ class BagWidget extends StatelessWidget {
               ),
             ),
             content: const Text(
-              "deseja excluir o item da sacola?",
+              "Deseja excluir o item da sacola?",
               style: TextStyle(color: Colors.white),
             ),
             actions: [

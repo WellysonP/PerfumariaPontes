@@ -89,7 +89,7 @@ class ProductList extends StatelessWidget {
                           ),
                         ),
                         content: const Text(
-                          "deseja excluir o produto?",
+                          "Deseja excluir o produto?",
                           style: TextStyle(color: Colors.white),
                         ),
                         actions: [
