@@ -58,7 +58,16 @@ class PerfilPageOut extends StatelessWidget {
                       child: Container(
                         height: 60,
                         width: 185,
-                        color: const Color.fromRGBO(254, 174, 55, 1),
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Color.fromRGBO(255, 189, 60, 1),
+                              Color.fromRGBO(219, 135, 10, 1),
+                            ],
+                          ),
+                        ),
                         child: const Center(
                           child: Text(
                             "Fazer login",
@@ -94,7 +103,16 @@ class PerfilPageOut extends StatelessWidget {
                       child: Container(
                         height: 60,
                         width: 185,
-                        color: const Color.fromRGBO(254, 174, 55, 1),
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Color.fromRGBO(255, 189, 60, 1),
+                              Color.fromRGBO(219, 135, 10, 1),
+                            ],
+                          ),
+                        ),
                         child: const Center(
                           child: Text(
                             "Cadastrar-se",

@@ -97,30 +97,27 @@ class LoginProvider with ChangeNotifier {
           void _showErrorDialog(String msg) {
             showDialog(
               context: context,
-              builder: (ctx) => Padding(
-                padding: const EdgeInsets.all(16),
-                child: AlertDialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  backgroundColor: const Color.fromRGBO(63, 58, 58, 1),
-                  title: Text(
-                    "Ocorreu um erro",
-                    style:
-                        TextStyle(color: Theme.of(context).colorScheme.primary),
-                  ),
-                  content: Text(
-                    msg,
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  actions: [
-                    TextButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text("Fechar")),
-                  ],
+              builder: (ctx) => AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
                 ),
+                backgroundColor: const Color.fromRGBO(63, 58, 58, 1),
+                title: Text(
+                  "Ocorreu um erro",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
+                ),
+                content: Text(
+                  msg,
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("Fechar")),
+                ],
               ),
             );
           }
