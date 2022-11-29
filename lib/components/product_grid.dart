@@ -9,17 +9,18 @@ class ProductGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sizeDevice = MediaQuery.of(context).size;
     final product = Provider.of<ProductProvider>(context);
     return GridView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 17),
       itemCount: product.showFavorite
           ? product.itemsFavorite.length
           : product.items.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: sizeDevice.width ~/ 165,
           crossAxisSpacing: 15,
           mainAxisSpacing: 15,
-          childAspectRatio: 0.859),
+          mainAxisExtent: 200),
       itemBuilder: (ctx, i) => ProductGridItem(
           product: product.showFavorite
               ? product.itemsFavorite[i]
