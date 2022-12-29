@@ -69,6 +69,7 @@ class ProductConfigPage extends StatelessWidget {
                           )
                           .toList(),
                       onChanged: (value) {
+                        product.productFilter = "";
                         product.companyFilter = value;
                         product.filterCompany();
                       },
@@ -115,7 +116,7 @@ class ProductConfigPage extends StatelessWidget {
                               .toList(),
                       onChanged: (value) {
                         product.productFilter = value;
-                        product.filterCompany();
+                        product.filterProduct();
                       },
                       onSaved: (_) {},
                     ),

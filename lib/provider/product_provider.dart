@@ -64,6 +64,10 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void filterProduct() {
+    notifyListeners();
+  }
+
   toogleCompany(int i) {
     if (companyFilter == "Todos") {
       if (productFilter != "Todos") {
