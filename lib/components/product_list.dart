@@ -18,6 +18,10 @@ class ProductList extends StatelessWidget {
     final productProvider = Provider.of<ProductProvider>(context);
     return InkWell(
       onTap: () {
+        productProvider.isEmphasis = false;
+        productProvider.image = null;
+        productProvider.imageList = [];
+        productProvider.formData.clear();
         Navigator.of(context).pushNamed(
           AppRoutes.producRegistrationPage,
           arguments: product,

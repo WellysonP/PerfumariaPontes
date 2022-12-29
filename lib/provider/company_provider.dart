@@ -5,6 +5,8 @@ import 'package:perfumaria/models/company_model.dart';
 class CompanyProvider with ChangeNotifier {
   List<CompanyModel> get _items => companyDummy;
   List<CompanyModel> get items => [..._items];
+  List<CompanyModel> get itemsFilter =>
+      [const CompanyModel(id: "0", name: "Todos", imageUrl: "..."), ..._items];
   CompanyModel? selectedCompany;
   String? value;
 

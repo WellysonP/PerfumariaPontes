@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   final bool isFilter;
   final bool isArrowBack;
+  final bool isBag;
   IconData icon;
   String text;
   Color colorIcon;
@@ -18,6 +19,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   AppBarCustom.isFilter({
     this.isFilter = true,
     this.isArrowBack = false,
+    this.isBag = true,
     this.icon = Icons.local_mall_outlined,
     this.text = "",
     this.colorIcon = Colors.white,
@@ -27,6 +29,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   AppBarCustom.isArrowBack({
     this.isFilter = false,
     this.isArrowBack = true,
+    this.isBag = true,
     this.icon = Icons.local_mall_outlined,
     this.text = "",
     this.colorIcon = Colors.white,
@@ -105,24 +108,25 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
                   color: colorIcon,
                   size: sizeIcon,
                 ),
-                Positioned(
-                  left: 0,
-                  bottom: 0,
-                  child: ClipOval(
-                    child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: Text(
-                          bag.countItems.toString(),
-                          style: TextStyle(
-                            fontSize: 8,
+                if (isBag)
+                  Positioned(
+                    left: 0,
+                    bottom: 0,
+                    child: ClipOval(
+                      child: Container(
+                        child: Padding(
+                          padding: const EdgeInsets.all(2),
+                          child: Text(
+                            bag.countItems.toString(),
+                            style: TextStyle(
+                              fontSize: 8,
+                            ),
                           ),
                         ),
+                        color: Colors.red,
                       ),
-                      color: Colors.red,
                     ),
                   ),
-                ),
               ],
             ),
           ),

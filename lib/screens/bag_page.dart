@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:perfumaria/models/bag_model.dart';
 import 'package:perfumaria/provider/bag_provider.dart';
-import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/widgets/app_bar_custom.dart';
 import 'package:provider/provider.dart';
 import '../widgets/bag_widget.dart';
@@ -19,6 +18,7 @@ class BagPage extends StatelessWidget {
     final List<BagModel> items = bag.items.values.toList();
     return Scaffold(
       appBar: AppBarCustom.isArrowBack(
+        isBag: false,
         text: "Sacola",
         icon: Icons.account_balance_wallet_outlined,
         onTap: () {},
@@ -116,11 +116,10 @@ class BagPage extends StatelessWidget {
                               onPressed: () => bag.listBag(),
                               icon: Stack(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.circle,
                                     size: 30,
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
+                                    color: Color.fromRGBO(254, 174, 55, 1),
                                   ),
                                   if (bag.viewMore)
                                     const RotatedBox(
@@ -143,12 +142,19 @@ class BagPage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Theme.of(context).colorScheme.primary,
         child: InkWell(
-          onTap: () {
-            print(bag.items.values);
-          },
-          child: SizedBox(
+          onTap: () {},
+          child: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color.fromRGBO(255, 163, 34, 1),
+                  Color.fromRGBO(240, 129, 4, 1)
+                ],
+              ),
+            ),
             height: 60,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -158,11 +164,15 @@ class BagPage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Color.fromRGBO(72, 31, 1, 1),
                   ),
                 ),
                 SizedBox(width: 5),
-                Icon(Icons.account_balance_wallet_outlined, size: 35)
+                Icon(
+                  Icons.account_balance_wallet_outlined,
+                  size: 35,
+                  color: Color.fromRGBO(72, 21, 1, 1),
+                )
               ],
             ),
           ),
@@ -238,7 +248,7 @@ class ExpandIcon extends StatelessWidget {
     return const Icon(
       Icons.expand_circle_down_outlined,
       size: 30,
-      color: Color.fromRGBO(55, 55, 55, 1),
+      color: Color.fromRGBO(72, 21, 1, 1),
     );
   }
 }

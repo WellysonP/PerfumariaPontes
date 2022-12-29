@@ -73,7 +73,8 @@ class BagWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(7),
-            child: SizedBox(
+            child: Container(
+              color: const Color.fromRGBO(251, 235, 196, 1),
               height: 70,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

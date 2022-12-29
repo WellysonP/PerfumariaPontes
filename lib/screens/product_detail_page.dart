@@ -66,7 +66,16 @@ class ProductDetail extends StatelessWidget {
                     child: Container(
                       height: 50,
                       width: 100,
-                      color: Theme.of(context).colorScheme.primary,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color.fromRGBO(254, 162, 64, 1),
+                            Color.fromRGBO(245, 130, 0, 1),
+                          ],
+                        ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.only(top: 10, left: 10),
                         child: Column(
@@ -84,7 +93,7 @@ class ProductDetail extends StatelessWidget {
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                                color: Color.fromRGBO(72, 31, 1, 1),
                               ),
                             ),
                           ],
@@ -117,7 +126,6 @@ class ProductDetail extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Theme.of(context).colorScheme.primary,
         child: InkWell(
           onTap: () {
             msg.hideCurrentSnackBar();
@@ -135,17 +143,35 @@ class ProductDetail extends StatelessWidget {
             );
             bag.addItem(product);
           },
-          child: SizedBox(
+          child: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color.fromRGBO(254, 162, 64, 1),
+                  Color.fromRGBO(245, 130, 0, 1),
+                ],
+              ),
+            ),
             height: 60,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text(
                   "Adicionar à sacola",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(72, 31, 1, 1),
+                  ),
                 ),
                 SizedBox(width: 5),
-                Icon(Icons.local_mall_outlined, size: 35)
+                Icon(
+                  Icons.local_mall_outlined,
+                  size: 35,
+                  color: Color.fromRGBO(72, 31, 1, 1),
+                )
               ],
             ),
           ),

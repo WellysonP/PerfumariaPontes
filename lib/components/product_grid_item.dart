@@ -44,24 +44,64 @@ class ProductGridItem extends StatelessWidget {
                   height: 50,
                   width: double.infinity,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 10),
+                    padding: const EdgeInsets.only(left: 10, top: 5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "R\$${product.oldPrice.toStringAsFixed(2)}",
+                          product.name,
                           style: const TextStyle(
-                              fontSize: 12,
-                              color: Color.fromRGBO(169, 169, 169, 1),
-                              decoration: TextDecoration.lineThrough),
-                        ),
-                        Text(
-                          "R\$${product.newPrice.toStringAsFixed(2)}",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 15,
+                            color: Color.fromRGBO(169, 169, 169, 1),
                           ),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "R\$${product.newPrice.toStringAsFixed(2)}",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(7),
+                                    color: Color.fromRGBO(10, 135, 38, 1)),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.arrow_downward,
+                                          size: 7,
+                                          color: Colors.white,
+                                        ),
+                                        Text(
+                                          // ignore: prefer_interpolation_to_compose_strings
+                                          (((product.oldPrice -
+                                                          product.newPrice) /
+                                                      (product.oldPrice) *
+                                                      100)
+                                                  .toStringAsFixed(2) +
+                                              "%"),
+                                          style: const TextStyle(
+                                              fontSize: 8, color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ],
                     ),
@@ -102,8 +142,21 @@ class ProductGridItem extends StatelessWidget {
               child: Container(
                 height: 50,
                 width: 50,
-                color: Theme.of(context).colorScheme.primary,
-                child: const Icon(Icons.add, size: 30),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color.fromRGBO(255, 187, 55, 1),
+                      Color.fromRGBO(236, 125, 0, 1),
+                    ],
+                  ),
+                ),
+                child: const Icon(
+                  Icons.add,
+                  size: 30,
+                  color: Color.fromRGBO(72, 31, 1, 1),
+                ),
               ),
             ),
           ),

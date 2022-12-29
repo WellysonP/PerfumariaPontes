@@ -74,6 +74,7 @@ class _ProductregistrationPageState extends State<ProductregistrationPage> {
 
     return Scaffold(
       appBar: AppBarCustom.isArrowBack(
+        isBag: false,
         isArrowBackFunction: () {
           if (product.currentStep == 0) {
             Navigator.of(context).pop();

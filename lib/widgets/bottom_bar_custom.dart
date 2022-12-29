@@ -86,7 +86,6 @@ class BottomBarCustom extends StatelessWidget {
                     FirebaseAuth.instance.currentUser!.photoURL;
                 Navigator.of(context).pushReplacementNamed(AppRoutes.perfilIn);
               }
-              print(FirebaseAuth.instance.currentUser);
             },
             child: Container(
               color: const Color.fromRGBO(33, 33, 33, 1),
@@ -96,7 +95,7 @@ class BottomBarCustom extends StatelessWidget {
                 Icons.person_outline,
                 size: 40,
                 color: isPerfil == true
-                    ? Color.fromRGBO(242, 134, 12, 1)
+                    ? const Color.fromRGBO(242, 134, 12, 1)
                     : Colors.white,
               ),
             ),

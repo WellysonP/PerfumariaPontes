@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perfumaria/provider/login_provider.dart';
+import 'package:perfumaria/provider/product_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/widgets/action_perfil.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ class ListActionsPerfil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final product = Provider.of<ProductProvider>(context);
     final login = Provider.of<LoginProvider>(context);
     return Column(
       children: [

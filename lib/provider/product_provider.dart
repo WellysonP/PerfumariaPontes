@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:perfumaria/exceptions/http_exceptions.dart';
-import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/utils/constantes.dart';
 import '../models/product_model.dart';
 import 'package:http/http.dart' as http;
