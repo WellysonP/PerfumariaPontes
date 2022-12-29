@@ -37,51 +37,90 @@ class ProductConfigPage extends StatelessWidget {
             color: Colors.blue,
             width: double.infinity,
             height: 100,
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Container(
-                //   width: 170,
-                //   height: 30,
-                //   child: Form(
-                //     child: DropdownButtonFormField<String>(
-                //       decoration: InputDecoration(
-                //         contentPadding: const EdgeInsets.symmetric(
-                //             vertical: 4, horizontal: 12),
-                //         border: OutlineInputBorder(
-                //             borderRadius: BorderRadius.circular(20)),
-                //         labelStyle: const TextStyle(
-                //           fontSize: 14,
-                //         ),
-                //         labelText: "Fabricante",
-                //         fillColor: Colors.white,
-                //         filled: true,
-                //       ),
-                //       value: product.formData.isEmpty
-                //           ? null
-                //           : product.formData["company"].toString(),
-                //       items: company.itemsFilter
-                //           .map(
-                //             (item) => DropdownMenuItem<String>(
-                //               value: item.name,
-                //               child: Text(item.name),
-                //             ),
-                //           )
-                //           .toList(),
-                //       onChanged: (value) {
-                //         company.value = value;
-                //       },
-                //       onSaved: (company) =>
-                //           product.formData["company"] = company ?? "",
-                //       validator: (_company) {
-                //         final company = _company ?? "";
-                //         if (company.isEmpty) {
-                //           return "Campo Obrigatório";
-                //         }
-                //         return null;
-                //       },
-                //     ),
-                //   ),
-                // ),
+                Container(
+                  width: 170,
+                  height: 30,
+                  child: Form(
+                    child: DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 12),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        labelStyle: const TextStyle(
+                          fontSize: 14,
+                        ),
+                        labelText: "Fabricante",
+                        fillColor: Colors.white,
+                        filled: true,
+                      ),
+                      value: product.formData.isEmpty
+                          ? null
+                          : product.formData["company"].toString(),
+                      items: company.itemsFilter
+                          .map(
+                            (item) => DropdownMenuItem<String>(
+                              value: item.name,
+                              child: Text(item.name),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (value) {
+                        product.companyFilter = value;
+                        product.filterCompany();
+                      },
+                      onSaved: (_) {},
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 170,
+                  height: 30,
+                  child: Form(
+                    child: DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 12),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        labelStyle: const TextStyle(
+                          fontSize: 14,
+                        ),
+                        labelText: "Produto",
+                        fillColor: Colors.white,
+                        filled: true,
+                      ),
+                      value: product.formData.isEmpty
+                          ? null
+                          : product.formData["name"].toString(),
+                      items: product.companyFilter == "Todos"
+                          ? product.itemsFilter
+                              .map(
+                                (item) => DropdownMenuItem<String>(
+                                  value: item.name,
+                                  child: Text(item.name),
+                                ),
+                              )
+                              .toList()
+                          : product.companyFilterItems
+                              .map(
+                                (item) => DropdownMenuItem<String>(
+                                  value: item.name,
+                                  child: Text(item.name),
+                                ),
+                              )
+                              .toList(),
+                      onChanged: (value) {
+                        product.productFilter = value;
+                        product.filterCompany();
+                      },
+                      onSaved: (_) {},
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -89,9 +128,9 @@ class ProductConfigPage extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               child: ListView.builder(
-                itemCount: product.items.length,
+                itemCount: product.toogleLength(),
                 itemBuilder: (context, i) =>
-                    ProductList(product: product.items[i]),
+                    ProductList(product: product.toogleCompany(i)),
               ),
             ),
           )

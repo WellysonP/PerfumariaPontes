@@ -14,10 +14,36 @@ import '../widgets/progress_dialog.dart';
 
 class ProductProvider with ChangeNotifier {
   final List<ProductModel> _items = [];
+  String? companyFilter;
+  String? productFilter;
   List<ProductModel> get items => [..._items];
+  List<ProductModel> get itemsFilter => [
+        ProductModel(
+            id: "0",
+            name: "Todos",
+            company: companyFilter!,
+            quantity: 0,
+            cost: 0,
+            oldPrice: 0,
+            newPrice: 0,
+            imageUrl: "imageUrl",
+            description: 'description'),
+        ..._items
+      ];
 
   List<ProductModel> get itemsFavorite =>
       _items.where((element) => element.isFavorite).toList();
+
+  List<ProductModel> get allCompany => items
+      .where((element) => element.company.contains(companyFilter!))
+      .toList();
+
+  List<ProductModel> get companyFilterItems => itemsFilter
+      .where((element) => element.company.contains(companyFilter!))
+      .toList();
+
+  List<ProductModel> get productsFilterItems =>
+      _items.where((element) => element.name.contains(productFilter!)).toList();
 
   List<ProductModel> get itemsEmphasis =>
       _items.where((element) => element.isEmphasis).toList();
@@ -33,6 +59,42 @@ class ProductProvider with ChangeNotifier {
   final formKeyStep1 = GlobalKey<FormState>();
   final formKeyStep2 = GlobalKey<FormState>();
   final formKeyStep3 = GlobalKey<FormState>();
+
+  void filterCompany() {
+    notifyListeners();
+  }
+
+  toogleCompany(int i) {
+    if (companyFilter == "Todos") {
+      if (productFilter != "Todos") {
+        return productsFilterItems[i];
+      } else {
+        return items[i];
+      }
+    } else {
+      if (productFilter != "Todos") {
+        return productsFilterItems[i];
+      } else {
+        return allCompany[i];
+      }
+    }
+  }
+
+  toogleLength() {
+    if (companyFilter == "Todos") {
+      if (productFilter != "Todos") {
+        return productsFilterItems.length;
+      } else {
+        return items.length;
+      }
+    } else {
+      if (productFilter != "Todos") {
+        return productsFilterItems.length;
+      } else {
+        return allCompany.length;
+      }
+    }
+  }
 
   void toogleEmphasis() {
     if (formData.isNotEmpty) {
