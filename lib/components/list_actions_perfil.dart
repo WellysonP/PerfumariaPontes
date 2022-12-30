@@ -39,6 +39,7 @@ class ListActionsPerfil extends StatelessWidget {
             icon: Icons.settings,
             text: "Configurar Produtos",
             onPress: () {
+              product.isEmphasis = false;
               product.companyFilter = "Todos";
               product.productFilter = "Todos";
               Navigator.of(context).pushNamed(AppRoutes.productConfigPage);

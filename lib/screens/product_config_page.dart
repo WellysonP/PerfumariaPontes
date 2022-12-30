@@ -33,50 +33,106 @@ class ProductConfigPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            color: Colors.blue,
+          SizedBox(
             width: double.infinity,
             height: 100,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 170,
-                  height: 30,
-                  child: Form(
-                    child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 4, horizontal: 12),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        labelStyle: const TextStyle(
-                          fontSize: 14,
-                        ),
-                        labelText: "Fabricante",
-                        fillColor: Colors.white,
-                        filled: true,
-                      ),
-                      value: product.formData.isEmpty
-                          ? null
-                          : product.formData["company"].toString(),
-                      items: company.itemsFilter
-                          .map(
-                            (item) => DropdownMenuItem<String>(
-                              value: item.name,
-                              child: Text(item.name),
+                Row(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 13, vertical: 5),
+                      width: 170,
+                      height: 30,
+                      child: Form(
+                        child: DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 12),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                          )
-                          .toList(),
-                      onChanged: (value) {
-                        product.companyFilter = value;
-                        product.filterCompany();
-                      },
-                      onSaved: (_) {},
+                            labelStyle: const TextStyle(
+                              fontSize: 14,
+                            ),
+                            labelText: "Marca",
+                            fillColor: Colors.white,
+                            filled: true,
+                          ),
+                          value: product.formData.isEmpty
+                              ? null
+                              : product.formData["company"].toString(),
+                          items: product.isEmphasis
+                              ? product.list
+                                  .map(
+                                    (item) => DropdownMenuItem(
+                                      value: item.company,
+                                      child: Text(item.company),
+                                    ),
+                                  )
+                                  .toList()
+                              : company.itemsFilter
+                                  .map(
+                                    (item) => DropdownMenuItem<String>(
+                                      value: item.name,
+                                      child: Text(item.name),
+                                    ),
+                                  )
+                                  .toList(),
+                          onChanged: (value) {
+                            product.companyFilter = value;
+                            product.filterCompany();
+                          },
+                          onSaved: (_) {},
+                        ),
+                      ),
                     ),
-                  ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 13, vertical: 5),
+                      width: 170,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
+                      child: InkWell(
+                        splashColor: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(20),
+                        onTap: () {
+                          product.filterEnphasis();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 14),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "Destaques",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Color.fromRGBO(97, 97, 97, 1),
+                                ),
+                              ),
+                              Icon(
+                                product.isEmphasis
+                                    ? Icons.radio_button_checked
+                                    : Icons.radio_button_unchecked,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
                 Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
                   width: 170,
                   height: 30,
                   child: Form(
@@ -97,8 +153,8 @@ class ProductConfigPage extends StatelessWidget {
                       value: product.formData.isEmpty
                           ? null
                           : product.formData["name"].toString(),
-                      items: product.companyFilter == "Todos"
-                          ? product.itemsFilter
+                      items: product.isEmphasis
+                          ? product.itemsEmphasis
                               .map(
                                 (item) => DropdownMenuItem<String>(
                                   value: item.name,
@@ -106,14 +162,23 @@ class ProductConfigPage extends StatelessWidget {
                                 ),
                               )
                               .toList()
-                          : product.companyFilterItems
-                              .map(
-                                (item) => DropdownMenuItem<String>(
-                                  value: item.name,
-                                  child: Text(item.name),
-                                ),
-                              )
-                              .toList(),
+                          : product.companyFilter == "Todos"
+                              ? product.itemsFilter
+                                  .map(
+                                    (item) => DropdownMenuItem<String>(
+                                      value: item.name,
+                                      child: Text(item.name),
+                                    ),
+                                  )
+                                  .toList()
+                              : product.companyFilterItems
+                                  .map(
+                                    (item) => DropdownMenuItem<String>(
+                                      value: item.name,
+                                      child: Text(item.name),
+                                    ),
+                                  )
+                                  .toList(),
                       onChanged: (value) {
                         product.productFilter = value;
                         product.filterProduct();

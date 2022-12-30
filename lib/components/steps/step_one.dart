@@ -121,7 +121,7 @@ Step stepOne(BuildContext context, ProductProvider product,
                   labelStyle: const TextStyle(
                     fontSize: 15,
                   ),
-                  labelText: "Fabricante",
+                  labelText: "Marca",
                   fillColor: Colors.white,
                   filled: true,
                 ),

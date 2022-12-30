@@ -51,6 +51,40 @@ class ProductProvider with ChangeNotifier {
   List<ProductModel> get itemsEmphasis =>
       _items.where((element) => element.isEmphasis).toList();
 
+  List<ProductModel> get emphasisFilter => itemsEmphasis
+      .where((element) => element.company.contains(companyFilter!))
+      .toList();
+
+  List<ProductModel> list = [];
+  List allCompanyEnphasis = [];
+
+  el() {
+    list.clear();
+    allCompanyEnphasis.clear();
+
+    for (var i = 0; i < itemsEmphasis.length; i++) {
+      allCompanyEnphasis.add(itemsEmphasis[i].company);
+    }
+
+    List singleCompanyEnphasis = allCompanyEnphasis.toSet().toList();
+
+    for (var i = 0; i < singleCompanyEnphasis.length; i++) {
+      list.add(
+        ProductModel(
+            id: "id",
+            name: "name",
+            company: singleCompanyEnphasis[i],
+            quantity: 0,
+            cost: 0,
+            oldPrice: 0,
+            newPrice: 0,
+            imageUrl: "0",
+            description: "0"),
+      );
+    }
+    return list.toList();
+  }
+
   bool showFavorite = false;
   int currentStep = 0;
   bool isEmphasis = false;
@@ -62,6 +96,10 @@ class ProductProvider with ChangeNotifier {
   final formKeyStep1 = GlobalKey<FormState>();
   final formKeyStep2 = GlobalKey<FormState>();
   final formKeyStep3 = GlobalKey<FormState>();
+
+  test() {
+    return print(itemsEmphasis);
+  }
 
   void filterCompany() {
     if (productFilter != "Todos") {
@@ -75,38 +113,62 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void filterEnphasis() {
+    if (isEmphasis == false) {
+      el();
+    }
+    isEmphasis = !isEmphasis;
+    notifyListeners();
+  }
+
   void reset() {
     key.currentState!.reset();
   }
 
   toogleCompany(int i) {
-    if (companyFilter == "Todos") {
-      if (productFilter != "Todos") {
-        return productsFilterItems[i];
+    if (isEmphasis == false) {
+      if (companyFilter == "Todos") {
+        if (productFilter != "Todos") {
+          return productsFilterItems[i];
+        } else {
+          return items[i];
+        }
       } else {
-        return items[i];
+        if (productFilter != "Todos") {
+          return productsFilterItems[i];
+        } else {
+          return allCompany[i];
+        }
       }
     } else {
-      if (productFilter != "Todos") {
-        return productsFilterItems[i];
+      if (companyFilter != "Todos") {
+        return emphasisFilter[i];
       } else {
-        return allCompany[i];
+        return itemsEmphasis[i];
       }
     }
   }
 
   toogleLength() {
-    if (companyFilter == "Todos") {
-      if (productFilter != "Todos") {
-        return productsFilterItems.length;
+    if (isEmphasis == false) {
+      if (companyFilter == "Todos") {
+        if (productFilter != "Todos") {
+          return productsFilterItems.length;
+        } else {
+          return items.length;
+        }
       } else {
-        return items.length;
+        if (productFilter != "Todos") {
+          return productsFilterItems.length;
+        } else {
+          return allCompany.length;
+        }
       }
     } else {
-      if (productFilter != "Todos") {
-        return productsFilterItems.length;
+      if (companyFilter != "Todos") {
+        return emphasisFilter.length;
       } else {
-        return allCompany.length;
+        return itemsEmphasis.length;
       }
     }
   }
