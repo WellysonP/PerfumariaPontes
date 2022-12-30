@@ -16,6 +16,9 @@ class ProductProvider with ChangeNotifier {
   final List<ProductModel> _items = [];
   String? companyFilter;
   String? productFilter;
+
+  final GlobalKey<FormFieldState> key = GlobalKey<FormFieldState>();
+
   List<ProductModel> get items => [..._items];
   List<ProductModel> get itemsFilter => [
         ProductModel(
@@ -61,11 +64,19 @@ class ProductProvider with ChangeNotifier {
   final formKeyStep3 = GlobalKey<FormState>();
 
   void filterCompany() {
+    if (productFilter != "Todos") {
+      reset();
+    }
+    productFilter = "Todos";
     notifyListeners();
   }
 
   void filterProduct() {
     notifyListeners();
+  }
+
+  void reset() {
+    key.currentState!.reset();
   }
 
   toogleCompany(int i) {

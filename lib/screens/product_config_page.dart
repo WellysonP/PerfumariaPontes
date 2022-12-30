@@ -69,7 +69,6 @@ class ProductConfigPage extends StatelessWidget {
                           )
                           .toList(),
                       onChanged: (value) {
-                        product.productFilter = "";
                         product.companyFilter = value;
                         product.filterCompany();
                       },
@@ -82,6 +81,7 @@ class ProductConfigPage extends StatelessWidget {
                   height: 30,
                   child: Form(
                     child: DropdownButtonFormField<String>(
+                      key: product.key,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 4, horizontal: 12),
