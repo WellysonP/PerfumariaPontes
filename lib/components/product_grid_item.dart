@@ -12,6 +12,7 @@ class ProductGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sizeDevice = MediaQuery.of(context).size;
     final msg = ScaffoldMessenger.of(context);
     final bag = Provider.of<BagProvider>(context);
     return Stack(
@@ -48,27 +49,34 @@ class ProductGridItem extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          product.name,
-                          style: const TextStyle(
-                            fontSize: 15,
-                            color: Color.fromRGBO(169, 169, 169, 1),
+                        SizedBox(
+                          height: 20,
+                          child: Text(
+                            product.name,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              color: Color.fromRGBO(169, 169, 169, 1),
+                            ),
                           ),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              "R\$${product.newPrice.toStringAsFixed(2)}",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Theme.of(context).colorScheme.primary,
+                        SizedBox(
+                          width: 165 - 51,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(
+                                height: 16,
+                                child: Text(
+                                  "R\$${product.newPrice.toStringAsFixed(2)}",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 3),
-                              child: Container(
+                              Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(7),
                                     color: Color.fromRGBO(10, 135, 38, 1)),
@@ -99,9 +107,9 @@ class ProductGridItem extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),

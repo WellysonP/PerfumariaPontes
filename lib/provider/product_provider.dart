@@ -31,7 +31,7 @@ class ProductProvider with ChangeNotifier {
             newPrice: 0,
             imageUrl: "imageUrl",
             description: 'description'),
-        ..._items
+        ...items
       ];
 
   List<ProductModel> get itemsFavorite =>
@@ -96,10 +96,6 @@ class ProductProvider with ChangeNotifier {
   final formKeyStep1 = GlobalKey<FormState>();
   final formKeyStep2 = GlobalKey<FormState>();
   final formKeyStep3 = GlobalKey<FormState>();
-
-  test() {
-    return print(itemsEmphasis);
-  }
 
   void filterCompany() {
     if (productFilter != "Todos") {
@@ -218,6 +214,9 @@ class ProductProvider with ChangeNotifier {
       image = null;
       imageList = [];
       getItems();
+      companyFilter = "Todos";
+      productFilter = "Todos";
+      filterProduct();
       Navigator.of(context).pop();
       Navigator.of(context).pop();
     } else {

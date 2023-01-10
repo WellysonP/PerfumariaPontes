@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:perfumaria/provider/product_provider.dart';
 import 'package:perfumaria/utils/app_routes.dart';
 import 'package:perfumaria/utils/constantes.dart';
 import 'package:provider/provider.dart';
-
 import '../models/product_model.dart';
 
 class ProductList extends StatelessWidget {
@@ -15,6 +13,7 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sizeDevice = MediaQuery.of(context).size;
     final productProvider = Provider.of<ProductProvider>(context);
     return InkWell(
       onTap: () {
@@ -49,12 +48,16 @@ class ProductList extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "${product.name} - ${product.company}",
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
+                        SizedBox(
+                          width: sizeDevice.width * 0.56,
+                          child: Text(
+                            "${product.name} - ${product.company}",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                         Text(
                           "De: R\$ ${product.oldPrice.toStringAsFixed(2)}",

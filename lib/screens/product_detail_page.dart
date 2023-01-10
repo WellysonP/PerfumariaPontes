@@ -18,7 +18,7 @@ class ProductDetail extends StatelessWidget {
     final bag = Provider.of<BagProvider>(context);
     return Scaffold(
       appBar: AppBarCustom.isArrowBack(
-        text: "Descrição",
+        text: product.name,
         onTap: () {},
         isArrowBackFunction: () {
           Navigator.of(context).pop();

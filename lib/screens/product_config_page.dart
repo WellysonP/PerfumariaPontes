@@ -158,7 +158,14 @@ class ProductConfigPage extends StatelessWidget {
                               .map(
                                 (item) => DropdownMenuItem<String>(
                                   value: item.name,
-                                  child: Text(item.name),
+                                  child: Container(
+                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                    width: 120,
+                                    child: Text(
+                                      item.name,
+                                      overflow: TextOverflow.fade,
+                                    ),
+                                  ),
                                 ),
                               )
                               .toList()
@@ -167,7 +174,15 @@ class ProductConfigPage extends StatelessWidget {
                                   .map(
                                     (item) => DropdownMenuItem<String>(
                                       value: item.name,
-                                      child: Text(item.name),
+                                      child: Container(
+                                        margin:
+                                            EdgeInsets.symmetric(vertical: 10),
+                                        width: 120,
+                                        child: Text(
+                                          item.name,
+                                          overflow: TextOverflow.fade,
+                                        ),
+                                      ),
                                     ),
                                   )
                                   .toList()
@@ -175,7 +190,15 @@ class ProductConfigPage extends StatelessWidget {
                                   .map(
                                     (item) => DropdownMenuItem<String>(
                                       value: item.name,
-                                      child: Text(item.name),
+                                      child: Container(
+                                        margin:
+                                            EdgeInsets.symmetric(vertical: 10),
+                                        width: 120,
+                                        child: Text(
+                                          item.name,
+                                          overflow: TextOverflow.fade,
+                                        ),
+                                      ),
                                     ),
                                   )
                                   .toList(),
