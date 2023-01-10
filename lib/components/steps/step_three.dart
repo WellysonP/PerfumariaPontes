@@ -98,6 +98,8 @@ Step stepThree(BuildContext context, ProductProvider product,
               height: 150,
               child: TextFormField(
                 initialValue: product.formData["description"]?.toString() ?? "",
+                keyboardType: TextInputType.text,
+                textCapitalization: TextCapitalization.words,
                 maxLines: 5,
                 minLines: 5,
                 style: const TextStyle(fontSize: 20),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../provider/company_provider.dart';
 import '../../provider/product_provider.dart';
 
@@ -83,6 +84,8 @@ Step stepOne(BuildContext context, ProductProvider product,
             const SizedBox(height: 40),
             TextFormField(
               initialValue: product.formData["name"]?.toString(),
+              keyboardType: TextInputType.text,
+              textCapitalization: TextCapitalization.words,
               style: const TextStyle(fontSize: 20),
               decoration: InputDecoration(
                 contentPadding:
@@ -96,6 +99,7 @@ Step stepOne(BuildContext context, ProductProvider product,
                 fillColor: Colors.white,
                 filled: true,
               ),
+              // inputFormatters: <TextInputFormatter>[UpperCaseTextFormatter()],
               onSaved: (name) => product.formData["name"] = name ?? "",
               validator: (_name) {
                 final name = _name ?? "";
