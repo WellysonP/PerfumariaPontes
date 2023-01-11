@@ -80,7 +80,7 @@ class _ProductregistrationPageState extends State<ProductregistrationPage> {
             Navigator.of(context).pop();
             product.isEmphasis = false;
             product.image = null;
-            product.imageList = [];
+            // product.imageList = [];
             product.formData.clear();
           } else {
             product.currentCancel();

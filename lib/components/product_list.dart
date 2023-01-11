@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:perfumaria/provider/product_provider.dart';
@@ -19,7 +20,7 @@ class ProductList extends StatelessWidget {
       onTap: () {
         productProvider.isEmphasis = false;
         productProvider.image = null;
-        productProvider.imageList = [];
+        // productProvider.imageList = [];
         productProvider.formData.clear();
         Navigator.of(context).pushNamed(
           AppRoutes.producRegistrationPage,
@@ -49,8 +50,8 @@ class ProductList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: sizeDevice.width * 0.56,
-                          child: Text(
+                          width: sizeDevice.width * 0.53,
+                          child: AutoSizeText(
                             "${product.name} - ${product.company}",
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(

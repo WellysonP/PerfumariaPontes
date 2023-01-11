@@ -41,6 +41,7 @@ dependencies:
   firebase_database: ^9.0.18
   image_picker: ^0.8.5+3
   http: ^0.13.4
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

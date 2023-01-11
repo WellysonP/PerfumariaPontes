@@ -23,7 +23,7 @@ class ProductConfigPage extends StatelessWidget {
         onTap: () => {
           product.isEmphasis = false,
           product.image = null,
-          product.imageList = [],
+          // product.imageList = [],
           product.formData.clear(),
           Navigator.of(context).pushNamed(AppRoutes.producRegistrationPage),
         },

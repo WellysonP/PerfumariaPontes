@@ -34,15 +34,15 @@ class BagPage extends StatelessWidget {
             alignment: Alignment.topLeft,
             width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 17),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Card(
                 elevation: 10,
                 shadowColor: const Color.fromRGBO(150, 146, 146, 1),
                 color: const Color.fromRGBO(251, 235, 196, 1),
                 child: SizedBox(
                   height: bag.viewMore
-                      ? sizeDevice.height * 0.215 + (bag.items.length * 85)
-                      : sizeDevice.height * 0.215,
+                      ? sizeDevice.height * 0.25 + (bag.items.length * 85)
+                      : sizeDevice.height * 0.25,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(

@@ -89,7 +89,7 @@ class ProductProvider with ChangeNotifier {
   int currentStep = 0;
   bool isEmphasis = false;
   File? image;
-  List<XFile>? imageList = [];
+  // List<XFile>? imageList = [];
   String? updatUrlImage;
 
   final formData = <String, Object>{};
@@ -212,7 +212,8 @@ class ProductProvider with ChangeNotifier {
       formData.clear();
       isEmphasis = false;
       image = null;
-      imageList = [];
+      updatUrlImage = null;
+      // imageList = [];
       getItems();
       companyFilter = "Todos";
       productFilter = "Todos";
@@ -380,7 +381,7 @@ class ProductProvider with ChangeNotifier {
       final image = await ImagePicker().pickMultiImage();
       if (image == null) {
       } else {
-        imageList!.addAll(image);
+        // imageList!.addAll(image);
         final imageTemporary = File(image.first.path);
         this.image = imageTemporary;
       }

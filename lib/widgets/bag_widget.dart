@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:perfumaria/provider/bag_provider.dart';
 import 'package:perfumaria/widgets/dashe_line_widget.dart';
@@ -91,12 +92,17 @@ class BagWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            bagItem.name,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                              color: Color.fromRGBO(55, 55, 55, 1),
+                          SizedBox(
+                            width: sizeDevice.width * 0.42,
+                            child: AutoSizeText(
+                              bagItem.name,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Color.fromRGBO(55, 55, 55, 1),
+                              ),
                             ),
                           ),
                           Text(
